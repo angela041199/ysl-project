@@ -84,13 +84,13 @@ $result=$conn->query($sql);
       <div class="pb-2 d-flex justify-content-end">
         <div class="btn-group">
           <!-- coupon id ASC -->
-        <a class="btn btn-warning <?php if($order==1)echo "active"?>" href="coupon-list.php?page=<?=$page?>&order=1"><i class="fa-solid fa-arrow-trend-up pe-1"></i>優惠券編號(由小到大)</a>
+        <a class="btn btn-warning <?php if($order==1)echo "active"?>" href="coupon-list.php?page=<?=$page?>&order=1"><i class="fa-solid fa-arrow-up-wide-short pe-1"></i>編號(由小到大)</a>
         <!-- coupon id DESC -->
-        <a class="btn btn-warning <?php if($order == 2) echo"active"?>" href="coupon-list.php?page=<?=$page?>&order=2"><i class="fa-solid fa-arrow-trend-down pe-1"></i>優惠券編號(由大到小)</a>
+        <a class="btn btn-warning <?php if($order == 2) echo"active"?>" href="coupon-list.php?page=<?=$page?>&order=2"><i class="fa-solid fa-arrow-down-wide-short pe-1"></i>編號(由大到小)</a>
         <!-- start date ASC -->
-        <a class="btn btn-warning <?php if($order == 3) echo"active"?>" href="coupon-list.php?page=<?=$page?>&order=3"><i class="fa-solid fa-arrow-trend-up pe-1"></i>優惠券起始日期(由近到遠)</a>
+        <a class="btn btn-warning <?php if($order == 3) echo"active"?>" href="coupon-list.php?page=<?=$page?>&order=3"><i class="fa-solid fa-arrow-trend-up pe-1"></i>起始日期(由近到遠)</a>
         <!-- start date DESC -->
-        <a class="btn btn-warning <?php if($order == 4) echo"active"?>" href="coupon-list.php?page=<?=$page?>&order=4"><i class="fa-solid fa-arrow-trend-down pe-1"></i>優惠券起始日期(由遠到近)</a>
+        <a class="btn btn-warning <?php if($order == 4) echo"active"?>" href="coupon-list.php?page=<?=$page?>&order=4"><i class="fa-solid fa-arrow-trend-down pe-1"></i>起始日期(由遠到近)</a>
         </div>
       </div>
       <?php endif; ?>
@@ -123,16 +123,45 @@ $result=$conn->query($sql);
     <tbody>      
       <?php foreach($rows as $row): ?>
         <tr>
+          <?php
+          $discountType = $row["discount_type"];
+          switch ($discountType){
+            case 'percentage':
+              $displaydiscountType = '百分比折價';
+              break;
+            case 'amount':
+              $displaydiscountType = '優惠金額折價';
+              break;
+          }
+          $startDateText = $row["start_date"];
+          switch ($startDateText){
+            case 'user_created_at':
+              $displaystartDate = '使用者註冊帳號時間';
+              break;
+            default :
+              $displaystartDate = $startDateText ;
+              break;
+          }
+          $applicableScope = $row["applicable_scope"];
+          switch ($applicableScope){
+            case 'global':
+              $displayapplicableScope = '全站使用';
+              break;
+            case 'type':
+              $displayapplicableScope = '依類別使用';
+              break;
+          }
+          ?>
           <td><?=$row["coupon_id"]?></td>
           <td><?=$row["title"]?></td>
           <td><?=$row["coupon_code"]?></td>
-          <td><?=$row["discount_type"]?></td>
+          <td><?=$displaydiscountType?></td>
           <td><?=$row["discount_value"]?></td>
           <td><?=$row["usage_times"]?></td>
-          <td><?=$row["start_date"]?></td>
+          <td><?=$displaystartDate?></td>
           <td><?=$row["expiration_date"]?></td>
           <td><?=$row["price_rule"]?></td>
-          <td><?=$row["applicable_scope"]?></td>
+          <td><?=$displayapplicableScope?></td>
           <td><?=$row["applicable_type_id"]?></td>
           <td><?=$row["created_at"]?></td>
           <td><?=$row["status"]?></td>
