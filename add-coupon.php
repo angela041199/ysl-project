@@ -9,6 +9,8 @@
 
   <?php
   include("../ysl_project/ysl-css.php");
+  include("../ysl_project/ysl-nav.php");
+  //include("../ysl_project/sellerDashboard_sideNav.php");
   ?>
   <style>
     .input-error {
@@ -82,21 +84,16 @@
         </div>
         <div class="mb-3">
           <label for="applicable_scope" class="form-label">優惠券使用範圍</label>
-          <select class="form-select" aria-label="applicable_scope" name="applicable_scope" required>
+          <select class="form-select" aria-label="applicable_scope" name="applicable_scope" id="applicable_scope" onchange="updateApplicableTypeOptions()" required>
             <option>請選擇優惠券使用範圍</option>
             <option value="global">全站</option>
             <option value="type">依類別</option>
           </select>
-        </div>
-        <?php //$applicableScope=$_POST["applicableScope"]
-        ?>
-        <?php //if($applicableScope == 2): 
-        ?>
+        </div>        
         <div class="mb-3">
           <label for="applicable_type_id" class="form-label">優惠券使用類別</label>
           <select class="form-select" aria-label="applicable_type_id" name="applicable_type_id">
-            <option selected>請選擇優惠券使用類別</option>
-            <option value="0">全站使用</option>
+            <option selected>請選擇優惠券使用類別</option>            
             <option value="1">RPG</option>
             <option value="2">AVG</option>
             <option value="3">ETC</option>
@@ -109,6 +106,7 @@
             <option value="10">STG</option>
             <option value="11">AAPG</option>
             <option value="12">FTG</option>
+            <option value="0">全站使用</option>
           </select>
         </div>
         <div class="mb-3">
@@ -251,6 +249,23 @@
       }
       //全部都通過：返回true
       return isDateValid;
+    }
+  </script>
+  <!-- 增加type option的判定 -->
+  <script>
+    function updateApplicableTypeOptions(){
+      let scopeSelect = document.getElementById('applicable_scope');
+      let typeSelect = document.getElementsByName('applicable_type_id')[0];
+
+      if (scopeSelect.value === 'global'){
+        typeSelect.value = '0';
+        typeSelect.disabled = true;
+      }else{
+        typeSelect.disabled = false;
+				if (typeSelect.value === '0'){
+          typeSelect.value = ''; 
+        }
+      }
     }
   </script>
 
