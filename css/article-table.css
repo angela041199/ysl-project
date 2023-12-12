@@ -79,7 +79,7 @@ input.get-search::placeholder {
 
 .main-table {
   background: #F1F1F1;
-  border-radius: 16px;
+  border-radius: 0px 16px 16px 16px;
   overflow: hidden;
   width: 100%;
   box-shadow: 0 5px 8px rgba(129, 129, 129, 0.333);
@@ -178,4 +178,32 @@ section.pagination .page-link {
   color: #FF482F;
   font-size: 20px;
   margin-right: 10px;
+}
+
+/* nav-tabs */
+
+.nav-tabs {
+  border-bottom: none;
+}
+
+.nav-tabs {
+  margin-top: 20px;
+}
+
+.nav-tabs .nav-link.active {
+  background: rgba(216, 203, 203, 0.851);
+  font-weight: bold;
+  border-color: transparent;
+}
+
+.nav-tabs .nav-item .nav-link {
+  color: rgb(38, 39, 41);
+  border: 1px solid rgba(216, 203, 203, 0.851);
+}
+
+/* 頁碼 */
+.page-link.active,
+.datatable-pagination a.active,
+.active>.page-link {
+  background: rgba(216, 203, 203, 0.851);
 }

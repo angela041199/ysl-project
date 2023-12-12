@@ -162,7 +162,7 @@
                                         <label class="form-label category-input">文章分類 <i class="fa-solid fa-circle-info"
                                                 style="color: #8a8e93;" title="請選擇要發佈文章的所屬分類類型"></i></label>
                                         <select class="form-select" name="category_id">
-                                            <option class="0">
+                                            <option value="0">
                                                 請選擇文章分類
                                             </option>
                                             <option value="1">

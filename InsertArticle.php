@@ -48,22 +48,30 @@ if ($resultCheckAuthor->num_rows > 0) {
 $uploadDir = './images/upload/';
 $uploadFile = $uploadDir . $image;
 
-// 檢查是否為圖片
+
 //getimagesize() 函數將測定任何GIF，JPG，PNG... 影像檔案的大小並傳回影像的尺寸以及檔案類型及圖片高度與寬度
-if (getimagesize($_FILES['image']['tmp_name']) === false) {
-    echo "文件不是圖片，請重新上傳";
+//先檢查是否有圖片上傳
+if(empty($_FILES['image']['tmp_name'])){
+    echo "請上傳文章預覽圖片";
+    exit;
+}else{
+    // 檢查是否為圖片
+    if (getimagesize($_FILES['image']['tmp_name']) === false) {
+    echo "<script>alert('檔案格式不正確，請重新上傳'); window.location.href='create-article.php';</script>";
     exit;
 }
+}
+
 
 // 檢查文件是否已經存在
 if (file_exists($uploadFile)) {
-    echo "圖片檔名重複，上傳失敗!";
+    echo "<script>alert('圖片檔名重複，上傳失敗!'); window.location.href='create-article.php';</script>";
     exit;
 }
 
 // 檢查文件大小（例如不超過5MB）
 if ($_FILES['image']['size'] > 5000000) {
-    echo "對不起，您的檔案太大!";
+    echo "<script>alert('對不起，您的檔案太大!'); window.location.href='create-article.php';</script>";
     exit;
 }
 
@@ -99,7 +107,7 @@ if($conn->query($sqlInsert) === true){
     $lastID=$conn->insert_id;
     echo "<script>alert('新增文章成功'); window.location.href='article-list.php';</script>";
 }else{
-    echo "新增文章失敗".$conn->error;
+    echo "<script>alert('新增文章失敗，請重新嘗試'); window.location.href='create-article.php';</script>";
 }
 
 foreach ($tags as $tag) {
