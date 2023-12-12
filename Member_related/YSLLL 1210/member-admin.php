@@ -140,6 +140,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                         <li class="breadcrumb-item"><a href="index.php">YSL後台</a></li>
                         <li class="breadcrumb-item active">會員管理</li>
                     </ol>
+                    
                     <div class="card mb-4">
                         <div class="card-body">
                             歡迎來到 YSL 的會員後台，您的專屬空間。我們為您提供了一個有效的工具，以確保每一位會員都能享受到尊榮的購物體驗。
@@ -189,7 +190,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                 <tbody>
                                     <?php foreach ($rows as $row) : ?>
                                         <tr>
-
+                                            
                                             <td class="p-1"><?= $row["id"] ?></td>
 
                                             <td class="p-2"><?= $row["name"] ?></td>
@@ -198,14 +199,17 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                             <td class="p-2"><?= $row["email"] ?></td>
                                             <td class="p-2"><?= $row["created_at"] ?></td>
                                             <td class="p-2 text-center">
-                                                <a href=""><button class="btn btn-secondary "><?php
-                                                                                                if ($row["valid"] == 1) {
-                                                                                                    echo "正常";
-                                                                                                } else {
-                                                                                                    echo "暫停";
-                                                                                                }
+                                                <a href="memberProfile.php" class="btn btn-secondary">
+                                                        <?php
+                                                        if ($row["valid"] == 1) {
+                                                            echo "正常";
+                                                        } else {
+                                                            echo "暫停";
+                                                        }
 
-                                                                                                ?></button></a>
+                                                        ?>
+                                                </a>
+                                              
                                             </td>
                                             <td>
                                                 <form action="doDelete.php" method="POST">

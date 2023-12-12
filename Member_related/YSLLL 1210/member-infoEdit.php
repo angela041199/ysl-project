@@ -1,10 +1,22 @@
 <?php
-require_once("../db_connect.php");
 
-$sql = "SELECT id, name, account, phone, email, created_at, valid, member_identity FROM ysl_member WHERE valid = 0";
+if (!isset($_GET["id"])) {
+    header("location: member-admin.php");
+}
+
+$id = $_GET["id"];
+
+
+require_once("../connect_server.php");
+
+
+
+$sql = "SELECT * FROM ysl_member WHERE valid IN (0, 1) AND id='$id'";
 
 $result = $conn->query($sql);
-$rows = $result->fetch_all(MYSQLI_ASSOC);
+$row = $result->fetch_assoc();
+$userCount = $result->num_rows;
+
 ?>
 
 
@@ -113,7 +125,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
                                 <a class="nav-link" href="member-admin.php">會員資料</a>
 
-                                <a class="nav-link" href="memberAdd.php">會員新增</a>
+                                <a class="nav-link" href="memberAdd.php">新增會員</a>
 
                                 <a class="nav-link" href="member-deleted-list.php">被冷凍的會員</a>
                             </nav>
@@ -147,101 +159,95 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                         </div>
 
                     </div>
-                    <div>
-                        <form action="">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="尋找會員..." name="search">
-                                <button class="btn btn-secondary" type="submit" id=""><i class="bi bi-search"></i></button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="card mb-4">
+
+                    <div class="card mb-4 mt-2">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
                             會員資料表
                         </div>
                         <div class="card-body">
-                            <table id="datatablesSimple">
-                                <thead>
-                                    <tr>
-                                        <th class="p-1">id</th>
-                                        <th class="p-2">姓名</th>
-                                        <th class="p-2">帳號</th>
-                                        <th class="p-1 pe-3">電話</th>
-                                        <th class="p-2">Email</th>
-                                        <th class="p-2">加入會員時間</th>
-                                        <th class="p-2">會員狀態</th>
-                                        <th>冷凍</th>
-
-
-                                    </tr>
-                                </thead>
-                                <!-- <tfoot>
+                            <?php if ($userCount == 0) : ?>
+                                <H1>會員不存在</H1>
+                            <?php else : ?>
+                                <form action="doEdit.php" method="post">
+                                    <input type="hidden" name="id" value="<?=$row["id"]?>">
+                                    <table class="table table-bordered mt-4">
+                                       
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>姓名</th>
+                                            <td><input type="text" class="form-control" name="name" value="<?= $row["name"] ?>"></td>
                                         </tr>
-                                    </tfoot> -->
-                                <tbody>
-                                    <?php foreach ($rows as $row) : ?>
                                         <tr>
+                                            <th>信箱</th>
+                                            <td><input type="email" class="form-control" name="email" value="<?= $row["email"] ?>"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>手機</th>
+                                            <td><input type="tel" class="form-control" name="phone" value="<?= $row["phone"] ?>"></td>
+                                        </tr>
 
-                                            <td class="p-1"><?= $row["id"] ?></td>
 
-                                            <td class="p-2"><?= $row["name"] ?></td>
-                                            <td class="p-2"><?= $row["account"] ?></td>
-                                            <td class="p-1 pe-3"><?= $row["phone"] ?></td>
-                                            <td class="p-2"><?= $row["email"] ?></td>
-                                            <td class="p-2"><?= $row["created_at"] ?></td>
-                                            <td class="p-2 text-center">
-                                                <a href="">
-                                                    <button class="btn btn-secondary ">
-                                                        <?php
-                                                        if ($row["valid"] == 1) {
-                                                            echo "正常";
-                                                        } else {
-                                                            echo "暫停";
-                                                        }
-
-                                                        ?>
-                                                    </button>
-                                                </a>
-                                            </td>
+                                        <tr>
+                                            <th>生日</th>
+                                            <td><input type="date" class="form-control" name="birthday" value="<?= $row["birthday"] ?>"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>生理性別</th>
                                             <td>
-                                                <form action="doActive.php" method="POST">
-                                                    <input type="hidden" name="id" value="<?= $row["id"]; ?>">
-                                                    <input type="hidden" name="name" value="<?= $row["name"]; ?>">
-
-                                                    <button class="btn btn-secondary" type="submit">恢復</button>
-
-                                                </form>
+                                                <input type="radio" id="gender_f" name="gender" value="female">
+                                                <label for="gender_f">女</label><br>
+                                                <input type="radio" id="gender_m" name="gender" value="male">
+                                                <label for="gender_m">男</label><br>
+                                                <input type="hidden" value="Submit">
                                             </td>
                                         </tr>
-                                    <?php endforeach; ?>
+                                        <tr>
+                                            <th>地址</th>
+                                            <td><input type="address" class="form-control" name="address" value="<?= $row["address"]?>"></td>
+                                        </tr>
+                                        
+                                        <div class="mt-1">
+                                            <button class="btn btn-secondary">儲存</button>
+                                            <a href="memberProfile.php?id=<?= $row["id"] ?>" class="btn btn-secondary text-white" title="修改資料">取消</a>
+                                        </div>
 
-                                </tbody>
-                            </table>
+                                    </table>
+                                </form>
+                            <?php endif; ?>
                         </div>
+
                     </div>
+
+
+
+
+
+                    <!-- <a href="doEdit.php">
+                            <button type="submit" class="btn btn-secondary me-3">編輯</button>
+                        </a> -->
+                    <!-- <span class="text-secondary">已有帳號了嗎?</span> -->
+
+                    <!-- <a href="admin-login.php" class="" type="">登入</a> -->
+
                 </div>
-            </main>
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+                </form>
         </div>
+    </div>
+    </div>
+    </main>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                <div>
+                    <a href="#">Privacy Policy</a>
+                    &middot;
+                    <a href="#">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
