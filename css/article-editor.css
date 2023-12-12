@@ -8,6 +8,11 @@
     object-fit: contain;
 }
 
+.upimg {
+    width: 32px;
+    height: 32px;
+}
+
 /* main-header */
 .main-header {
     display: flex;

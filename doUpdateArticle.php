@@ -1,15 +1,39 @@
 <?php
 
+session_start();
+
 require_once("./comm/connect_sever.php");
 
-
 $id=$_POST['id'];
+$currentStatus = $_POST['currentStatus'];
+$action = $_POST['action'];
 $title=$_POST['title'];
 $category=$_POST['category_id'];
 $tags=isset($_POST['tags']) ? explode(',', $_POST['tags']) : array(); //tags是一個包含所有標籤的數組陣列
 $editorContent = $_POST['editorContent'];
 $authorName=$_POST['author'];
 $image=$_FILES['image']; //檔案傳送
+date_default_timezone_set('Asia/Taipei');
+$updateTime = date('Y-m-d H:i:s');
+
+
+//更新文章狀態
+if ($action === "publish") {
+    $newStatus = 1; // 如果狀態為已發佈，設置status=1
+} elseif ($action === "unpublish") {
+    $newStatus = 2; // 如果狀態為未發佈，設置status=2
+} else {
+    $newStatus = $currentStatus; // 都不是，維持原status的值
+}
+$sqlUpdateStatus = "UPDATE article SET status_id = '$newStatus' WHERE id = '$id'";
+$resultUpdateStatus = $conn->query($sqlUpdateStatus);
+
+if($resultUpdateStatus === true){
+    echo "<script>alert('操作成功'); window.location.href='article-list.php';</script>";
+} else {
+    echo "操作失敗" . $conn->error;
+}
+
 
 
 ////作者名稱編輯
@@ -82,17 +106,19 @@ JOIN article_author ON article.author_id =  article_author.id
 JOIN article_img ON article.img_id =  article_img.id 
 JOIN article_category ON article.category_id =  article_category.id 
 JOIN article_status ON article.status_id =  article_status.id  
-SET title='$title', category_id='$category', content='$editorContent', author_id = '$authorId', img_id='$img_id' 
+SET title='$title', category_id='$category', content='$editorContent', author_id = '$authorId', img_id='$img_id', update_time='$updateTime' 
 WHERE article.id='$id' AND valid=1";
 
 
 if($conn->query($sqlArticle) === true){
+    $redirectPage = $_SESSION['editPage'] ? $_SESSION['editPage'] : 1;
     echo "<script>alert('儲存更新成功'); 
-    window.location.href='article-list.php';</script>";;
+    window.location.href='article-list.php?page=".$redirectPage."';</script>";;
 }else{
     echo "Error updating record: " . $conn->error;
 }
 
+$conn->close;
 
 //刪除原有文章的標籤病更新文章標籤們
 $sqlDeleteTags = "DELETE FROM article_tags WHERE article_id='$id'";

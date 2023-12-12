@@ -1,66 +1,20 @@
-<?php
-
-session_start();
-$currentPage = isset($_GET['page']) ? $_GET['page'] : 1;;
-$_SESSION['editPage'] = $currentPage;
-
-require_once("./comm/connect_sever.php");
-
-$id = $_GET['id'];
-
-// 只取得指定的一篇文章的資料
-$sqlArticle = "SELECT article.*, article_author.name AS author_name, article_img.URL_name, article_category.name AS category_name, article_status.name AS status_name
-    FROM  article
-    JOIN article_author ON article.author_id =  article_author.id  
-    JOIN article_img ON article.img_id =  article_img.id 
-    JOIN article_category ON article.category_id =  article_category.id 
-    JOIN article_status ON article.status_id =  article_status.id  
-    WHERE article.id=$id AND valid=1";
-$resultArticle = $conn->query($sqlArticle);
-$article = $resultArticle->fetch_assoc(); 
-
-//判斷文章id存不存在
-$articleCount = $resultArticle ->num_rows;
-if($articleCount == 0){
-    echo "<script> alert('文章不存在!');
-        window.location.href='article-list.php';
-        </script>";
-    exit;
-}
-
-// 獲取與文章關聯的所有標籤
-$sqlTags = "SELECT article_tags.*, tags_list.name AS tag_name 
-            FROM article_tags 
-            JOIN tags_list ON article_tags.tag_id = tags_list.id 
-            WHERE article_tags.article_id=$id";
-$resultTags = $conn->query($sqlTags);
-//$tag = $resultTags->fetch_assoc();
-
-// 創建文章ID與標籤的關聯
-$tags = [];
-while ($tag = $resultTags->fetch_assoc()) {
-    $tags[] = $tag['tag_name'];
-}
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文章編輯</title>
+    <title>新增文章</title>
     <link href="./css/styles.css" rel="stylesheet" />
-    <link href="./css/article-table.css?=<?= time(); ?>" rel="stylesheet" />
-    <link href="./css/article-editor.css?=<?= time(); ?>" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/5442bf158b.js" crossorigin="anonymous"></script>
+    <link href="./css/article-table.css" rel="stylesheet" />
+    <link href="./css/article-editor.css" rel="stylesheet" />
+    <link href="./css/insert-article.css?=<?=time();?>" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/5442bf158b.js" crossorigin="anonymous">
+    </script>
 
 </head>
 
 <body>
-
     <nav class="sb-topnav navbar navbar-expand shadow-sm">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3 fw-bold text-white" href="index.html">YOUR SWITCH LIFE</a>
@@ -174,33 +128,31 @@ while ($tag = $resultTags->fetch_assoc()) {
         </div>
         <div id="layoutSidenav_content">
             <main>
-                <form action="doUpdateArticle.php" method="post" id="article-form" enctype="multipart/form-data">
+                <form action="InsertArticle.php" method="post" id="article-form" enctype="multipart/form-data">
                     <div class="container-fluid px-4">
-                        <?php if($articleCount == 0): ?>
-                        <h1>文章不存在</h1>
-                        <?php endif; ?>
-                        <section class="main-header my-3">
+                        <section class="main-header my-3 position-sticky">
                             <div class="title">
-                                <input type="hidden" name="id" value="<?=$article['id']?>">
-                                <input type="text" name="title" placeholder="請輸入文章標題..."
-                                    value="<?=$article['title']?>"><i class="fa-solid fa-circle-info"
-                                    style="color: #8a8e93;" title="文章標題"></i>
+                                <input type="hidden" name="id" value="">
+                                <input type="text" name="title" placeholder="請輸入文章標題..." value=""><i
+                                    class="fa-solid fa-circle-info" style="color: #8a8e93;" title="文章標題"></i>
                             </div>
                             <div class="button-wrap">
                                 <a class="btn btn-primary" href="article-list.php">回到文章列表</a>
-                                <input type="hidden" name="currentStatus" value="<?=$article['status_id']?>">
-                                <?php if($article['status_id'] == 1): ?>
-                                <button class="btn btn-info text-white" type="submit" name="submit">儲存更新</button>
-                                <button class="btn btn-warning text-white" value="unpublish" type="submit"
-                                    name="action">下架</button>
 
-                                <?php elseif($article['status_id'] == 2): ?>
-                                <button class="btn btn-info text-white" type="submit" name="submit">儲存更新</button>
+                                <button class="btn btn-warning text-white" type="submit" name="action"
+                                    value="unpublish">儲存為草稿</button>
                                 <button class="btn btn-success" value="publish" type="submit" name="action">發佈</button>
-                                <?php endif; ?>
+
                             </div>
 
                         </section>
+
+                        <div class="alert alert-danger d-flex align-items-center d-none" role="alert" id="alert-bar">
+                            <i class="fa-solid fa-triangle-exclamation me-2" style="color: #8d0202;"></i>
+                            <div class="alert-message">
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
 
                         <main class="wrapper">
                             <h5>內容設定</h5>
@@ -210,21 +162,19 @@ while ($tag = $resultTags->fetch_assoc()) {
                                         <label class="form-label category-input">文章分類 <i class="fa-solid fa-circle-info"
                                                 style="color: #8a8e93;" title="請選擇要發佈文章的所屬分類類型"></i></label>
                                         <select class="form-select" name="category_id">
-                                            <option
-                                                class="<?php if(!isset($article['category_id']))echo 'selected'; ?>">
+                                            <option class="0">
                                                 請選擇文章分類
                                             </option>
-                                            <option value="1" <?php if($article['category_id']==1)echo 'selected'; ?>
-                                                name="">
+                                            <option value="1">
                                                 遊戲攻略
                                             </option>
-                                            <option value="2" <?php if($article['category_id']==2)echo 'selected'; ?>>
+                                            <option value="2">
                                                 發售資訊
                                             </option>
-                                            <option value="3" <?php if($article['category_id']==3)echo 'selected'; ?>>
+                                            <option value="3">
                                                 遊戲報報
                                             </option>
-                                            <option value="4" <?php if($article['category_id']==4)echo 'selected'; ?>>
+                                            <option value="4">
                                                 試玩報導
                                             </option>
                                         </select>
@@ -236,14 +186,11 @@ while ($tag = $resultTags->fetch_assoc()) {
                                             placeholder="請輸入標籤後按下enter，即可新增標籤">
                                         <div class="tags-container">
                                             <input type="hidden" name="tags" id="hiddenTags">
-                                            <?php foreach($tags as $tag): ?>
-                                            <span class="badge"><?=$tag?></span>
-                                            <?php endforeach; ?>
                                         </div>
                                     </div>
                                     <div id="container">
                                         <label class="form-label">文章內容 <i class="fa-solid fa-circle-info"
-                                                style="color: #8a8e93;" title="請輸入文章內容"></i></label>
+                                                style="color: #8a8e93;"></i></label>
                                         <textarea name="editorContent" id="hiddenEditorContent"
                                             style="display: none;"></textarea>
                                         <textarea name="editorContent" id="editor">
@@ -254,16 +201,13 @@ while ($tag = $resultTags->fetch_assoc()) {
                                 </div>
                                 <div class="right-wrap">
                                     <div class="author-wrap shadow-sm">
-                                        <p>作者設定 <i class="fa-solid fa-circle-info" style="color: #8a8e93;"
-                                                title="請輸入作者名稱"></i></p>
+                                        <h5>作者設定 <i class="fa-solid fa-circle-info" style="color: #8a8e93;"></i></h5>
                                         <label class="form-label">作者名字</label>
-                                        <input type="text" class="form-control" value="<?=$article['author_name']?>"
-                                            name="author">
+                                        <input type="text" class="form-control" value="" name="author">
                                     </div>
                                     <div class="cover-img-wrap shadow-sm">
                                         <label for="imageUpload" class="form-label">文章預覽圖設定 <i
-                                                class="fa-solid fa-circle-info" style="color: #8a8e93;"
-                                                title="圖檔大小上限為5MB，請盡量使用.jpg檔"></i></label>
+                                                class="fa-solid fa-circle-info" style="color: #8a8e93;"></i></label>
                                         <br>
                                         <!-- 圖片上傳按鈕 -->
                                         <input type="file" id="imageUpload" name="image" accept="image/*"
@@ -509,11 +453,11 @@ while ($tag = $resultTags->fetch_assoc()) {
     </script>
     <script src="./js/previewImg.js"></script>
     <script src="./js/enter-tags.js"></script>
+    <script src="./js/check-content.js"></script>
     <script>
     //初始化CKEDITOR
     CKEDITOR.replace('editor');
     </script>
-
 </body>
 
 </html>

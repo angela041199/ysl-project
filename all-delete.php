@@ -1,6 +1,6 @@
 <?php
 
-require_once("../comm/connect_sever.php");
+require_once("./comm/connect_sever.php");
 
 //'php://input' 是一個讀取原始POST數據的I/O流。它允許您訪問非表單數據的原始POST數據（例如JSON或XML格式的數據）。在這種情況下，它用於獲取由JavaScript（例如Ajax請求）發送的原始JSON數據。
 //true 指示 json_decode 函數將JSON對象轉換為PHP關聯陣列

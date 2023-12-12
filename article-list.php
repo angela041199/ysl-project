@@ -27,7 +27,7 @@ $category=isset($_GET['category']) ? intval($_GET['category']) : 0;
 //如果有取得搜尋的值進行模糊搜尋
 if(isset($_GET['search'])){
     $search = $_GET['search'];
-    $sqlCount .=" AND article.title LIKE '%$search%' ORDER BY article.id ASC";
+    $sqlCount .=" AND article.title LIKE '%$search%'";
 }elseif(isset($_GET['status'])){
         $status = $_GET['status'];
 
@@ -38,10 +38,9 @@ if(isset($_GET['search'])){
             JOIN article_img ON article.img_id =  article_img.id 
             JOIN article_category ON article.category_id =  article_category.id 
             JOIN article_status ON article.status_id =  article_status.id 
-            WHERE valid=1"; 
+            WHERE valid=1 ORDER BY article.id DESC"; 
         }else{
-            $sqlCount .= " AND article.status_id = $status
-            ORDER BY article.id ASC";
+            $sqlCount .= " AND article.status_id = $status";
         }
 
         
@@ -52,7 +51,7 @@ $totalArticle = $resultCount->num_rows;
 //需要幾頁
 $pageCount = ceil($totalArticle / $perpage);
 
-$sqlCount.= " LIMIT $perpage OFFSET $startItem";
+$sqlCount.= " ORDER BY article.id DESC LIMIT $perpage OFFSET $startItem";
 $result= $conn->query($sqlCount);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 
@@ -246,7 +245,8 @@ $conn->close();
                                 </select>
                             </form>
                             <button class="all-del btn btn-danger" data-bs-target="#confirmationModal">批次刪除</button>
-                            <button class="add-post btn btn-primary"><i class="fa-solid fa-plus"></i> 新增文章</button>
+                            <a class="add-post btn btn-primary" href="create-article.php"><i
+                                    class="fa-solid fa-plus"></i> 新增文章</a>
                         </div>
                     </section>
 
@@ -322,7 +322,8 @@ $conn->close();
                                 </td>
                                 <td>
                                     <a href="#" class="post-cover">
-                                        <img src="./images/upload/<?= $row['URL_name'] ?>" alt="" class="object-fit-contain">
+                                        <img src="./images/upload/<?= $row['URL_name'] ?>" alt=""
+                                            class="object-fit-contain">
                                     </a>
                                 </td>
                                 <td class="post-title">
@@ -360,7 +361,8 @@ $conn->close();
                                         ?>
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary" href="article-editor.php?id=<?=$row['id']?>">編輯</a>
+                                    <a class="btn btn-primary"
+                                        href="article-editor.php?id=<?=$row['id']?>&page=<?=$currentPage?>">編輯</a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
@@ -375,7 +377,8 @@ $conn->close();
                                 </td>
                                 <td>
                                     <a href="#" class="post-cover">
-                                        <img src="./images/upload/<?= $row['URL_name'] ?>" alt="" class="object-fit-contain">
+                                        <img src="./images/upload/<?= $row['URL_name'] ?>" alt=""
+                                            class="object-fit-contain">
                                     </a>
                                 </td>
                                 <td class="post-title">
@@ -413,7 +416,8 @@ $conn->close();
                                         ?>
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary" href="article-editor.php?id=<?=$row['id']?>">編輯</a>
+                                    <a class="btn btn-primary"
+                                        href="article-editor.php?id=<?=$row['id']?>&page=<?=$currentPage?>">編輯</a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

@@ -49,7 +49,7 @@ allDelsBtn.addEventListener("click", function () {
       //如果有選文章再傳送ajax
       $.ajax({
         method: "POST",
-        url: "../articles/api/all-delete.php",
+        url: "all-delete.php",
         dataType: "json",
         data: JSON.stringify({
           articleIDs: selectedIDs,
