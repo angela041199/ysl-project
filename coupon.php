@@ -40,8 +40,10 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <?php
-    include("../ysl_project/ysl-css.php");
-    ?>
+  include("../ysl_project/ysl-css.php");
+  include("../ysl_project/ysl-nav.php");
+  //include("../ysl_project/sellerDashboard_sideNav.php");
+  ?>
 </head>
 
 <body>
