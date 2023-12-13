@@ -41,7 +41,7 @@ input.get-search::placeholder {
 .clear-xmark {
   position: absolute;
   right: 50px;
-  top: calc(50% - 12px);
+  top: calc(50% - 8px);
   background: none;
   border: none;
   padding: 0;
@@ -138,7 +138,7 @@ tbody tr:nth-child(even) {
 
 /* pagnation */
 
-section.pagination .page-link {
+section.pagination #page-link {
   color: rgba(0, 0, 0, 0.909);
   border-color: rgba(216, 203, 203, 0.851);
 
@@ -157,15 +157,13 @@ section.pagination .page-link {
 
 /* nav-tabs */
 
-.nav-tabs {
+#ul-navtabs {
   border-bottom: none;
-}
-
-.nav-tabs {
   margin-top: 20px;
 }
 
-.nav-tabs .nav-link.active {
+
+.nav-tabs #category-link.active {
   background: rgba(216, 203, 203, 0.851);
   font-weight: bold;
   border-color: transparent;
@@ -177,12 +175,16 @@ section.pagination .page-link {
 }
 
 /* 頁碼 */
-.page-link.active,
+#page-link.active,
 .datatable-pagination a.active,
-.active>.page-link {
+.active>#page-link {
   background: rgba(216, 203, 203, 0.851);
 }
 
 #category-form{
   margin-bottom: 0;
+}
+
+#basic-addon2{
+  background: rgba(216, 203, 203, 0.851);
 }
