@@ -203,7 +203,7 @@ $userCount = $result->num_rows;
                                         </tr>
                                         <tr>
                                             <th>地址</th>
-                                            <td><input type="address" class="form-control" name="address" value="<?= $row["address"]?>"></td>
+                                            <td><input type="address" class="form-control" name="address" value=""></td>
                                         </tr>
                                         
                                         <div class="mt-1">

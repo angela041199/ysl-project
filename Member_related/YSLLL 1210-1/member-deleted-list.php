@@ -198,18 +198,18 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                             <td class="p-2"><?= $row["email"] ?></td>
                                             <td class="p-2"><?= $row["created_at"] ?></td>
                                             <td class="p-2 text-center">
-                                                <a href="memberProfile.php?id=<?=$row["id"]?>">
+                                                <a href="memberProfile.php?id=<?= $row["id"] ?>">
                                                     <button class="btn btn-secondary">
-                                                    <?php
+                                                        <?php
                                                         if ($row["valid"] == 1) {
-                                                        echo "正常";
+                                                            echo "正常";
                                                         } else {
-                                                        echo "暫停";
+                                                            echo "暫停";
                                                         }
 
-                                                    ?>
+                                                        ?>
                                                     </button>
-                                                                               
+
                                                 </a>
                                             </td>
                                             <td>
@@ -217,7 +217,28 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                                     <input type="hidden" name="id" value="<?= $row["id"]; ?>">
                                                     <input type="hidden" name="name" value="<?= $row["name"]; ?>">
 
-                                                    <button class="btn btn-secondary" type="submit">恢復</button>
+                                                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#alertModal<?= $row["id"] ?>" type="button">恢復</button>
+
+                                                    <div class="modal fade" id="alertModal<?= $row["id"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                                                        <div class="modal-dialog modal-sm">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">注意</h1>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+
+                                                                <div class="modal-body">
+                                                                    確定恢復<?= $row["name"] ?>嗎？
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                                                                    <a href="doActive.php?id=<?= $row["id"] ?>"><button type=submit class="btn btn-primary">確認</button></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
                                                 </form>
                                             </td>

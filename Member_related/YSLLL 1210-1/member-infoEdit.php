@@ -163,16 +163,16 @@ $userCount = $result->num_rows;
                     <div class="card mb-4 mt-2">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            會員資料表
+                            <?= $row["name"] ?>會員資料表
                         </div>
                         <div class="card-body">
                             <?php if ($userCount == 0) : ?>
                                 <H1>會員不存在</H1>
                             <?php else : ?>
                                 <form action="doEdit.php" method="post">
-                                    <input type="hidden" name="id" value="<?=$row["id"]?>">
+                                    <input type="hidden" name="id" value="<?= $row["id"] ?>">
                                     <table class="table table-bordered mt-4">
-                                       
+
                                         <tr>
                                             <th>姓名</th>
                                             <td><input type="text" class="form-control" name="name" value="<?= $row["name"] ?>"></td>
@@ -194,18 +194,19 @@ $userCount = $result->num_rows;
                                         <tr>
                                             <th>生理性別</th>
                                             <td>
-                                                <input type="radio" id="gender_f" name="gender" value="female">
-                                                <label for="gender_f">女</label><br>
-                                                <input type="radio" id="gender_m" name="gender" value="male">
-                                                <label for="gender_m">男</label><br>
-                                                <input type="hidden" value="Submit">
+                                                <input type="radio" id="gender_f" name="gender" value="Female" <?php echo ($row["gender"] == "Female") ? "checked" : ""; ?>>
+                                                <label for="gender_f">女</label>
+
+                                                <input type="radio" id="gender_m" name="gender" value="Male" <?php echo ($row["gender"] == "Male") ? "checked" : ""; ?>>
+                                                <label for="gender_m">男</label>
+
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>地址</th>
-                                            <td><input type="address" class="form-control" name="address" value="<?= $row["address"]?>"></td>
+                                            <td><input type="address" class="form-control" name="address" value=""></td>
                                         </tr>
-                                        
+
                                         <div class="mt-1">
                                             <button class="btn btn-secondary">儲存</button>
                                             <a href="memberProfile.php?id=<?= $row["id"] ?>" class="btn btn-secondary text-white" title="修改資料">取消</a>

@@ -163,7 +163,7 @@ $userCount = $result->num_rows;
                     <div class="card mb-4 mt-2">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            會員資料表
+                            <?= $row["name"] ?>會員資料表
                         </div>
                         <div class="card-body">
                             <?php if ($userCount == 0) : ?>
@@ -211,7 +211,19 @@ $userCount = $result->num_rows;
                                     </tr>
                                     <tr>
                                         <th>生理性別</th>
-                                        <td><?= $row["gender"] ?></td>
+                                        <td>
+                                            <?php 
+                                            // var_dump($row["gender"]);
+                                            if($row["gender"] == 'Female')
+                                                {echo "女";
+
+                                                }else{
+
+                                                echo "男";
+                                        
+                                            } 
+                                            ?>                                                
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>地址</th>

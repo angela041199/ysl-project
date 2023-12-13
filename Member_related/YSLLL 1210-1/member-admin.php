@@ -1,5 +1,10 @@
 <?php
 require_once("../connect_server.php");
+include("./admin-nav.php");
+include("./admin_dashboard.php");
+
+// $id = $_GET["id"];
+
 
 $sql = "SELECT id, name, account, phone, email, created_at, valid, member_identity FROM ysl_member WHERE valid = 1";
 
@@ -28,6 +33,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 </head>
 
 <body class="sb-nav-fixed">
+
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="index.php">YSL後台</a>
@@ -134,6 +140,9 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         </div>
         <div id="layoutSidenav_content">
             <main>
+                
+
+
                 <div class="container-fluid px-4">
 
                     <ol class="breadcrumb mb-4  mt-3">
@@ -201,11 +210,11 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                                 <a href="memberProfile.php?id=<?= $row["id"] ?>">
                                                     <button class="btn btn-secondary ">
                                                         <?php
-                                                            if ($row["valid"] == 1) {
-                                                             echo "正常";
-                                                            } else {
+                                                        if ($row["valid"] == 1) {
+                                                            echo "正常";
+                                                        } else {
                                                             echo "暫停";
-                                                            }
+                                                        }
 
                                                         ?>
                                                     </button>
@@ -216,10 +225,31 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                                     <input type="hidden" name="id" value="<?= $row["id"]; ?>">
                                                     <input type="hidden" name="name" value="<?= $row["name"]; ?>">
 
-                                                    <button class="btn btn-secondary" type="submit">冷凍</button>
+                                                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#alertModal<?= $row["id"] ?>" type="button">冷凍</button>
 
+                                                    <div class="modal fade" id="alertModal<?= $row["id"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                                                            <div class="modal-dialog modal-sm">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">注意</h1>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+
+                                                                    <div class="modal-body">
+                                                                        確定冷凍<?= $row["name"] ?>嗎？
+                                                                    </div>
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                                                                        <a href="doDelete.php?id=<?= $row["id"] ?>" ><button type=submit class="btn btn-primary">確認</button></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                 </form>
                                             </td>
+
                                         </tr>
                                     <?php endforeach; ?>
 
@@ -242,9 +272,13 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 </div>
             </footer>
         </div>
+
+
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
 </body>
