@@ -1,13 +1,13 @@
 <?php
 
-include("./style/admin-nav.php");
-include("./style/admin_dashboard.php");
+include("/xampp/htdocs/github/style/admin-nav.php");
+include("/xampp/htdocs/github/style/admin_dashboard.php");
 
 session_start();
 $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;;
 $_SESSION['editPage'] = $currentPage;
 
-require_once("./comm/connect_sever.php");
+require_once("/xampp/htdocs/github/includes/connect_sever.php");
 
 $id = $_GET['id'];
 
@@ -153,7 +153,7 @@ while ($tag = $resultTags->fetch_assoc()) {
                                             </p>
                                         </div>
                                         <div class="article-admin-wrap shadow-sm">
-                                            <h5>文章更新紀錄 <i class="fa-solid fa-circle-info" style="color: #8a8e93;"></i></h5>
+                                            <p>文章更新紀錄 <i class="fa-solid fa-circle-info" style="color: #8a8e93;"></i></p>
                                             <div class="list-group">
                                                 <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
                                                     <img src="./images/upload/Stitches.png" alt="twbs" class="rounded-circle flex-shrink-0 object-fit-contain upimg">
@@ -173,7 +173,7 @@ while ($tag = $resultTags->fetch_assoc()) {
                     </form>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
-                    <?php include("./style/footer.php") ?>
+                <?php include("/xampp/htdocs/github/style/footer.php");?>
                 </footer>
             </div>
         </div>
