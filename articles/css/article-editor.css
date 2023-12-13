@@ -17,8 +17,12 @@
 .main-header {
     display: flex;
     justify-content: space-between;
-    margin-top: 60px;
-    margin-bottom: 10px;
+    /* margin-top: 60px; */
+    margin-bottom: 20px;
+}
+
+.create-header {
+    margin-top: 40px;
 }
 
 .title input {
@@ -92,7 +96,7 @@
 }
 
 /* 文章標籤Badges */
-.badge {
+.badge-new {
     display: inline-block;
     padding: 5px;
     margin: 10px 5px;
@@ -100,16 +104,24 @@
     color: white;
     border-radius: 10px;
     cursor: pointer;
+    font-size: 12px;
 }
 
-.badge i {
+.badge-new .fa-circle-xmark {
     margin-left: 5px;
 }
 
 #preview {
     height: 200px;
+    width: 320px;
 }
 
-.sb-nav-fixed #layoutSidenav #layoutSidenav_content{
+.sb-nav-fixed #layoutSidenav #layoutSidenav_content {
     top: 10px;
+}
+
+.info-text {
+    color: #a52a2a;
+    font-weight: bold;
+    margin-left: 5px;
 }

@@ -1,6 +1,7 @@
 <?php
 
-require_once("./comm/connect_sever.php");
+session_start();
+require_once("/xampp/htdocs/github/includes/connect_sever.php");
 
 $title = $_POST['title'];
 $category = $_POST['category_id'];

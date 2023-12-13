@@ -4,7 +4,7 @@ require_once("/xampp/htdocs/github/includes/connect_sever.php");
 include("/xampp/htdocs/github/style/admin-nav.php");
 include("/xampp/htdocs/github/style/admin_dashboard.php");
 // include("/xampp/htdocs/github/style/nav-top-js.php");
-// include("/xampp/htdocs/github/style/side-nav-js.php");
+
 
 $currentPage = isset($_GET['page']) ? $_GET['page']:1;
 
@@ -171,7 +171,8 @@ $conn->close();
                         <section class="article-status">
                             <ul class="nav nav-tabs" id="ul-navtabs">
                                 <li class="nav-item">
-                                    <a id="category-link" class="nav-link <?php if (!isset($_GET['status']) || $_GET['status']=="") echo "active"; ?>"
+                                    <a id="category-link"
+                                        class="nav-link <?php if (!isset($_GET['status']) || $_GET['status']=="") echo "active"; ?>"
                                         aria-current="page"
                                         href="article-list.php?category=<?=isset($_GET['category']) ? intval($_GET['category']) : 0?>">全部</a>
                                 </li>
@@ -339,7 +340,8 @@ $conn->close();
                                 <?php endif; ?>
 
                                 <?php for($i=1;$i<=$pageCount;$i++): ?>
-                                <li class="page-item <?=($currentPage==$i)?'active':''?>"><a id="page-link" class="page-link" href="article-list.php?page=<?=$i?>
+                                <li class="page-item <?=($currentPage==$i)?'active':''?>"><a id="page-link"
+                                        class="page-link" href="article-list.php?page=<?=$i?>
                                 <?php if(isset($_GET['status']) && $_GET['status'] != ''): ?>
                                 &status=<?= $_GET['status'] ?>
                                 <?php endif; ?>
@@ -368,7 +370,7 @@ $conn->close();
                     <!-- <div style="height: 100vh"></div> -->
 
                 </div>
-                </main>
+            </main>
             <footer class="py-4 bg-light mt-auto">
                 <?php include("/xampp/htdocs/github/style/footer.php");?>
             </footer>

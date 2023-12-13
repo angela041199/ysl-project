@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once("./comm/connect_sever.php");
+require_once("/xampp/htdocs/github/includes/connect_sever.php");
 
 $id=$_POST['id'];
 $currentStatus = $_POST['currentStatus'];
@@ -79,8 +79,8 @@ if($authorName  != $articleDetails['author_name']){
 //如果有上傳圖片且上傳圖片成功的話
 if(isset($_FILES['image']) && $_FILES['image']['error']==0){
     //處理圖片上傳移到upload根目錄
-    $targetPath = './images/upload/'.basename($_FILES['image']['name']);
-    move_uploaded_file($_FILES['image']['tmp_name'],$targetPath);
+    $targetPath = basename($_FILES['image']['name']);
+    move_uploaded_file($_FILES['image']['tmp_name'], './images/upload/' . $targetPath);
 
     //在外鍵資料表article_img 更新資料
     $img_id=insertOrUpdateImg($targetPath,$conn);

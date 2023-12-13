@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //針對現有的標籤處理-初始化
 function initializeTags() {
-  const existTags = document.querySelectorAll(".tags-container .badge");
+  const existTags = document.querySelectorAll(".tags-container .badge-new");
   existTags.forEach(function (tag) {
     addRemoveFunction(tag);
   });
@@ -16,6 +16,7 @@ function addRemoveFunction(tagElement) {
   let cancelIcon = document.createElement("i");
   cancelIcon.className = "fa-regular fa-circle-xmark";
   cancelIcon.addEventListener("click", function () {
+    console.log("Icon clicked");
     tagElement.remove();
     //當移除標籤時，同時也更新隱藏input的值
     updateHiddenTagsInput();
@@ -43,7 +44,7 @@ function addTag(value) {
   const hiddenTagsInput = document.getElementById("hiddenTags");
   //製作標籤們
   let tag = document.createElement("span");
-  tag.className = "badge";
+  tag.className = "badge-new";
   tag.textContent = value;
 
   addRemoveFunction(tag); // 應用移除邏輯
@@ -58,7 +59,7 @@ function updateHiddenTagsInput() {
   const tagsContainer = document.querySelector(".tags-container");
   const hiddenTagsInput = document.getElementById("hiddenTags");
 
-  let tags = Array.from(tagsContainer.getElementsByClassName("badge")).map(
+  let tags = Array.from(tagsContainer.getElementsByClassName("badge-new")).map(
     function (tagElement) {
       return tagElement.textContent.trim();
     }
@@ -66,4 +67,3 @@ function updateHiddenTagsInput() {
 
   hiddenTagsInput.value = tags.join(",");
 }
-
