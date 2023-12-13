@@ -40,7 +40,7 @@ if($result->num_rows==0){
     header("location: signin.php");
     exit;
 }else{
-    echo "登入成功";
+    // echo "登入成功";
     $row=$result->fetch_assoc();
     // var_dump($row);
     $_SESSION["member"]=$row;

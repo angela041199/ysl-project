@@ -62,6 +62,8 @@ $sql = "INSERT INTO ysl_seller (shop_name, sub_email, shop_created_at, seller_va
 
 
 if($conn->query($sql)===true){
+    $row=$result->fetch_assoc();
+    $_SESSION["seller"]=$row;
     // echo "會員資料新增成功<br>";
     $last_id=$conn->insert_id;
     // echo "最近新增的資料序號為：".$last_id;

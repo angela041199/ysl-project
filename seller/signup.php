@@ -86,8 +86,12 @@ session_start();
     const checkSellerEmail = document.querySelector("#checkSellerEmail"),
         sub_email = document.querySelector("#sub_email");
 
-    checkSellerEmail.addEventListener("click", function() {
-        sub_email.value = "<?=$_SESSION["member"]["email"]?>";
+    checkSellerEmail.addEventListener("change", function() {
+        if (checkSellerEmail.checked) {
+            sub_email.value = "<?=$_SESSION["member"]["email"]?>";
+        } else {
+            sub_email.value = "";
+        };
         // console.log("<?=$_SESSION["member"]["email"]?>");
     })
     </script>
