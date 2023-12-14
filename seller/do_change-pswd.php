@@ -1,5 +1,5 @@
 <?php
-require_once("../includes/connect_sever.php");
+require_once("./includes/connect_sever.php");
 session_start();
 
 $account=$_SESSION["member"]["account"];
