@@ -173,6 +173,15 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
                         $displaystartDate = $startDateText;
                         break;
                     }
+                    $expirationDateText = $row["expiration_date"];
+                    switch ($expirationDateText) {
+                      case 'no-expire':
+                        $displayExpirationDate = '使用者註冊帳號時間';
+                        break;
+                      default:
+                        $displayExpirationDate = $expirationDateText;
+                        break;
+                    }
                     $applicableScope = $row["applicable_scope"];
                     switch ($applicableScope) {
                       case 'global':
@@ -199,7 +208,7 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
                     <td><?= $row["discount_value"] ?></td>
                     <td><?= $row["usage_times"] ?></td>
                     <td><?= $displaystartDate ?></td>
-                    <td><?= $row["expiration_date"] ?></td>
+                    <td><?= $displayExpirationDate ?></td>
                     <td><?= $row["price_rule"] ?></td>
                     <td><?= $displayapplicableScope ?></td>
                     <td><?php
