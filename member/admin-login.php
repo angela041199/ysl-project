@@ -24,7 +24,7 @@ if(isset($_SESSION["admin"])){
       
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
-        <?php include("../css_link.php")?>
+        <?php include("./css_link.php")?>
 
         <style>
             body{
