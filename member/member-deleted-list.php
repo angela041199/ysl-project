@@ -49,14 +49,14 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                         </div>
 
                     </div>
-                    <div>
+                    <!-- <div>
                         <form action="">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="尋找會員..." name="search">
                                 <button class="btn btn-secondary" type="submit" id=""><i class="bi bi-search"></i></button>
                             </div>
                         </form>
-                    </div>
+                    </div> -->
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
@@ -110,7 +110,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                                         }
 
                                                         ?>
-                                                    </button>
+                                                    <i class="fa-solid fa-circle-info"></i></button>
 
                                                 </a>
                                             </td>
@@ -119,7 +119,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                                     <input type="hidden" name="id" value="<?= $row["id"]; ?>">
                                                     <input type="hidden" name="name" value="<?= $row["name"]; ?>">
 
-                                                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#alertModal<?= $row["id"] ?>" type="button">恢復</button>
+                                                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#alertModal<?= $row["id"] ?>" type="button">恢復<i class="fa-solid fa-lock-open"></i></button>
 
                                                     <div class="modal fade" id="alertModal<?= $row["id"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
