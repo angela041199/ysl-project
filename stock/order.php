@@ -8,7 +8,7 @@ $sqlTotal = "SELECT  orders.*, product.name, ysl_member.name, product.name AS pr
 $resultTotal = $conn->query($sqlTotal);
 $totalUser = $resultTotal->num_rows;
 $perPage = 6;
-$pageCount = ceil($totalUser / $perPage);
+$pageCount = ceil($totalUser / $perPage);  
 
 if(isset($_GET["search"])){
     $search= $_GET["search"];

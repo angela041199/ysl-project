@@ -25,7 +25,7 @@ require_once("../includes/connect_sever.php");
     .container {
         height: 580px;
     }
-
+  
     /* .signup-panel {
         background: #ccc;
         width: 260px;

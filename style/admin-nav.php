@@ -4,7 +4,7 @@ session_start();
  
  <head>
  <style>
-.navbg {
+.navbg {  
     /* background: #FF482F; */
     background: url(../style/img/background__blue.jpg);
 }

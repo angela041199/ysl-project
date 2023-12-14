@@ -7,7 +7,7 @@ $sqlTotal = "SELECT stock.*, product.name FROM stock JOIN product ON stock.produ
 $resultTotal = $conn->query($sqlTotal);
 $totalUser = $resultTotal->num_rows;
 $perPage = 10;
-$pageCount = ceil($totalUser / $perPage);
+$pageCount = ceil($totalUser / $perPage);   
 
 if(isset($_GET["search"])){
     $search= $_GET["search"];

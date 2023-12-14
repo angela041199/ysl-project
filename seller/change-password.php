@@ -9,7 +9,7 @@ include("../style/side-nav-js.php");
 require_once("../includes/connect_sever.php");
 
 ?>
-
+  
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,9 +111,11 @@ require_once("../includes/connect_sever.php");
                                 <input type="password" class="form-control" id="re_n_psw" name="re_n_psw"
                                     placeholder="請再次輸入新密碼">
                             </div>
-                            <div>
-                                <div class="text-danger"><?=$_SESSION["msg"]?></div>
 
+                            <div>
+                                <?php if(isset($_SESSION['msg'])): ?>
+                                <div class="text-danger"><?=$_SESSION["msg"]?></div>
+                                <?php endif; ?>
                                 <div class="" id="rule">
                                     <div class="invalid" id="uppercase">至少1個大寫字母</div>
                                     <div class="invalid" id="lowercase">至少1個小寫字母</div>
