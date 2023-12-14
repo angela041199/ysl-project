@@ -77,13 +77,13 @@ $row = $result->fetch_assoc();
                                 <table class="table table-bordered">
                                     <input type="hidden" name="coupon_id" value="<?= $row["coupon_id"] ?>">
                                     <tr>
-                                        <th>優惠券名稱（限20字元內）</th>
+                                        <th>優惠券名稱<span class="small text-secondary">（不可再度修改）</span></th>
                                         <td>
-                                            <input type="text" class="form-control" name="title" value="<?= $row["title"] ?>">
+                                            <input type="text" class="form-control" name="title" value="<?= $row["title"] ?>" disabled readonly>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>優惠券代碼</th>
+                                        <th>優惠券代碼<span class="small text-secondary">（不可再度修改）</span></th>
                                         <td>
                                             <input type="text" class="form-control" name="coupon_code" value="<?= $row["coupon_code"] ?>" disabled readonly>
                                         </td>
@@ -95,7 +95,7 @@ $row = $result->fetch_assoc();
                                             <input type="radio" class="form-check-input" name="discount_type" value="percentage" <?php
                                                                                                                                     if ($row["discount_type"] == 'percentage') echo "checked"
                                                                                                                                     ?> required>
-                                            <label for="percentage" class="form-check-label">依售價百分比折價</label>
+                                            <label for="percentage" class="form-check-label">依售價百分比(%)折價</label>
                                             <input type="radio" class="form-check-input" name="discount_type" value="amount" <?php
                                                                                                                                 if ($row["discount_type"] == 'amount') echo "checked"
                                                                                                                                 ?> required>
@@ -105,7 +105,7 @@ $row = $result->fetch_assoc();
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>折扣百分比或折扣金額</th>
+                                        <th>折扣百分比(%)或折扣金額</th>
                                         <td>
                                             <input type="text" class="form-control" name="discount_value" id="discount_value" value="<?= $row["discount_value"] ?>">
                                             <span id="discountValueError" class="input-error"></span>
@@ -121,14 +121,16 @@ $row = $result->fetch_assoc();
                                     <tr>
                                         <th>起始日</th>
                                         <td>
-                                            <?php if ($row["start_date"] == "user_created_at") echo "hidden" ?>
-                                            <input type="date" class="form-control" name="start_date" id="start_date" value="<?= $row["start_date"] ?>">
+                                            
+                                            <input type="date" class="form-control" name="start_date" id="start_date" value="<?= $row["start_date"] ?>" <?php if ($row["start_date"] == "user_created_at") echo "hidden" ?>>
+                                            <?php if ($row["start_date"] == "user_created_at") echo "帳戶建立時自動發放" ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>截止日</th>
                                         <td>
-                                            <input type="date" class="form-control" name="expiration_date" id="expiration_date" value="<?= $row["expiration_date"] ?>">
+                                            <input type="date" class="form-control" name="expiration_date" id="expiration_date" value="<?= $row["expiration_date"] ?>"<?php if ($row["expiration_date"] == "no-expire") echo "hidden" ?>>
+                                            <?php if ($row["expiration_date"] == "no-expire") echo "無使用期限" ?>
                                             <span id="dateError" class="input-error pt-1"></span>
                                         </td>
                                     </tr>
@@ -181,11 +183,11 @@ $row = $result->fetch_assoc();
                                         <td>
                                             <input class="form-check-input" type="radio" name="status" id="status_1" value="1" <?php if ($row["status"] == 1) echo "checked" ?> required>
                                             <label class="form-check-label" for="status_1">
-                                                可使用
+                                            上架使用
                                             </label>
                                             <input class="form-check-input" type="radio" name="status" id="status_0" value="0" <?php if ($row["status"] == 0) echo "checked" ?> required>
                                             <label class="form-check-label" for="status_0">
-                                                未啟用
+                                            尚不啟用
                                             </label>
                                         </td>
                                     </tr>

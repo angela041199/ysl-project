@@ -140,20 +140,20 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
             <table class="custom-table table table-bordered table-striped table-hover border-white">
               <thead class="table-warning border-white">
                 <tr>
-                  <th>編號</th>
-                  <th>優惠券名稱</th>
-                  <th>優惠券代碼</th>
-                  <th>折扣類型</th>
-                  <th>折扣百分比或折扣金額</th>
-                  <th>可使用次數</th>
-                  <th>起始日</th>
-                  <th>截止日</th>
-                  <th>使用門檻(滿多少錢可使用)</th>
-                  <th>可使用的範圍</th>
-                  <th>使用類別</th>
-                  <th>創立日期</th>
-                  <th>優惠券狀態</th>
-                  <th>詳細資訊</th>
+                  <th class="text-nowrap">編號</th>
+                  <th class="text-nowrap">優惠券<br>名稱</th>
+                  <th class="text-nowrap">優惠券<br>代碼</th>
+                  <th class="text-nowrap">折扣<br>類型</th>
+                  <th class="text-nowrap">折扣百分比(%)<br>或優惠金額</th>
+                  <th class="text-nowrap">可使用<br>次數</th>
+                  <th class="text-nowrap">起始日</th>
+                  <th class="text-nowrap">截止日</th>
+                  <th class="text-nowrap">使用門檻<br><span class="small text-secondary text-nowrap">(滿多少錢可使用)</span></th>
+                  <th class="text-nowrap">使用<br>範圍</th>
+                  <th class="text-nowrap">使用<br>類別</th>
+                  <th class="text-nowrap">創立<br>日期</th>
+                  <th class="text-nowrap">優惠券<br>狀態</th>
+                  <th>詳細<br>資訊</th>
                 </tr>
               </thead>
               <tbody>
@@ -211,8 +211,8 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
                     <td><?= $row["title"] ?></td>
                     <td><?= $row["coupon_code"] ?></td>
                     <td><?= $displaydiscountType ?></td>
-                    <td><?= $row["discount_value"] ?></td>
-                    <td><?= $row["usage_times"] ?></td>
+                    <td><?= $row["discount_value"]?></td>
+                    <td><?= $row["usage_times"] ?>次</td>
                     <td><?= $displaystartDate ?></td>
                     <td><?= $displayExpirationDate ?></td>
                     <td><?= $row["price_rule"] ?></td>

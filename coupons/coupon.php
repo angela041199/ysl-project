@@ -108,6 +108,15 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
                                 $displaycouponStatus = '未啟用';
                                 break;
                         }
+                        $couponStatus = $row["status"];
+                        switch ($couponStatus) {
+                            case '1':
+                                $displaycouponStatus = '上架使用';
+                                break;
+                            case '0':
+                                $displaycouponStatus = '尚不啟用';
+                                break;
+                        }
                         ?>
                         <table class="table table-bordered">
                             <tr>
@@ -132,7 +141,7 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
                             </tr>
                             <tr>
                                 <th>可使用次數</th>
-                                <td><?= $row["usage_times"] ?></td>
+                                <td><?= $row["usage_times"] ?>次</td>
                             </tr>
                             <tr>
                                 <th>起始日</th>
@@ -170,7 +179,7 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
                             </tr>
                             <tr>
                                 <th>優惠券狀態</th>
-                                <td><?= $row["status"] ?></td>
+                                <td><?= $displaycouponStatus ?></td>
                             </tr>
                         </table>
                         <div class="pb-2">
@@ -186,7 +195,7 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
                         <div class="row g-3">
                             <?php foreach ($rowsMemberCoupon as $row) : ?>
                                 <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                                    <h3><?= $row["name"] ?></h3>
+                                    <a class="h3 link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover" href="../member/memberProfile.php?id=<?=$row['id']?>"><?= $row["name"] ?></a>
                                     <?= $row["account"] ?>
                                 </div>
                             <?php endforeach; ?>
