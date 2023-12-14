@@ -1,7 +1,7 @@
 <?php
 require_once("../includes/connect_sever.php");
-include("./style/admin-nav.php");
-include("./style/admin_dashboard.php");
+include("../style/admin-nav.php");
+include("../style/admin_dashboard.php");
 
 $sql = "SELECT * FROM ysl_member WHERE valid = 0";
 
@@ -154,7 +154,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             </main>
             <footer class="py-4 bg-light mt-auto">
                 
-                <?php include("./style/footer.php")?>
+                <?php include("../style/footer.php")?>
             </footer>
         </div>
     </div>

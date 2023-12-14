@@ -2,6 +2,8 @@
 require_once("../includes/connect_sever.php");
 include("../style/admin-nav.php");
 include("../style/admin_dashboard.php");
+// include("../style/side-nav-js.php");
+
 
 // $id = $_GET["id"];
 

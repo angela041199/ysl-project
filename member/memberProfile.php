@@ -48,125 +48,125 @@ $userCount = $result->num_rows;
 
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
+                <form>
+                    <div class="container-fluid px-4">
 
-                    <ol class="breadcrumb mb-4  mt-3">
-                        <li class="breadcrumb-item"><a href="index.php">YSL後台</a></li>
-                        <li class="breadcrumb-item active">會員管理</li>
-                    </ol>
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            歡迎來到 YSL 的會員後台，您的專屬空間。我們為您提供了一個有效的工具，以確保每一位會員都能享受到尊榮的購物體驗。
+                        <ol class="breadcrumb mb-4  mt-3">
+                            <li class="breadcrumb-item"><a href="index.php">YSL後台</a></li>
+                            <li class="breadcrumb-item active">會員管理</li>
+                        </ol>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                歡迎來到 YSL 的會員後台，您的專屬空間。我們為您提供了一個有效的工具，以確保每一位會員都能享受到尊榮的購物體驗。
+
+                            </div>
 
                         </div>
 
-                    </div>
+                        <div class="card mb-4 mt-2">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                <?= $row["name"] ?>會員資料表
+                            </div>
+                            <div class="card-body">
+                                <?php if ($userCount == 0) : ?>
+                                    <H1>會員不存在</H1>
+                                <?php else : ?>
+                                    <table class="table table-bordered mt-4">
+                                        <tr>
+                                            <th>id</th>
+                                            <td><?= $row["id"] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>姓名</th>
+                                            <td><?= $row["name"] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>信箱</th>
+                                            <td><?= $row["email"] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>手機</th>
+                                            <td><?= $row["phone"] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>會員身分</th>
+                                            <td>
 
-                    <div class="card mb-4 mt-2">
-                        <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            <?= $row["name"] ?>會員資料表
-                        </div>
-                        <div class="card-body">
-                            <?php if ($userCount == 0) : ?>
-                                <H1>會員不存在</H1>
-                            <?php else : ?>
-                                <table class="table table-bordered mt-4">
-                                    <tr>
-                                        <th>id</th>
-                                        <td><?= $row["id"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>姓名</th>
-                                        <td><?= $row["name"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>信箱</th>
-                                        <td><?= $row["email"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>手機</th>
-                                        <td><?= $row["phone"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>會員身分</th>
-                                        <td>
-
-                                            <span class="badge rounded-pill text-bg-secondary">
-                                            買家
-                                            </span>
-                                            <?php if ($row["member_identity"] > 0) : ?>
-                                                <a href="#">
                                                 <span class="badge rounded-pill text-bg-secondary">
+                                                    買家
+                                                </span>
+                                                <?php if ($row["member_identity"] > 0) : ?>
+                                                    <a href="#">
+                                                        <span class="badge rounded-pill text-bg-secondary">
 
-                                                        賣家
+                                                            賣家
 
                                                         </span>
-                                                </a>
-                                            <?php endif; ?>
-                                        </td>
-                                    </tr>
+                                                    </a>
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
 
-                                    <tr>
-                                        <th>生日</th>
-                                        <td><?= $row["birthday"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>生理性別</th>
-                                        <td>
-                                            <?php
-                                            // var_dump($row["gender"]);
-                                            if ($row["gender"] == 'Female') {
-                                                echo "女";
-                                            } else {
+                                        <tr>
+                                            <th>生日</th>
+                                            <td><?= $row["birthday"] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>生理性別</th>
+                                            <td>
+                                                <?php
+                                                // var_dump($row["gender"]);
+                                                if ($row["gender"] == 'Female') {
+                                                    echo "女";
+                                                } else {
 
-                                                echo "男";
-                                            }
-                                            ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>地址</th>
-                                        <td><?= $row["address"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>加入會員時間</th>
-                                        <td><?= $row["created_at"] ?></td>
-                                    </tr>
-                                    <div class="mt-1">
-                                        <a href="member-admin.php?>" class="btn btn-secondary text-white" title="回上一頁">回上一頁</a>
+                                                    echo "男";
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>地址</th>
+                                            <td><?= $row["address"] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>加入會員時間</th>
+                                            <td><?= $row["created_at"] ?></td>
+                                        </tr>
+                                        <div class="mt-1">
+                                            <a href="member-admin.php?>" class="btn btn-secondary text-white" title="回上一頁">回上一頁</a>
 
-                                        <a href="member-infoEdit.php?id=<?= $row["id"] ?>" class="btn btn-secondary text-white" title="編輯資料">編輯</a>
-                                    </div>
+                                            <a href="member-infoEdit.php?id=<?= $row["id"] ?>" class="btn btn-secondary text-white" title="編輯資料">編輯</a>
+                                        </div>
 
-                                </table>
-                            <?php endif; ?>
+                                    </table>
+                                <?php endif; ?>
+                            </div>
+
                         </div>
 
-                    </div>
 
 
 
 
-
-                    <!-- <a href="doEdit.php">
+                        <!-- <a href="doEdit.php">
                             <button type="submit" class="btn btn-secondary me-3">編輯</button>
                         </a> -->
-                    <!-- <span class="text-secondary">已有帳號了嗎?</span> -->
+                        <!-- <span class="text-secondary">已有帳號了嗎?</span> -->
 
-                    <!-- <a href="admin-login.php" class="" type="">登入</a> -->
+                        <!-- <a href="admin-login.php" class="" type="">登入</a> -->
 
-                </div>
+                    </div>
                 </form>
-        </div>
-    </div>
-    </div>
-    </main>
-    <footer class="py-4 bg-light mt-auto">
+            </main>
 
-        <?php include("./style/footer.php") ?>
-    </footer>
-    </div>
+
+            <footer class="py-4 bg-light mt-auto">
+
+                <?php include("../style/footer.php") ?>
+            </footer>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>

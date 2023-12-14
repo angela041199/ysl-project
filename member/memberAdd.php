@@ -1,7 +1,7 @@
 <?php
 require_once("../includes/connect_sever.php");
-include("./style/admin-nav.php");
-include("./style/admin_dashboard.php");
+include("../style/admin-nav.php");
+include("../style/admin_dashboard.php");
 
 
 // $sql = "SELECT id, name, account, phone, email, created_at, valid, member_identity FROM ysl_member WHERE valid IN (0, 1)";
@@ -123,7 +123,7 @@ include("./style/admin_dashboard.php");
             </main>
             <footer class="py-4 bg-light mt-auto">
                 
-                <?php include("./style/footer.php")?>
+                <?php include("../style/footer.php")?>
             </footer>
         </div>
     </div>

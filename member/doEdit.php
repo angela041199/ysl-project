@@ -17,19 +17,23 @@ $birthday=$_POST["birthday"];
 $gender = isset($_POST["gender"]) ? $_POST["gender"] : "";
 $address=$_POST["address"];
 
-// echo "$id", "$email", "$phone", "$birthday", "$gender", "$address"; 
+// echo $id, $email, $phone, $birthday, $gender, $address; 
+// exit;
 
 $sql="UPDATE ysl_member SET name='$name', email='$email', phone='$phone', birthday='$birthday', gender='$gender', address='$address' WHERE id=$id";
 
 if ($conn->query($sql) == true){
     echo "$name 資料更新成功";
+    
 
 }else{
     echo "$name 更新失敗";
+    exit;
 }
 
 
-header("location:memberProfile.php?id=" . $row['id']);
+header("location:memberProfile.php?id=" . $id);
+
 
 
 
