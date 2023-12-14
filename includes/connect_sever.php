@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "yslAdmin";
 $password = "ysl";
-$dbname = "ysl";
+$dbname = "ysl_db";
    
 
 $conn = new mysqli($servername, $username, $password, $dbname);

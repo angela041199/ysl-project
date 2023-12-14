@@ -42,6 +42,7 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
     <?php
     include("../coupons/ysl-css.php");
     include("../style/admin-nav.php");
+    include("../style/side-nav-js.php");
     ?>
 </head>
 

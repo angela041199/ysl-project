@@ -27,7 +27,8 @@ $row = $result->fetch_assoc();
 
     <?php
     include("../coupons/ysl-css.php");
-    include("/xampp/htdocs/github/style/admin-nav.php");
+    include("../style/admin-nav.php");
+    include("../style/side-nav-js.php");
     //include("../ysl_project/sellerDashboard_sideNav.php");
     ?>
     <style>
@@ -60,7 +61,7 @@ $row = $result->fetch_assoc();
     <body class="sb-nav-fixed">
         <div id="layoutSidenav">
             <div id="layoutSidenav_content">
-            <?php include("/xampp/htdocs/github/style/admin_dashboard.php"); ?>
+            <?php include("../style/admin_dashboard.php"); ?>
                 <main>
                     <div class="container">
                         <div class="py-2">

@@ -2,8 +2,8 @@
 session_start();
 
 
-include("/xampp/htdocs/github/style/admin_dashboard.php");
-include("/xampp/htdocs/github/style/admin-nav.php");
+include("../style/admin_dashboard.php");
+include("../style/admin-nav.php");
 
 if(!isset($_SESSION["admin"])){
     header("location:admin-login.php");
@@ -43,7 +43,7 @@ if(!isset($_SESSION["admin"])){
                     <img src="./img/bg.jpg" alt="">
                 </div>
             </main>
-            <?php include("/xampp/htdocs/github/style/footer.php");?>
+            <?php include("../style/footer.php");?>
         </div>
     </div>
     <?php 

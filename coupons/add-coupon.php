@@ -6,11 +6,13 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
 
   <?php
   include("../coupons/ysl-css.php");
   require_once("../includes/connect_sever.php");
   include("../style/admin-nav.php");
+  include("../style/side-nav-js.php");
 
   ?>
   <style>
