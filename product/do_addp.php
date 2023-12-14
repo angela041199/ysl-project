@@ -34,7 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         move_uploaded_file($tmp_name, $destination);
     }
 
-    $seller_id = 2;
     date_default_timezone_set('Asia/Taipei');
     $created_at = date('Y-m-d H:i:s');
     $valid = 0; //預設隱藏先0
