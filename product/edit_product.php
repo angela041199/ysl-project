@@ -164,7 +164,7 @@ $filtersArray = [
     'JN'        => isset($JN) ? $JN : null,
     'price-min' => isset($priceMin) ? urldecode($priceMin) : null,
     'price-max' => isset($priceMax) ? urldecode($priceMax) : null,
-    
+
 ];
 
 // 使用 function 移除空值
@@ -198,6 +198,7 @@ $filterString = http_build_query($filter);
         .no_link {
             text-decoration: none;
             color: black;
+
             &:hover {
                 text-decoration: none;
                 color: black;
@@ -207,33 +208,9 @@ $filterString = http_build_query($filter);
 </head>
 
 <body class="sb-nav-fixed">
-<nav class="sb-topnav navbar navbar-expand navbg">
-        <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3 text-white" href="index.html">Your Switch Life</a>
-        <!-- Sidebar Toggle-->
-        <!-- <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button> -->
-        <div class="text-light d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">HELLO !
-            <?= $_SESSION["member"]['name'] ?>
-        </div>
-        <!-- Navbar Search-->
-        <!-- Navbar-->
-        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li>
-                        <hr class="dropdown-divider" />
-                    </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+    <?php include("../style/ysl-nav.php") ?>
     <div id="layoutSidenav">
-    <?php include("../style/sellerDashboard_sideNav.php"); ?> <!-- 組別include -->
+        <?php include("../style/sellerDashboard_sideNav.php"); ?> <!-- 組別include -->
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
@@ -257,7 +234,7 @@ $filterString = http_build_query($filter);
                             <div class="d-flex align-items-center">
                                 <form action="edit_product.php?" method="GET">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="搜尋商品" name="search">
+                                        <input type="text" class="form-control" placeholder="搜尋商品" name="search" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
                                         <div class="col-auto">
                                             <button class="btn border-0" type="submit">
                                                 <i class="bi bi-search"></i>
@@ -265,31 +242,31 @@ $filterString = http_build_query($filter);
                                         </div>
                                     </div>
                                 </form>
-                                <form action="edit_product.php?<?=$filterString?>" method="get" class="py-3 d-flex justify-content-between">
+                                <form action="edit_product.php?<?= $filterString ?>" method="get" class="py-3 d-flex justify-content-between">
                                     <div class="row g-2 align-items-center">
                                         <div class="col-auto ps-5">
                                             <label for="" class="col-form-label">價格：</label>
                                         </div>
                                         <div class="col-2">
-                                            <input type="number" class="form-control text-end price-input" name="price-min" value="<?php $priceMin = isset($_GET["price-min"]) ? $min : 0;
-                                                                                                                                    echo $priceMin; ?>">
+                                            <input type="number" class="form-control text-end price-input" name="price-min" value="<?php echo isset($_GET["price-min"]) ? htmlspecialchars($_GET["price-min"]) : 0; ?>">
                                         </div>
                                         <div class="col-auto">
                                             ~
                                         </div>
                                         <div class="col-2">
-                                            <input type="number" class="form-control text-end price-input" name="price-max" value="<?php $priceMax = isset($_GET["price-max"]) ? $max : 99999; echo $priceMax; ?>">
+                                            <input type="number" class="form-control text-end price-input" name="price-max" value="<?php echo isset($_GET["price-max"]) ? htmlspecialchars($_GET["price-max"]) : 99999; ?>">
                                         </div>
                                         <div class="col-auto">
                                             <button type="submit" class="btn btn-outline-dark">篩選</button>
                                         </div>
                                     </div>
                                 </form>
-                                <form method="get" action="product_list.php" 
-                                class="btn-group ms-auto" role="group">
+
+
+                                <form method="get" action="product_list.php" class="btn-group ms-auto" role="group">
                                     <div class="btn-group" role="group">
-                                    <a title="返回全部商品" class="btn btn-dark text-white" href="edit_product.php"><i class="bi bi-reply-all-fill"></i> 全部</a>
-                                            
+                                        <a title="返回全部商品" class="btn btn-dark text-white" href="edit_product.php"><i class="bi bi-reply-all-fill"></i> 全部</a>
+
                                         <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                             類別
                                         </button>
@@ -427,12 +404,10 @@ $filterString = http_build_query($filter);
                                                     </label>
                                                 </div>
                                                 <div title="編輯商品" class="d-flex justify-content-end">
-                                                <a href="single_editp.php?product_id=<?= $row["id"] ?>"
-                                                    class="px-3">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </a>
-                                                <a title="刪除商品" href="product_sdelete.php?product_id=<?= $row['product_id'] ?>"
-                                                        onclick="return confirm('確定要刪除嗎？')">
+                                                    <a href="single_editp.php?product_id=<?= $row["id"] ?>" class="px-3">
+                                                        <i class="bi bi-pencil-square"></i>
+                                                    </a>
+                                                    <a title="刪除商品" href="product_sdelete.php?product_id=<?= $row['product_id'] ?>" onclick="return confirm('確定要刪除嗎？')">
                                                         <i class="bi bi-trash3"></i>
                                                     </a>
                                                 </div>
@@ -451,7 +426,7 @@ $filterString = http_build_query($filter);
                                     <?php
                                     for ($i = 1; $i <= $totalPages; $i++) : ?>
                                         <li class="page-item <?= ($page == $i) ? 'active' : ''; ?>">
-                                        <a class="page-link" href="edit_product.php?page=<?= $i; ?>&<?= $filterString ?>">
+                                            <a class="page-link" href="edit_product.php?page=<?= $i; ?>&<?= $filterString ?>">
                                                 <?php echo $i; ?>
                                             </a>
                                         </li>
@@ -459,7 +434,7 @@ $filterString = http_build_query($filter);
                                     <li class="page-item <?php echo ($page == $totalPages) ? 'disabled' : ''; ?>">
                                         <a title="下一頁" class="page-link" href="edit_product.php?page=<?= $page + 1; ?>&<?= $filterString ?>" aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
-                                        
+
                                         </a>
                                     </li>
                                 </ul>
@@ -473,7 +448,7 @@ $filterString = http_build_query($filter);
                     </div>
                 </div>
             </main>
-            <?php include("../style/footer.php");?>
+            <?php include("../style/footer.php"); ?>
         </div>
     </div>
     <script>
