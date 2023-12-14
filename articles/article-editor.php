@@ -1,13 +1,13 @@
 <?php
 
-include("/xampp/htdocs/github/style/admin-nav.php");
-include("/xampp/htdocs/github/style/admin_dashboard.php");
+include("../style/admin-nav.php");
+include("../style/admin_dashboard.php");
 
 session_start();
 $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;;
 $_SESSION['editPage'] = $currentPage;
 
-require_once("/xampp/htdocs/github/includes/connect_sever.php");
+require_once("../includes/connect_sever.php");
 
 $id = $_GET['id'];
 
@@ -202,7 +202,7 @@ while ($tag = $resultTags->fetch_assoc()) {
                     </form>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
-                    <?php include("/xampp/htdocs/github/style/footer.php");?>
+                <?php include("../style/footer.php");?>
                 </footer>
             </div>
         </div>

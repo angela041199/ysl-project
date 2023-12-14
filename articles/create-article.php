@@ -1,7 +1,7 @@
 <?php
 session_start();
-include("/xampp/htdocs/github/style/admin-nav.php");
-include("/xampp/htdocs/github/style/admin_dashboard.php");
+include("../style/admin-nav.php");
+include("../style/admin_dashboard.php");
 
 ?>
 
@@ -145,7 +145,7 @@ include("/xampp/htdocs/github/style/admin_dashboard.php");
                 </form>
             </main>
             <footer class="py-4 bg-light mt-auto">
-                <?php include("/xampp/htdocs/github/style/footer.php");?>
+            <?php include("../style/footer.php");?>
             </footer>
         </div>
     </div>

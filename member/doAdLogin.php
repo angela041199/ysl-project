@@ -70,7 +70,7 @@ $row=$result->fetch_assoc();
 unset($_SESSION["error"]);
 $_SESSION["admin"]=$row;
 // var_dump($row);
-header("location:index.php");
+header("location:../style/admin_index.php");
 
 $conn->close();
 

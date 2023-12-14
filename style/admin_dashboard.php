@@ -15,7 +15,7 @@
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading">Core</div>
-                    <a class="nav-link" href="index.php">
+                    <a class="nav-link" href="../style/admin_index.php">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         首頁
                     </a>
@@ -29,11 +29,11 @@
                     </a>
                     <div class="collapse" id="colla" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="member-admin.php">會員資料</a>
+                            <a class="nav-link" href="../member/member-admin.php">會員資料</a>
                             <a class="nav-link"
-                                href="https://getbootstrap.com/docs/5.3/helpers/color-background/">賣家資料</a>
-                            <a class="nav-link" href="memberAdd.php">新增會員</a>
-                            <a class="nav-link" href="member-deleted-list.php">被冷凍的會員</a>
+                                href="../seller/seller-list.php">賣家資料</a>
+                            <a class="nav-link" href="../member/memberAdd.php">新增會員</a>
+                            <a class="nav-link" href="../member/member-deleted-list.php">被冷凍的會員</a>
                         </nav>
                     </div>
 

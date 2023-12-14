@@ -1,5 +1,5 @@
 <?php
-require_once("/xampp/htdocs/github/includes/connect_sever.php");
+require_once("../includes/connect_sever.php");
 
 // 製作分頁
 $sqlTotal = "SELECT * FROM discount_coupon WHERE valid=1";
@@ -63,7 +63,8 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
 
   <?php
   include("../coupons/ysl-css.php");
-  include("/xampp/htdocs/github/style/admin-nav.php");
+  include("../style/admin-nav.php");
+
 
   // include("../ysl_project/sellerDashboard_sideNav.php");
 
@@ -74,7 +75,7 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
 <body class="sb-nav-fixed">
   <div id="layoutSidenav">
     <div id="layoutSidenav_content">
-        <?php include("/xampp/htdocs/github/style/admin_dashboard.php"); ?>
+        <?php include("../style/admin_dashboard.php"); ?>
         <main>
         <div class="container">
             <h2 class="p-3">優惠券一覽表</h2>
@@ -231,7 +232,7 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
             </div><!--container -->
           </main>        
           <footer class="py-4 bg-light mt-auto">
-          <?php include("/xampp/htdocs/github/style/footer.php");?>
+          <?php include("../style/footer.php");?>
         </footer>
       </div>
       

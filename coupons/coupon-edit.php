@@ -4,7 +4,7 @@ if (!isset($_GET["coupon_id"])) {
 }
 $id = $_GET["coupon_id"];
 
-require_once("/xampp/htdocs/github/includes/connect_sever.php");
+require_once("../includes/connect_sever.php");
 
 $sql = "SELECT * FROM discount_coupon WHERE coupon_id=$id AND valid =1";
 
@@ -201,7 +201,7 @@ $row = $result->fetch_assoc();
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
-                <?php include("/xampp/htdocs/github/style/footer.php");?>
+                <?php include("../style/footer.php");?>
                 </footer>
             </div>
 
