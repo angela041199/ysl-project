@@ -8,8 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <?php
-  include("../ysl_project/ysl-css.php");
-  include("../231215-YSL-project/admin-nav.php");
+  include("../coupons/ysl-css.php");
+  include("/xampp/htdocs/github/style/admin-nav.php");
   ?>
   <style>
     .input-error {
@@ -22,7 +22,7 @@
 <body class="sb-nav-fixed">
   <div id="layoutSidenav">
     <div id="layoutSidenav_content">
-    <?php include("../231215-YSL-project/admin_dashboard.php"); ?>
+    <?php include("/xampp/htdocs/github/style/admin_dashboard.php"); ?>
     <main>
       <div class="container">
         <!-- Back to coupon list -->
@@ -133,6 +133,9 @@
           </div>
         </form>
        </main>
+       <footer class="py-4 bg-light mt-auto">
+          <?php include("/xampp/htdocs/github/style/footer.php");?>
+        </footer>
       </div><!--layoutSidenav_content"-->
     </div><!--layoutSidenav-->
   </div><!-- container -->

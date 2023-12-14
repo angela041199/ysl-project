@@ -1,5 +1,5 @@
 <?php
-require_once("../ysl_project/ysldb-connect.php");
+require_once("/xampp/htdocs/github/includes/connect_sever.php");
 
 if(!isset($_POST["title"])){
     echo "請循正常管道進入";

@@ -4,7 +4,7 @@ if (!isset($_GET["coupon_id"])) {
 }
 $id = $_GET["coupon_id"];
 
-require_once("../ysl_project/ysldb-connect.php");
+require_once("/xampp/htdocs/github/includes/connect_sever.php");
 
 $sql = "SELECT * FROM discount_coupon WHERE coupon_id=$id AND valid =1";
 
@@ -26,8 +26,8 @@ $row = $result->fetch_assoc();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <?php
-    include("../ysl_project/ysl-css.php");
-    include("../231215-YSL-project/admin-nav.php");
+    include("../coupons/ysl-css.php");
+    include("/xampp/htdocs/github/style/admin-nav.php");
     //include("../ysl_project/sellerDashboard_sideNav.php");
     ?>
     <style>
@@ -60,7 +60,7 @@ $row = $result->fetch_assoc();
     <body class="sb-nav-fixed">
         <div id="layoutSidenav">
             <div id="layoutSidenav_content">
-                <?php include("../231215-YSL-project/admin_dashboard.php"); ?>
+            <?php include("/xampp/htdocs/github/style/admin_dashboard.php"); ?>
                 <main>
                     <div class="container">
                         <div class="py-2">
@@ -201,7 +201,7 @@ $row = $result->fetch_assoc();
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
-                    <?php include("../231215-YSL-project/footer.php"); ?>
+                <?php include("/xampp/htdocs/github/style/footer.php");?>
                 </footer>
             </div>
 

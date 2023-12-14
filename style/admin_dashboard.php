@@ -46,9 +46,9 @@
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                         data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="coupon-list.php">優惠券列表</a>
+                            <a class="nav-link" href="../coupons/coupon-list.php">優惠券列表</a>
                             <a class="nav-link"
-                                href="https://getbootstrap.com/docs/5.3/helpers/color-background/">新增優惠券</a>
+                                href="../coupons/add-coupon.php">新增優惠券</a>
                         </nav>
                     </div>
 
@@ -62,8 +62,8 @@
                     </a>
                     <div class="collapse" id="collapse" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="article-list.php">文章列表</a>
-                            <a class="nav-link" href="create-article.php">新增文章</a>
+                            <a class="nav-link" href="../articles/article-list.php">文章列表</a>
+                            <a class="nav-link" href="../articles/create-article.php">新增文章</a>
                         </nav>
                     </div>
 
