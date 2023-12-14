@@ -31,10 +31,10 @@ include("../style/admin_dashboard.php");
 </head>
 
 <body class="sb-nav-fixed">
-    
-       
+
+
     <div id="layoutSidenav">
-    
+
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
@@ -51,80 +51,95 @@ include("../style/admin_dashboard.php");
                         </div>
 
                     </div>
-                    
+
                     <div class="card mb-4">
-                      
+
                         <div class="card-body">
-                        <h1 class="pt-5 text-center">新增會員資料</h1>
-                <form class="row g-3 m-2" action="doSignup.php" method="post">
-                    <div class="col-12 mt-3">
-                        <label for="name" class="form-label">姓名</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="請填寫真實姓名">
-                    </div>
-                    <div class="col-md-12 mt-3">
-                        <label for="account" class="form-label">帳號</label>
-                        <input type="text" class="form-control" id="account" name="account" placeholder="請填寫登入帳號">
-                    </div>
+                            <h1 class="pt-5 text-center">新增會員資料</h1>
+                            <form class="row g-3 m-2" action="doSignup.php" method="post">
+                                <div class="col-12 mt-3">
+                                    <label for="name" class="form-label">姓名<i class="fa-solid fa-circle-info ms-1 text-primary" title="請填入姓名"></i></label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="請填寫真實姓名">
+                                </div>
+                                <div class="col-md-12 mt-3">
+                                    <label for="account" class="form-label">帳號</label><i class="fa-solid fa-circle-info ms-1 text-primary" title="請填入帳號"></i>
+                                    <input type="text" class="form-control" id="account" name="account" placeholder="請填寫登入帳號">
+                                </div>
 
-                    <div class="col-md-12 mt-3">
-                        <label for="password" class="form-label">密碼</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="請填寫登入密碼">
-                    </div>
+                                <div class="col-md-12 mt-3">
+                                    <label for="password" class="form-label">密碼</label><i class="fa-solid fa-circle-info ms-1 text-primary" title="請填入帳號"></i>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="請填寫登入密碼">
+                                </div>
 
-                    <div class="col-md-12 mt-3">
-                        <label for="repassword" class="form-label">密碼確認</label>
-                        <input type="password" class="form-control" id="repassword" name="repassword" placeholder="請再次輸入密碼">
-                    </div>
+                                <div class="col-md-12 mt-3">
+                                    <label for="repassword" class="form-label">密碼確認</label>
+                                    <i class="fa-solid fa-circle-info ms-1 text-primary" title="請填入帳號"></i>
+                                    <input type="password" class="form-control" id="repassword" name="repassword" placeholder="請再次輸入密碼">
+                                </div>
 
-                    <div class="col-md-12 mt-3">
-                        <label for="phone" class="form-label">手機號碼</label>
-                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="請填寫手機號碼">
+                                <div class="col-md-12 mt-3">
+                                    <label for="phone" class="form-label">手機號碼</label>
+                                    <i class="fa-solid fa-circle-info ms-1 text-primary" title="請填入帳號"></i>
+                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="請填寫手機號碼">
 
 
-                        <div class="col-md-12 mt-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="請填寫主要信箱">
-                        </div>
+                                    <div class="col-md-12 mt-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <i class="fa-solid fa-circle-info ms-1 text-primary" title="請填入帳號"></i>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="請填寫主要信箱">
+                                    </div>
 
-                        <div class="col-md-12 mt-3">
-                            <label for="birthday" class="form-label">生日</label>
-                            <input type="date" class="form-control" id="birthday" name="birthday" placeholder="請填西元出生年月日">
-                        </div>
+                                    <div class="col-md-12 mt-3">
 
-                        <div class="col-md-12 mt-3">
+                                        <label for="birthday" class="form-label">生日</label><i class="fa-solid fa-circle-info ms-1 text-primary" title="請填入密碼"></i>
+                                        <input type="date" class="form-control" id="birthday" name="birthday" placeholder="請填西元出生年月日">
+                                    </div>
 
-                            <p>請填寫生理性別</p>
+                                    <div class="col-md-12 mt-3">
 
-                            <!-- <form> -->
-                                <input type="radio" id="gender_f" name="gender" value="female">
-                                <label for="gender_f">女</label><br>
-                                <input type="radio" id="gender_m" name="gender" value="male">
-                                <label for="gender_m">男</label><br>
-                                <input type="hidden" value="Submit">
-                            <!-- </form> -->
+                                        <p>請填寫生理性別</p>
 
-                        </div>
+                                        <!-- <form> -->
+                                        <input type="radio" id="gender_f" name="gender" value="female">
+                                        <label for="gender_f">女</label><br>
+                                        <input type="radio" id="gender_m" name="gender" value="male">
+                                        <label for="gender_m">男</label><br>
+                                        <input type="hidden" value="Submit">
+                                        <!-- </form> -->
 
-                        
+                                    </div>
 
-                        <div class="col-12 mt-4 ms-2">
 
-                            <a href="doAddup.php">
-                                <button type="submit" class="btn btn-primary me-3">送出</button>
-                            </a>
-                            <!-- <span class="text-secondary">已有帳號了嗎?</span> -->
 
-                            <!-- <a href="admin-login.php" class="" type="">登入</a> -->
+                                    <div class="col-12 mt-4 ms-2">
 
-                        </div>
-                </form>
+
+                                        <!-- Your form button -->
+                                        <button type="submit" class="btn btn-primary me-3">送出</button>
+
+                                        <!-- Your modal with an added id attribute -->
+                                        <!-- <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">注意</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        新增成員至YSL成功!
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+
+                            </form>
                         </div>
                     </div>
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">
-                
-                <?php include("../style/footer.php")?>
+
+                <?php include("../style/footer.php") ?>
             </footer>
         </div>
     </div>
@@ -132,6 +147,28 @@ include("../style/admin_dashboard.php");
     <script src="js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
+
+    <script>
+        // const myModal = new bootstrap.Modal(document.getElementById('myModal'), options)
+        // or
+        // const myModalAlternative = new bootstrap.Modal('#myModal', options)
+        // myModalAlternative.show()
+
+
+
+        // function myAlert(isSuccess, msg) {
+        //     const myAlert = document.querySelector('.alert')
+        //     myAlert.classList.add(isSuccess ? 'alert-success' : 'alert-danger')
+        //     myAlert.innerHTML = msg
+        //     myAlert.classList.add('show')
+
+        //     setTimeout(() => {
+        //         myAlert.classList.remove(isSuccess ? 'alert-success' : 'alert-danger')
+        //         myAlert.innerHTML = ''
+        //         myAlert.classList.remove('show')
+        //     }, 2000)
+        // }
+    </script>
 </body>
 
 </html>

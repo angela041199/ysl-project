@@ -1,6 +1,6 @@
 <?php
 require_once("../includes/connect_sever.php");
-
+// 888
 session_start();
 if(!isset($_POST["account"])){
     $msg="請循正常管道進入此頁";
@@ -52,6 +52,20 @@ if($result->num_rows==0){
     }else{
     header("location: ysl_index.php");
 }}
+
+$seller_id = $_SESSION['seller_id'];
+
+$query = "SELECT *,
+ysl_seller.shop_name AS s_shop_name
+FROM ysl_seller
+WHERE ysl_seller.seller_id = $seller_id";
+$shopResult = $conn->query($query);
+$shopRow = $shopResult->fetch_assoc();
+$_SESSION["shop"]=$shopRow;
+$shopN = $_SESSION["shop"]["shop_name"];
+$_SESSION["shop_name"] = $shopN;
+// $sql="SELECT * FROM ysl_seller WHERE seller_id ='$account' AND valid=1";
+// $result = $conn->query($sql);
 
 
 $rowCount=$result->num_rows;
