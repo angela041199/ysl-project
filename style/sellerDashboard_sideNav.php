@@ -15,19 +15,19 @@
                         首頁
                     </a>
                     <div class="sb-sidenav-menu-heading">Seller</div>
-                    <a class="nav-link collapsed" href="product_list.php">
+                    <a class="nav-link collapsed" href="../product/product_list.php">
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                         商品管理
                     </a>
-                    <a class="nav-link collapsed" href="type.php">
+                    <a class="nav-link collapsed" href="../product/type.php">
                         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                         類別管理
                     </a>
-                    <a class="nav-link collapsed" href="https://getbootstrap.com/docs/5.3/utilities/colors/">
+                    <a class="nav-link collapsed" href="../stock/stock.php">
                         <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                         庫存管理
                     </a>
-                    <a class="nav-link collapsed" href="https://getbootstrap.com/docs/5.3/utilities/colors/">
+                    <a class="nav-link collapsed" href="../stock/order.php">
                         <div class="sb-nav-link-icon"><i class="bi bi-card-checklist"></i></div>
                         訂單管理
                     </a>
