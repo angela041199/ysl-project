@@ -54,14 +54,14 @@ require_once("../includes/connect_sever.php");
 
 <body class="sb-nav-fixed">
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header"> -->
                     <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">!!!注意!!!</h1> -->
                     <!-- <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button> -->
-                </div>
+                <!-- </div>
                 <div class="modal-body">
                     新密碼設定成功 ! <br> 請重新登入
                 </div>
@@ -70,7 +70,7 @@ require_once("../includes/connect_sever.php");
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <div id="layoutSidenav">
 
         <div id="layoutSidenav_content">
@@ -209,10 +209,10 @@ require_once("../includes/connect_sever.php");
     }
     </script>
 
-    <script>
+    <!-- <script>
     const myModal = new bootstrap.Modal('#exampleModal')
     myModal.show()
-    </script>
+    </script> -->
 
 </body>
 

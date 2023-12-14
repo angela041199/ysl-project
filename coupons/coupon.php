@@ -51,10 +51,14 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
         <div id="layoutSidenav_content">
             <?php include("../style/admin_dashboard.php"); ?>
             <main>
-                <div class="container">
-                    <div class="py-2">
-                        <a href="coupon-list.php" class="btn btn-warning" title="回到優惠券一覽列表"><i class="fa-solid fa-arrow-left"></i></a>
-                    </div>
+                <div class="container-fluid px-4">
+                    <ol class="breadcrumb mb-4  mt-3">
+                        <li class="breadcrumb-item"><a href="../style/admin_index.php">首頁</a></li>
+                        <li class="breadcrumb-item"><a href="coupon-list.php">行銷管理</a></li>
+                        <li class="breadcrumb-item"><a href="coupon-list.php">優惠券列表</a></li> 
+                        <li class="breadcrumb-item active"><?= $row["title"] ?>(優惠券)</li>
+                    </ol>
+
                     <?php if ($couponCount == 0) : ?>
                         <h1>找不到此優惠券</h1>
                     <?php else : ?>
@@ -184,7 +188,7 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">
-            <?php include("../style/footer.php");?>
+                <?php include("../style/footer.php"); ?>
             </footer>
         </div>
 

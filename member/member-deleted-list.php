@@ -38,7 +38,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 <div class="container-fluid px-4">
 
                     <ol class="breadcrumb mb-4  mt-3">
-                        <li class="breadcrumb-item"><a href="index.php">YSL後台</a></li>
+                        <li class="breadcrumb-item"><a href="../style/admin_index.php">首頁</a></li>
+                        <li class="breadcrumb-item"><a href="#">會員管理</a></li>
                         <li class="breadcrumb-item active">被冷凍的會員</li>
                     </ol>
                     <div class="card mb-4">
@@ -158,7 +159,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             </footer>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
     <script src="js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>

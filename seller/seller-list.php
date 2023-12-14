@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 require_once("../includes/connect_sever.php");
 
 include("../style/admin_dashboard.php");
@@ -7,12 +9,14 @@ include("../style/nav-top-js.php");
 include("../style/side-nav-js.php");
 
 
-$sql = "SELECT * FROM ysl_seller";
-$result = $conn->query($sql);
-$sellerCount=$result->num_rows;
+// $sql = "SELECT * FROM ysl_seller";
+// $result = $conn->query($sql);
+
 // var_dump($result);
 $joinsql = "SELECT * FROM ysl_seller JOIN ysl_member ON ysl_seller.seller_id = ysl_member.member_identity";
 $joinResult = $conn->query($joinsql);
+$sellerCount=$joinResult->num_rows;
+
 $rows = $joinResult->fetch_all(MYSQLI_ASSOC);
 
 
@@ -56,7 +60,7 @@ $rows = $joinResult->fetch_all(MYSQLI_ASSOC);
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if($joinResult>0): ?>
+                            <?php if($sellerCount>0): ?>
                             <?php foreach($rows as $row):?>
                             <tr>
                                 <td><?=$row["name"]?></td>
@@ -68,8 +72,7 @@ $rows = $joinResult->fetch_all(MYSQLI_ASSOC);
                                     店家關閉中
                                     <?php else:?>
                                     營運中</td>
-                                <?php endif ?>
-                                <?php ;?>
+                                <?php endif; ?>
                                 <td><?=$row["close_reason"]?></td>
                             </tr>
                             <?php endforeach; ?>

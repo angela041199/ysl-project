@@ -61,12 +61,15 @@ $row = $result->fetch_assoc();
     <body class="sb-nav-fixed">
         <div id="layoutSidenav">
             <div id="layoutSidenav_content">
-            <?php include("../style/admin_dashboard.php"); ?>
+                <?php include("../style/admin_dashboard.php"); ?>
                 <main>
                     <div class="container">
-                        <div class="py-2">
-                            <a href="coupon-list.php" class="btn btn-warning" title="回到優惠券列表">回到優惠券列表</a>
-                        </div>
+                        <ol class="breadcrumb mb-4  mt-3">
+                            <li class="breadcrumb-item"><a href="../style/admin_index.php">首頁</a></li>
+                            <li class="breadcrumb-item"><a href="coupon-list.php">行銷管理</a></li>
+                            <li class="breadcrumb-item"><a href="coupon-list.php">優惠券列表</a></li>                            
+                            <li class="breadcrumb-item active">編輯優惠券</li>
+                        </ol>
                         <?php if ($couponCount == 0) : ?>
                             <h1>此優惠券尚未建立</h1>
                         <?php else : ?>
@@ -202,7 +205,7 @@ $row = $result->fetch_assoc();
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
-                <?php include("../style/footer.php");?>
+                    <?php include("../style/footer.php"); ?>
                 </footer>
             </div>
 

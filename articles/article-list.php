@@ -99,7 +99,8 @@ $conn->close();
                 <div class="container-fluid px-4">
 
                     <ol class="breadcrumb mb-4 mt-3">
-                        <li class="breadcrumb-item"><a href="index.html">文章管理</a></li>
+                        <li class="breadcrumb-item"><a href="../style/admin_index.php">首頁</a></li>
+                        <li class="breadcrumb-item active"><a href="#">文章管理</a></li>
                         <li class="breadcrumb-item active">文章列表</li>
                     </ol>
 
