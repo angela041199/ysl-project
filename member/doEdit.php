@@ -1,6 +1,6 @@
 <?php
 
-require_once("../connect_server.php");
+require_once("../includes/connect_sever.php");
 
 
 // if(!isset($_POST["name"])){
@@ -27,6 +27,11 @@ if ($conn->query($sql) == true){
 }else{
     echo "$name 更新失敗";
 }
+
+
+header("location:memberProfile.php?id=" . $row['id']);
+
+
 
 $conn->close();
 

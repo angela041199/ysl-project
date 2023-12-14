@@ -7,7 +7,7 @@ if (!isset($_GET["id"])) {
 $id = $_GET["id"];
 
 
-require_once("../connect_server.php");
+require_once("../includes/connect_sever.php");
 include("./style/admin-nav.php");
 include("./style/admin_dashboard.php");
 
@@ -37,7 +37,7 @@ $userCount = $result->num_rows;
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
 
-    <?php include("../css_link.php") ?>
+    <?php include("../includes/css_link.php") ?>
 
 </head>
 

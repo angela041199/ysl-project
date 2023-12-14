@@ -27,7 +27,7 @@
                  <li>
                      <hr class="dropdown-divider" />
                  </li>
-                 <li><a class="dropdown-item" href="./project1_github/member/index.php/member/admin-login.php">Logout</a></li>
+                 <li><a class="dropdown-item" href="../member/admin-login.php">Logout</a></li>
              </ul>
          </li>
      </ul>

@@ -1,8 +1,8 @@
 <?php
 
-require_once("../connect_server.php");
-include("./style/admin-nav.php");
-include("./style/admin_dashboard.php");
+require_once("../includes/connect_sever.php");
+include("../style/admin-nav.php");
+include("../style/admin_dashboard.php");
 
 if (!isset($_GET["id"])) {
     header("location: member-admin.php");
@@ -38,14 +38,14 @@ $userCount = $result->num_rows;
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
 
-    <?php include("../css_link.php") ?>
+    <?php include("../includes/css_link.php") ?>
 
 </head>
 
 <body class="sb-nav-fixed">
 
     <div id="layoutSidenav">
-    
+
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
@@ -92,16 +92,16 @@ $userCount = $result->num_rows;
                                         <th>會員身分</th>
                                         <td>
 
-                                            <button class="btn btn-secondary">
-                                                買家
-                                            </button>
+                                            <span class="badge rounded-pill text-bg-secondary">
+                                            買家
+                                            </span>
                                             <?php if ($row["member_identity"] > 0) : ?>
                                                 <a href="#">
-                                                    <button class="btn btn-secondary">
+                                                <span class="badge rounded-pill text-bg-secondary">
 
                                                         賣家
 
-                                                    </button>
+                                                        </span>
                                                 </a>
                                             <?php endif; ?>
                                         </td>
@@ -114,17 +114,15 @@ $userCount = $result->num_rows;
                                     <tr>
                                         <th>生理性別</th>
                                         <td>
-                                            <?php 
+                                            <?php
                                             // var_dump($row["gender"]);
-                                            if($row["gender"] == 'Female')
-                                                {echo "女";
-
-                                                }else{
+                                            if ($row["gender"] == 'Female') {
+                                                echo "女";
+                                            } else {
 
                                                 echo "男";
-                                        
-                                            } 
-                                            ?>                                                
+                                            }
+                                            ?>
                                         </td>
                                     </tr>
                                     <tr>
@@ -165,8 +163,8 @@ $userCount = $result->num_rows;
     </div>
     </main>
     <footer class="py-4 bg-light mt-auto">
-                
-                <?php include("./style/footer.php")?>
+
+        <?php include("./style/footer.php") ?>
     </footer>
     </div>
     </div>
