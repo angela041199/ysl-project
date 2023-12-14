@@ -1,6 +1,9 @@
 <?php
+<<<<<<< Updated upstream
 session_start();
 
+=======
+>>>>>>> Stashed changes
 require_once("../includes/connect_sever.php");
 
 include("../style/admin_dashboard.php");

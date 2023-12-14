@@ -6,70 +6,91 @@ require_once("../includes/connect_sever.php");
 //     echo "請循正常管道進入";
 // }
 
-$name=$_POST["name"];
-$account=$_POST["account"];
-$password=$_POST["password"];
-$repassword=$_POST["repassword"];
-$phone=$_POST["phone"];
-$email=$_POST["email"];
-$birthday=$_POST["birthday"];
+$name = $_POST["name"];
+$account = $_POST["account"];
+$password = $_POST["password"];
+$repassword = $_POST["repassword"];
+$phone = $_POST["phone"];
+$email = $_POST["email"];
+$birthday = $_POST["birthday"];
 $gender = isset($_POST["gender"]) ? $_POST["gender"] : "";
 
 // echo "$name<br>$account<br>$password<br>$repassword<br>$phone<br>$email<br>$gender<br>$birthday";
 
-if(empty($name)|| empty($account) || empty($password) || empty($repassword) 
-|| empty($phone) || empty($email) || empty($birthday)  || empty($gender)){
+if (
+    empty($name) || empty($account) || empty($password) || empty($repassword)
+    || empty($phone) || empty($email) || empty($birthday)  || empty($gender)
+) {
     echo "請輸入必填欄位";
     exit;
 }
 
 
-if($password != $repassword){
+if ($password != $repassword) {
     echo "前後密碼不一致";
     exit;
 }
 
-$sql="SELECT * FROM ysl_member WHERE account='$account'";
-$result=$conn->query($sql);
-$accountRow=$result->num_rows;
+$sql = "SELECT * FROM ysl_member WHERE account='$account'";
+$result = $conn->query($sql);
+$accountRow = $result->num_rows;
 
-if($accountRow>0){
+if ($accountRow > 0) {
     die("此帳號已經存在");
 }
 
-$sql="SELECT * FROM ysl_member WHERE email='$email'";
+$sql = "SELECT * FROM ysl_member WHERE email='$email'";
 
-$result=$conn->query($sql);
-$emailRow=$result->num_rows;
+$result = $conn->query($sql);
+$emailRow = $result->num_rows;
 
-if($emailRow>0){
+if ($emailRow > 0) {
     die("此信箱已經存在");
 }
 
 
 $password = md5($password);
 
-$time=date('Y-m-d H:i:s');
+$time = date('Y-m-d H:i:s');
 
 $dateTime = new DateTime($birthday);
-$birthdayMonth = $dateTime->format('m'); 
+$birthdayMonth = $dateTime->format('m');
 // 'm' returns the month as a two-digit number (01 to 12)
 
 
-$sql="INSERT INTO ysl_member (name, account, password, phone, email, birthday, gender, created_at, birthday_month)
+$sql = "INSERT INTO ysl_member (name, account, password, phone, email, birthday, gender, created_at, birthday_month)
 VALUES('$name', '$account', '$password', '$phone', '$email', '$birthday', '$gender', '$time', '$birthdayMonth')";
 
 // echo $sql;
 
 $result = $conn->query($sql);
 
-if ($result !== false) {
-    echo "新增會員資料成功";
-    $last_id = $conn->insert_id;
-    echo "最新一筆為序號" .$last_id;
-} else {
-    echo "新增會員資料失敗" . $sql . "<br>" . $conn->error;
+if ($result !== false){
+    $successMSG="加入 $id $name 使用者成功";
+    $_SESSION["success"]=$successMSG;
+}else{
+    $failMSG="加入新會員失敗";
+    $_SESSION["fail"]=$failMSG;
 }
+
+// $row=$result->fetch_assoc();
+
+
+
+
+// if ($result !== false) {
+//     echo "<script>
+//     document.addEventListener('DOMContentLoaded', function () {
+//         const alertModal = new bootstrap.Modal(document.getElementById('alertModal'));
+//         alertModal.show();
+//     });
+//   </script>";
+//     exit();
+//     $last_id = $conn->insert_id;
+//     echo "最新一筆為序號" . $last_id;
+// } else {
+//     echo "新增會員資料失敗" . $sql . "<br>" . $conn->error;
+// }
 
 // if ($conn->query($sql) === TRUE) {
 //     echo "新增資料完成,";
@@ -82,7 +103,3 @@ if ($result !== false) {
 $conn->close();
 
 // header("location: memberProfile.php");
-
-
-
-?>
