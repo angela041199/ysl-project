@@ -44,6 +44,14 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
     include("../style/admin-nav.php");
     include("../style/side-nav-js.php");
     ?>
+    <style>
+        .custom-table th{
+            width: 300px;            
+        }
+        /* .custom-table td {
+            width: 100px;            
+        } */
+    </style>
 </head>
 
 <body class="sb-nav-fixed">
@@ -118,49 +126,49 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
                                 break;
                         }
                         ?>
-                        <table class="table table-bordered">
+                        <table class="table table-hover align-middle custom-table table-bordered">
                             <tr>
-                                <th>編號</th>
+                                <th class="table-warning">編號</th>
                                 <td><?= $row["coupon_id"] ?></td>
                             </tr>
                             <tr>
-                                <th>優惠券名稱</th>
+                                <th class="table-warning">優惠券名稱</th>
                                 <td><?= $row["title"] ?></td>
                             </tr>
                             <tr>
-                                <th>優惠券代碼</th>
+                                <th class="table-warning">優惠券代碼</th>
                                 <td><?= $row["coupon_code"] ?></td>
                             </tr>
                             <tr>
-                                <th>折扣類型</th>
+                                <th class="table-warning">折扣類型</th>
                                 <td><?= $displaydiscountType ?></td>
                             </tr>
                             <tr>
-                                <th>折扣百分比(%)或折扣金額</th>
+                                <th class="table-warning">折扣百分比(%)或折扣金額</th>
                                 <td><?= $row["discount_value"] ?></td>
                             </tr>
                             <tr>
-                                <th>可使用次數</th>
+                                <th class="table-warning">可使用次數</th>
                                 <td><?= $row["usage_times"] ?>次</td>
                             </tr>
                             <tr>
-                                <th>起始日</th>
+                                <th class="table-warning">起始日</th>
                                 <td><?= $displaystartDate ?></td>
                             </tr>
                             <tr>
-                                <th>截止日</th>
+                                <th class="table-warning">截止日</th>
                                 <td><?= $displayExpirationDate ?></td>
                             </tr>
                             <tr>
-                                <th>使用門檻(滿多少錢可使用)</th>
+                                <th class="table-warning">使用門檻(滿多少錢可使用)</th>
                                 <td><?= $row["price_rule"] ?></td>
                             </tr>
                             <tr>
-                                <th>可使用的範圍</th>
+                                <th class="table-warning">可使用的範圍</th>
                                 <td><?= $displayapplicableScope ?></td>
                             </tr>
                             <tr>
-                                <th>使用類別</th>
+                                <th class="table-warning">使用類別</th>
                                 <td><?php
                                     $applicableTypeId = $row['applicable_type_id'];
                                     $typeName = '';
@@ -174,11 +182,11 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
                                     ?> </td>
                             </tr>
                             <tr>
-                                <th>創立日期</th>
+                                <th class="table-warning">創立日期</th>
                                 <td><?= $row["created_at"] ?></td>
                             </tr>
                             <tr>
-                                <th>優惠券狀態</th>
+                                <th class="table-warning">優惠券狀態</th>
                                 <td><?= $displaycouponStatus ?></td>
                             </tr>
                         </table>
@@ -195,7 +203,7 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
                         <div class="row g-3">
                             <?php foreach ($rowsMemberCoupon as $row) : ?>
                                 <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                                    <a class="h3 link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover" href="../member/memberProfile.php?id=<?=$row['id']?>"><?= $row["name"] ?></a>
+                                    <a class="h4 link-secondary link-offset-3 link-underline-opacity-0 link-underline-opacity-100-hover" href="../member/memberProfile.php?id=<?= $row['id'] ?>"><?= $row["name"] ?></a>
                                     <?= $row["account"] ?>
                                 </div>
                             <?php endforeach; ?>

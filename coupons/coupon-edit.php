@@ -13,6 +13,13 @@ $couponCount = $result->num_rows;
 
 $row = $result->fetch_assoc();
 
+//類別SQL
+$sqlType = "SELECT * FROM type WHERE valid = 1";
+$resultType = $conn->query($sqlType);
+$rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
+?>
+
+
 ?>
 
 
@@ -67,14 +74,14 @@ $row = $result->fetch_assoc();
                         <ol class="breadcrumb mb-4  mt-3">
                             <li class="breadcrumb-item"><a href="../style/admin_index.php">首頁</a></li>
                             <li class="breadcrumb-item"><a href="coupon-list.php">行銷管理</a></li>
-                            <li class="breadcrumb-item"><a href="coupon-list.php">優惠券列表</a></li>                            
+                            <li class="breadcrumb-item"><a href="coupon-list.php">優惠券列表</a></li>
                             <li class="breadcrumb-item active">編輯優惠券</li>
                         </ol>
                         <?php if ($couponCount == 0) : ?>
                             <h1>此優惠券尚未建立</h1>
                         <?php else : ?>
                             <form action="doUpdateCoupon.php" method="post" id="updateCouponform" onsubmit="return validateForm()">
-                                <table class="table table-bordered">
+                                <table class="table align-middle custom-table table-bordered">
                                     <input type="hidden" name="coupon_id" value="<?= $row["coupon_id"] ?>">
                                     <tr>
                                         <th>優惠券名稱<span class="small text-secondary">（不可再度修改）</span></th>
@@ -121,7 +128,7 @@ $row = $result->fetch_assoc();
                                     <tr>
                                         <th>起始日</th>
                                         <td>
-                                            
+
                                             <input type="date" class="form-control" name="start_date" id="start_date" value="<?= $row["start_date"] ?>" <?php if ($row["start_date"] == "user_created_at") echo "hidden" ?>>
                                             <?php if ($row["start_date"] == "user_created_at") echo "帳戶建立時自動發放" ?>
                                         </td>
@@ -129,7 +136,7 @@ $row = $result->fetch_assoc();
                                     <tr>
                                         <th>截止日</th>
                                         <td>
-                                            <input type="date" class="form-control" name="expiration_date" id="expiration_date" value="<?= $row["expiration_date"] ?>"<?php if ($row["expiration_date"] == "no-expire") echo "hidden" ?>>
+                                            <input type="date" class="form-control" name="expiration_date" id="expiration_date" value="<?= $row["expiration_date"] ?>" <?php if ($row["expiration_date"] == "no-expire") echo "hidden" ?>>
                                             <?php if ($row["expiration_date"] == "no-expire") echo "無使用期限" ?>
                                             <span id="dateError" class="input-error pt-1"></span>
                                         </td>
@@ -163,18 +170,9 @@ $row = $result->fetch_assoc();
                                                 <option value="0" <?php
                                                                     if ($row["applicable_scope"] == 'global') echo "selected"
                                                                     ?>>全站使用</option>
-                                                <option value="1">RPG</option>
-                                                <option value="2">AVG</option>
-                                                <option value="3">ETC</option>
-                                                <option value="4">ACT</option>
-                                                <option value="5">SLG</option>
-                                                <option value="6">ARPG</option>
-                                                <option value="7">SRPG</option>
-                                                <option value="8">RAC</option>
-                                                <option value="9">SPG</option>
-                                                <option value="10">STG</option>
-                                                <option value="11">AAPG</option>
-                                                <option value="12">FTG</option>
+                                                <?php foreach ($rowsType as $type) : ?>
+                                                    <option value=<?= $type['id'] ?> <?php if($row["applicable_type_id"]== $type['id']) echo "selected"?>><?= $type['name'] ?></option>
+                                                <?php endforeach; ?>
                                             </select>
                                         </td>
                                     </tr>
@@ -183,11 +181,11 @@ $row = $result->fetch_assoc();
                                         <td>
                                             <input class="form-check-input" type="radio" name="status" id="status_1" value="1" <?php if ($row["status"] == 1) echo "checked" ?> required>
                                             <label class="form-check-label" for="status_1">
-                                            上架使用
+                                                上架使用
                                             </label>
                                             <input class="form-check-input" type="radio" name="status" id="status_0" value="0" <?php if ($row["status"] == 0) echo "checked" ?> required>
                                             <label class="form-check-label" for="status_0">
-                                            尚不啟用
+                                                尚不啟用
                                             </label>
                                         </td>
                                     </tr>

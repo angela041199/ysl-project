@@ -137,7 +137,7 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
             ?>
           </div>
           <?php if ($couponCount > 0) : ?>
-            <table class="custom-table table table-bordered table-striped table-hover border-white">
+            <table class="custom-table table table-bordered table-striped table-hover border-white align-middle">
               <thead class="table-warning border-white">
                 <tr>
                   <th class="text-nowrap">編號</th>
