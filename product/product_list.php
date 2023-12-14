@@ -1,10 +1,9 @@
 <?php
 session_start();
-include("../style/ysl-nav.php");
 include("include.php");
 require_once("../includes/connect_sever.php");
 
-$seller_id = 2; //測試
+$seller_id = 2;  //測試
 /* $seller_id = $_SESSION['seller_id']; */
 
 
@@ -152,19 +151,19 @@ $totalPages = ceil($totalItems / $itemsPerPage);
 // 記憶篩選 GET 用
 
 $filtersArray = [
-    'type'      => isset($type_id) ? $type_id : null,
-    'rating'    => isset($rating) ? $rating : null,
-    'search'    => isset($search) ? $search : null,
-    'priceUp'   => isset($priceUp) ? $priceUp : null,
+    'type' => isset($type) ? $type : null,
+    'rating' => isset($rating) ? $rating : null,
+    'search' => isset($search) ? $search : null,
+    'priceUp' => isset($priceUp) ? $priceUp : null,
     'priceDown' => isset($priceDown) ? $priceDown : null,
-    'doUp'      => isset($doUp) ? $doUp : null,
-    'doDown'    => isset($doDown) ? $doDown : null,
-    'CH'        => isset($CH) ? $CH : null,
-    'EN'        => isset($EN) ? $EN : null,
-    'JN'        => isset($JN) ? $JN : null,
+    'doUp' => isset($doUp) ? $doUp : null,
+    'doDown' => isset($doDown) ? $doDown : null,
+    'CH' => isset($CH) ? $CH : null,
+    'EN' => isset($EN) ? $EN : null,
+    'JN' => isset($JN) ? $JN : null,
     'price-min' => isset($_GET["price-min"]) ? urldecode($_GET["price-min"]) : null,
     'price-max' => isset($_GET["price-max"]) ? urldecode($_GET["price-max"]) : null,
-    
+
 ];
 
 // 使用 function 移除空值
@@ -190,30 +189,39 @@ $filterString = http_build_query($filter);
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>商品管理</title>
+    <style>
+        .navbg {
+            background: url(../style/img/background_nintendo_switch__2_by_kenji_cosplay_studio_demn0vs-pre.jpeg);
+        }
+
+        .no_link {
+            text-decoration: none;
+            color: black;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    </style>
 </head>
 
-<body class="sb-nav-fixed searchResultContainer">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbg">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+        <a class="navbar-brand ps-3 text-white" href="index.html">Your Switch Life</a>
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        <!-- <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+                class="fas fa-bars"></i></button> -->
+        <div class="text-light d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">HELLO !
+            <?= $_SESSION["member"]['name'] ?>
+        </div>
         <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-            </div>
-        </form>
-        
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-            
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
@@ -223,13 +231,13 @@ $filterString = http_build_query($filter);
         </ul>
     </nav>
     <div id="layoutSidenav">
-    <?php include("../style/sellerDashboard_sideNav.php"); ?> <!-- 組別include -->
+        <?php include("../style/sellerDashboard_sideNav.php"); ?> <!-- 組別include -->
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
                     <!-- <h1 class="mt-4">Tables</h1> -->
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a class="no_link" href="index.html">首頁</a></li>
                         <li class="breadcrumb-item active">商品管理</li>
                     </ol>
                     <div class="card mb-4">
@@ -241,7 +249,8 @@ $filterString = http_build_query($filter);
                             </div>
                             <div class="btn-group">
                                 <a type="button" class="btn btn-danger" href="add_product.php">新增商品</a>
-                                <a type="button" class="btn btn-warning rounded-end" href="edit_product.php?<?= $filterString ?>">編輯模式</a>
+                                <a type="button" class="btn btn-warning rounded-end"
+                                    href="edit_product.php?&<?= $filterString ?>">編輯模式</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -256,20 +265,26 @@ $filterString = http_build_query($filter);
                                         </div>
                                     </div>
                                 </form>
-                                <form action="product_list.php?<?=$filterString?>" method="get" class="py-3 d-flex justify-content-between">
+                                <form action="product_list.php?<?= $filterString ?>" method="get"
+                                    class="py-3 d-flex justify-content-between">
                                     <div class="row g-2 align-items-center">
                                         <div class="col-auto ps-5">
                                             <label for="" class="col-form-label">價格：</label>
                                         </div>
                                         <div class="col-2">
-                                            <input type="number" class="form-control text-end price-input" name="price-min" value="<?php $priceMin = isset($_GET["price-min"]) ? $min : 0;
-                                                                                                                                    echo $priceMin; ?>">
+                                            <input type="number" class="form-control text-end price-input"
+                                                name="price-min"
+                                                value="<?php $priceMin = isset($_GET["price-min"]) ? $min : 0;
+                                                echo $priceMin; ?>">
                                         </div>
                                         <div class="col-auto">
                                             ~
                                         </div>
                                         <div class="col-2">
-                                            <input type="number" class="form-control text-end price-input" name="price-max" value="<?php $priceMax = isset($_GET["price-max"]) ? $max : 99999; echo $priceMax; ?>">
+                                            <input type="number" class="form-control text-end price-input"
+                                                name="price-max"
+                                                value="<?php $priceMax = isset($_GET["price-max"]) ? $max : 99999;
+                                                echo $priceMax; ?>">
                                         </div>
                                         <div class="col-auto">
                                             <button type="submit" class="btn btn-outline-dark">篩選</button>
@@ -278,31 +293,36 @@ $filterString = http_build_query($filter);
                                 </form>
                                 <form method="get" action="product_list.php" class="btn-group ms-auto" role="group">
                                     <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <button type="button" class="btn btn-secondary dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
                                             類別
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <?php foreach ($filterCategory as $type) : ?>
-                                                <li class="dropdown-item"><a href="product_list.php?<?= $filterString ?>&type=<?= $type['id'] ?>">
+                                            <?php foreach ($filterCategory as $type): ?>
+                                                <li class="dropdown-item"><a
+                                                class="no_link" href="product_list.php?<?= $filterString ?>&type=<?= $type['id'] ?>">
                                                         <?= $type["type_name"] ?>
                                                     </a></li>
                                             <?php endforeach; ?>
                                         </ul>
                                     </div>
                                     <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <button type="button" class="btn btn-secondary dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
                                             級別
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <?php foreach ($filterRating as $rating) : ?>
-                                                <li><a class="dropdown-item" href="product_list.php?rating=<?= $rating['id'] ?>&<?= $filterString ?>&">
+                                            <?php foreach ($filterRating as $rating): ?>
+                                                <li><a class="dropdown-item"
+                                                        href="product_list.php?rating=<?= $rating['id'] ?>&<?= $filterString ?>">
                                                         <?= $rating["rating_name"] ?>
                                                     </a></li>
                                             <?php endforeach; ?>
                                         </ul>
                                     </div>
                                     <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <button type="button" class="btn btn-secondary dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
                                             語言
                                         </button>
                                         <ul class="dropdown-menu">
@@ -341,19 +361,23 @@ $filterString = http_build_query($filter);
                                         <th>類別</th>
                                         <th>分級</th>
                                         <th>支援語言</th>
-                                        <th>價格<a href="product_list.php?priceDown&<?= $filterString ?>"><i class="bi bi-caret-down-fill"></i></a>
-                                            <a href="product_list.php?priceUp&<?= $filterString ?>"><i class="bi bi-caret-up-fill"></i></a>
+                                        <th>價格<a href="product_list.php?priceDown&<?= $filterString ?>"><i
+                                                    class="bi bi-caret-down-fill"></i></a>
+                                            <a href="product_list.php?priceUp&<?= $filterString ?>"><i
+                                                    class="bi bi-caret-up-fill"></i></a>
                                         </th>
                                         <th>上架時間
-                                            <a href="product_list.php?<?= $filterString ?>&doDown"><i class="bi bi-caret-down-fill"></i></a>
-                                            <a href="product_list.php?<?= $filterString ?>&doUp"><i class="bi bi-caret-up-fill"></i></a>
+                                            <a href="product_list.php?<?= $filterString ?>&doDown"><i
+                                                    class="bi bi-caret-down-fill"></i></a>
+                                            <a href="product_list.php?<?= $filterString ?>&doUp"><i
+                                                    class="bi bi-caret-up-fill"></i></a>
                                         </th>
                                         <th>商品狀態 / 資訊</th>
                                     </tr>
                                 </thead>
                                 <!-- tbody -->
                                 <tbody>
-                                    <?php foreach ($rows as $row) : ?>
+                                    <?php foreach ($rows as $row): ?>
                                         <tr>
                                             <td>
                                                 <?php
@@ -380,7 +404,8 @@ $filterString = http_build_query($filter);
                                                 <?= $row["type_name"] ?>
                                             </td>
                                             <td>
-                                                <figure><img width="50px" src="rating_img/<?= $row["rating_img"] ?>" alt="<?= $row["rating_name"] ?>"></figure>
+                                                <figure><img width="50px" src="rating_img/<?= $row["rating_img"] ?>"
+                                                        alt="<?= $row["rating_name"] ?>"></figure>
                                             </td>
                                             <td> <!-- 支援語言 -->
                                                 <?php
@@ -405,8 +430,12 @@ $filterString = http_build_query($filter);
                                             </td>
                                             <td>
                                                 <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input" id="toggleSwitch<?= $row['product_id'] ?>" data-product-id="<?= $row['product_id'] ?>" data-valid="<?= $row['valid'] ?>" <?php echo ($row['valid'] == 1) ? 'checked' : ''; ?>>
-                                                    <label class="custom-control-label" for="toggleSwitch<?= $row['product_id'] ?>">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        id="toggleSwitch<?= $row['product_id'] ?>"
+                                                        data-product-id="<?= $row['product_id'] ?>"
+                                                        data-valid="<?= $row['valid'] ?>" <?php echo ($row['valid'] == 1) ? 'checked' : ''; ?>>
+                                                    <label class="custom-control-label"
+                                                        for="toggleSwitch<?= $row['product_id'] ?>">
                                                         <?= ($row['valid'] == 1) ? '公開' : '隱藏' ?>
                                                     </label>
                                                 </div>
@@ -417,26 +446,32 @@ $filterString = http_build_query($filter);
                             </table>
                             <nav class="d-flex justify-content-center">
                                 <div class="col-auto">
-                                    <a title="返回全部商品" class="btn btn-secondary text-white" href="product_list.php"><i class="bi bi-reply-all-fill"></i></a>
+                                    <a title="返回全部商品" class="btn btn-secondary text-white" href="product_list.php"><i
+                                            class="bi bi-reply-all-fill"></i></a>
                                 </div>
                                 <ul class="pagination">
                                     <li class="page-item <?php echo ($page == 1) ? 'disabled' : ''; ?>">
-                                        <a title="上一頁" class="page-link" href="product_list.php?page=<?= $page - 1; ?>&<?= $filterString ?>" aria-label="Previous">
+                                        <a title="上一頁" class="page-link"
+                                            href="product_list.php?page=<?= $page - 1; ?>&<?= $filterString ?>"
+                                            aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                         </a>
                                     </li>
                                     <?php
-                                    for ($i = 1; $i <= $totalPages; $i++) : ?>
+                                    for ($i = 1; $i <= $totalPages; $i++): ?>
                                         <li class="page-item <?= ($page == $i) ? 'active' : ''; ?>">
-                                        <a class="page-link" href="product_list.php?page=<?= $i; ?>&<?= $filterString ?>">
+                                            <a class="page-link"
+                                                href="product_list.php?page=<?= $i; ?>&<?= $filterString ?>">
                                                 <?php echo $i; ?>
                                             </a>
                                         </li>
                                     <?php endfor; ?>
                                     <li class="page-item <?php echo ($page == $totalPages) ? 'disabled' : ''; ?>">
-                                        <a title="下一頁" class="page-link" href="product_list.php?page=<?= $page + 1; ?>&<?= $filterString ?>" aria-label="Next">
+                                        <a title="下一頁" class="page-link"
+                                            href="product_list.php?page=<?= $page + 1; ?>&<?= $filterString ?>"
+                                            aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
-                                        
+
                                         </a>
                                     </li>
                                 </ul>
@@ -450,34 +485,23 @@ $filterString = http_build_query($filter);
                     </div>
                 </div>
             </main>
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            <?php include("../style/footer.php"); ?>
         </div>
     </div>
     <script>
         /* AJAX */
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             var toggleSwitches = document.querySelectorAll('.custom-control-input');
 
-            toggleSwitches.forEach(function(toggleSwitch) {
-                toggleSwitch.addEventListener('change', function() {
+            toggleSwitches.forEach(function (toggleSwitch) {
+                toggleSwitch.addEventListener('change', function () {
                     var productId = toggleSwitch.getAttribute('data-product-id');
                     var currentValid = toggleSwitch.getAttribute('data-valid');
                     var newValid = (currentValid == 1) ? 0 : 1;
 
                     // 傳送 Ajax 到後端
                     var xhr = new XMLHttpRequest();
-                    xhr.onreadystatechange = function() {
+                    xhr.onreadystatechange = function () {
                         if (xhr.readyState == 4 && xhr.status == 200) {
                             console.log(xhr.responseText);
                             $(toggleSwitch).closest('.custom-switch').bootstrapSwitch('state', newValid);

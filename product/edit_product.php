@@ -1,8 +1,7 @@
 <?php
 session_start();
-include("include.php");
-/* include("../style/sellerDashboard_sideNav.php"); */
 /* include("../style/ysl-nav.php"); */
+include("include.php");
 require_once("../includes/connect_sever.php");
 
 $seller_id = 2; //測試
@@ -10,7 +9,7 @@ $seller_id = 2; //測試
 
 
 $itemsPerPage = 7;
-$page = isset($_GET['page']) ? intval($_GET['page']) : 1; //抓當下頁碼
+$page = isset($_GET['page']) ? ($_GET['page']) : 1; //抓當下頁碼
 $startIndex = ($page - 1) * $itemsPerPage; //算要抓那頁第幾個資料
 
 
@@ -41,11 +40,11 @@ if (isset($_GET["search"])) {
 
 //價格篩選
 if (isset($_GET["price-min"]) && isset($_GET["price-max"])) {
-    $min = $_GET["price-min"];
-    $max = $_GET["price-max"];
+    $priceMin = $_GET["price-min"];
+    $priceMax = $_GET["price-max"];
 
-    $filterConditions[] = "product.price > '$min' AND product.price < '$max'";
-    $orderConditions[] = "ORDER BY price ASC";
+    $filterConditions[] = "product.price > '$priceMin' AND product.price < '$priceMax'";
+    /* $orderConditions[] = "ORDER BY price ASC"; */
     /* $result = $conn->query($sql);
     $productCount = $result->num_rows;
     $rows = $result->fetch_all(MYSQLI_ASSOC); */
@@ -152,9 +151,9 @@ $totalPages = ceil($totalItems / $itemsPerPage);
 
 // 記憶篩選 GET 用
 
-$filters = [
-    'type'      => isset($type_id) ? $type_id : null,
-    'rating'    => isset($rating_id) ? $rating_id : null,
+$filtersArray = [
+    'type'      => isset($type) ? $type : null,
+    'rating'    => isset($rating) ? $rating : null,
     'search'    => isset($search) ? $search : null,
     'priceUp'   => isset($priceUp) ? $priceUp : null,
     'priceDown' => isset($priceDown) ? $priceDown : null,
@@ -163,17 +162,21 @@ $filters = [
     'CH'        => isset($CH) ? $CH : null,
     'EN'        => isset($EN) ? $EN : null,
     'JN'        => isset($JN) ? $JN : null,
-    'price-min' => isset($_GET["price-min"]) ? urldecode($_GET["price-min"]) : null,
-    'price-max' => isset($_GET["price-max"]) ? urldecode($_GET["price-max"]) : null,
+    'price-min' => isset($priceMin) ? urldecode($priceMin) : null,
+    'price-max' => isset($priceMax) ? urldecode($priceMax) : null,
+    
 ];
 
 // 使用 function 移除空值
-$filters = array_filter($filters, function ($value) {
+$filters = array_filter($filtersArray, function ($value) {
     return $value !== null && $value !== '';
 });
 
+// 使用 array_unique 移除陣列中的重複值
+$filter = array_unique($filters);
+
 // 賦值
-$filterString = http_build_query($filters);
+$filterString = http_build_query($filter);
 
 ?>
 
@@ -187,30 +190,40 @@ $filterString = http_build_query($filters);
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>商品管理</title>
-    <?php include("include.php"); ?>
+    <style>
+        .navbg {
+            background: url(../style/img/background_nintendo_switch__2_by_kenji_cosplay_studio_demn0vs-pre.jpeg);
+        }
 
+        .no_link {
+            text-decoration: none;
+            color: black;
+            &:hover {
+                text-decoration: none;
+                color: black;
+            }
+        }
+    </style>
 </head>
 
-<body class="sb-nav-fixed searchResultContainer">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<body class="sb-nav-fixed">
+<nav class="sb-topnav navbar navbar-expand navbg">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+        <a class="navbar-brand ps-3 text-white" href="index.html">Your Switch Life</a>
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        <!-- <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+                class="fas fa-bars"></i></button> -->
+        <div class="text-light d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">HELLO !
+            <?= $_SESSION["member"]['name'] ?>
+        </div>
         <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-            </div>
-        </form>
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
@@ -220,81 +233,13 @@ $filterString = http_build_query($filters);
         </ul>
     </nav>
     <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
-                    <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="index.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Dashboard
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Interface</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            Layouts
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                                <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
-                            </nav>
-                        </div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Pages
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                    Authentication
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="login.html">Login</a>
-                                        <a class="nav-link" href="register.html">Register</a>
-                                        <a class="nav-link" href="password.html">Forgot Password</a>
-                                    </nav>
-                                </div>
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                    Error
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="401.html">401 Page</a>
-                                        <a class="nav-link" href="404.html">404 Page</a>
-                                        <a class="nav-link" href="500.html">500 Page</a>
-                                    </nav>
-                                </div>
-                            </nav>
-                        </div>
-                        <div class="sb-sidenav-menu-heading">Addons</div>
-                        <a class="nav-link" href="product_list.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            商品管理
-                        </a>
-                        <a class="nav-link" href="type.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            類別管理
-                        </a>
-                    </div>
-                </div>
-                <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
-                    Start Bootstrap
-                </div>
-            </nav>
-        </div>
+    <?php include("../style/sellerDashboard_sideNav.php"); ?> <!-- 組別include -->
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
                     <!-- <h1 class="mt-4">Tables</h1> -->
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a class="no_link" href="index.html">首頁</a></li>
                         <li class="breadcrumb-item active">商品管理</li>
                     </ol>
                     <div class="card mb-4">
@@ -306,7 +251,7 @@ $filterString = http_build_query($filters);
                             </div>
                             <div class="btn-group">
                                 <a type="button" class="btn btn-danger" href="add_product.php">新增商品</a>
-                                <a type="button" class="btn btn-secondary rounded-end" href="product_list.php?<?= $filterString ?>">取消編輯</a>
+                                <a type="button" class="btn btn-warning rounded-end" href="product_list.php?<?= $filterString ?>">取消編輯</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -321,8 +266,8 @@ $filterString = http_build_query($filters);
                                         </div>
                                     </div>
                                 </form>
-                                <form action="edit_product.php" method="get" class="py-3 d-flex justify-content-between">
-                                    <div class="row g-2 align-items-center ">
+                                <form action="edit_product.php?<?=$filterString?>" method="get" class="py-3 d-flex justify-content-between">
+                                    <div class="row g-2 align-items-center">
                                         <div class="col-auto ps-5">
                                             <label for="" class="col-form-label">價格：</label>
                                         </div>
@@ -334,8 +279,7 @@ $filterString = http_build_query($filters);
                                             ~
                                         </div>
                                         <div class="col-2">
-                                            <input type="number" class="form-control text-end price-input" name="price-max" value="<?php $priceMax = isset($_GET["price-max"]) ? $max : 99999;
-                                                                                                                                    echo $priceMax; ?>">
+                                            <input type="number" class="form-control text-end price-input" name="price-max" value="<?php $priceMax = isset($_GET["price-max"]) ? $max : 99999; echo $priceMax; ?>">
                                         </div>
                                         <div class="col-auto">
                                             <button type="submit" class="btn btn-outline-dark">篩選</button>
@@ -349,7 +293,7 @@ $filterString = http_build_query($filters);
                                         </button>
                                         <ul class="dropdown-menu">
                                             <?php foreach ($filterCategory as $type) : ?>
-                                                <li class="dropdown-item"><a href="edit_product.php?type=<?= $type['id'] ?>&<?= $filterString ?>">
+                                                <li class="dropdown-item"><a class="no_link" href="edit_product.php?<?= $filterString ?>&type=<?= $type['id'] ?>">
                                                         <?= $type["type_name"] ?>
                                                     </a></li>
                                             <?php endforeach; ?>
@@ -421,7 +365,7 @@ $filterString = http_build_query($filters);
                                 <tbody>
                                     <?php foreach ($rows as $row) : ?>
                                         <tr>
-                                        <td>
+                                            <td>
                                                 <?php
                                                 /* $createdTime = strtotime($row["created_at"]); */
                                                 // 如果 $createdTime 大於等於指定的時間（2023/12/09 00:00:00）
@@ -475,69 +419,59 @@ $filterString = http_build_query($filters);
                                                     <label class="custom-control-label" for="toggleSwitch<?= $row['product_id'] ?>">
                                                         <?= ($row['valid'] == 1) ? '公開' : '隱藏' ?>
                                                     </label>
-                                                    <div title="編輯商品" class="d-flex justify-content-end">
-                                                        <a href="single_editp.php?product_id=<?= $row["id"] ?>" class="px-3">
-                                                            <i class="bi bi-pencil-square"></i>
-                                                        </a>
-                                                        <a title="刪除商品" href="product_sdelete.php?product_id=<?= $row['product_id'] ?>" onclick="return confirm('確定要刪除嗎？')">
-                                                            <i class="bi bi-trash3"></i>
-                                                        </a>
-                                                    </div>
                                                 </div>
+                                                <div title="編輯商品" class="d-flex justify-content-end">
+                                                <a href="single_editp.php?product_id=<?= $row["id"] ?>"
+                                                    class="px-3">
+                                                    <i class="bi bi-pencil-square"></i>
                                                 </a>
+                                                <a title="刪除商品" href="product_sdelete.php?product_id=<?= $row['product_id'] ?>"
+                                                        onclick="return confirm('確定要刪除嗎？')">
+                                                        <i class="bi bi-trash3"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            <nav class="d-flex justify-content-center">
+                                <div class="col-auto">
+                                    <a title="返回全部商品" class="btn btn-secondary text-white" href="edit_product.php"><i class="bi bi-reply-all-fill"></i></a>
+                                </div>
+                                <ul class="pagination">
+                                    <li class="page-item <?php echo ($page == 1) ? 'disabled' : ''; ?>">
+                                        <a title="上一頁" class="page-link" href="edit_product.php?page=<?= $page - 1; ?>&<?= $filterString ?>" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <?php
+                                    for ($i = 1; $i <= $totalPages; $i++) : ?>
+                                        <li class="page-item <?= ($page == $i) ? 'active' : ''; ?>">
+                                        <a class="page-link" href="edit_product.php?page=<?= $i; ?>&<?= $filterString ?>">
+                                                <?php echo $i; ?>
+                                            </a>
+                                        </li>
+                                    <?php endfor; ?>
+                                    <li class="page-item <?php echo ($page == $totalPages) ? 'disabled' : ''; ?>">
+                                        <a title="下一頁" class="page-link" href="edit_product.php?page=<?= $page + 1; ?>&<?= $filterString ?>" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <p class="text-center">
+                                總共有
+                                <?= $totalItems ?> 件商品，共
+                                <?= $totalPages ?> 頁。
+                            </p>
                         </div>
-                        </td>
-                        </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                    </table>
-                    <nav class="d-flex justify-content-center">
-                        <div class="col-auto">
-                            <a title="返回全部商品" class="btn btn-secondary text-white" href="edit_product.php"><i class="bi bi-reply-all-fill"></i></a>
-                        </div>
-                        <ul class="pagination">
-                            <li class="page-item <?php echo ($page == 1) ? 'disabled' : ''; ?>">
-                                <a title="上一頁" class="page-link" href="edit_product.php?page=<?= $page - 1; ?>&<?= $filterString ?>" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <?php
-                            for ($i = 1; $i <= $totalPages; $i++) : ?>
-                                <li class="page-item <?= ($page == $i) ? 'active' : ''; ?>">
-                                    <a class="page-link" href="edit_product.php?page=<?= $i; ?>&<?= $filterString ?>">
-                                        <?php echo $i; ?>
-                                    </a>
-                                </li>
-                            <?php endfor; ?>
-                            <li class="page-item <?php echo ($page == $totalPages) ? 'disabled' : ''; ?>">
-                                <a title="下一頁" class="page-link" href="edit_product.php?page=<?= $page + 1; ?>&<?= $filterString ?>" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <p class="text-center">
-                        總共有
-                        <?= $totalItems ?> 件商品，共
-                        <?= $totalPages ?> 頁。
-                    </p>
                     </div>
                 </div>
+            </main>
+            <?php include("../style/footer.php");?>
         </div>
-        </main>
-        <footer class="py-4 bg-light mt-auto">
-            <div class="container-fluid px-4">
-                <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                    <div>
-                        <a href="#">Privacy Policy</a>
-                        &middot;
-                        <a href="#">Terms &amp; Conditions</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
     </div>
     <script>
         /* AJAX */
