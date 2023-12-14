@@ -53,12 +53,12 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
             <main>
                 <div class="container-fluid px-4">
                     <ol class="breadcrumb mb-4  mt-3">
-                        <li class="breadcrumb-item"><a href="index.php">YSL後台</a></li>
-                        <li class="breadcrumb-item"><a href="coupon-list.php">優惠券列表</a></li>
-                        <li class="breadcrumb-item"><a href="add-coupon.php">新增優惠券</a></li>
+                        <li class="breadcrumb-item"><a href="../style/admin_index.php">首頁</a></li>
+                        <li class="breadcrumb-item"><a href="coupon-list.php">行銷管理</a></li>
+                        <li class="breadcrumb-item"><a href="coupon-list.php">優惠券列表</a></li> 
                         <li class="breadcrumb-item active"><?= $row["title"] ?>(優惠券)</li>
                     </ol>
-                    
+
                     <?php if ($couponCount == 0) : ?>
                         <h1>找不到此優惠券</h1>
                     <?php else : ?>

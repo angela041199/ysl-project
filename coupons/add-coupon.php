@@ -32,11 +32,12 @@
         <div class="container-fluid px-4">
           <!-- Back to coupon list -->
           <ol class="breadcrumb mb-4  mt-3">
-            <li class="breadcrumb-item"><a href="../style/admin_index.php">YSL後台</a></li>
+            <li class="breadcrumb-item"><a href="../style/admin_index.php">首頁</a></li>
+            <li class="breadcrumb-item"><a href="coupon-list.php">行銷管理</a></li>
             <li class="breadcrumb-item"><a href="coupon-list.php">優惠券列表</a></li>
             <li class="breadcrumb-item active">新增優惠券</li>
           </ol>
-          
+
           <!-- Add Coupon form start -->
           <form action="doAddCoupon.php" method="post" id="addCouponform" onsubmit="return validateForm()">
             <div class="mb-3">

@@ -79,7 +79,8 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
       <main>
         <div class="container-fluid px-4">
           <ol class="breadcrumb mb-4  mt-3">
-            <li class="breadcrumb-item"><a href="index.php">YSL後台</a></li>
+            <li class="breadcrumb-item"><a href="../style/admin_index.php">首頁</a></li>
+            <li class="breadcrumb-item"><a href="coupon-list.php">行銷管理</a></li>            
             <li class="breadcrumb-item active">優惠券列表</li>
           </ol>
           <?php
@@ -87,28 +88,28 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
           ?>
           <div class="py-2 d-flex justify-content-between align-items-center">
             <div class="card mb-1">
-              <div class="card-body">                
-                  <?php
-                  if (isset($_GET["search"])) : ?>
-                    <a href="coupon-list.php" class="btn btn-primary" title="回到優惠券列表"><i class="fa-solid fa-arrow-left"></i></a>
-                    搜尋<?= $_GET["search"] ?>的結果，<?php endif; ?>
-                    目前顯示<?= $couponCount ?>張優惠券（共有<?= $totalCoupon ?>張優惠券）                
-                <a href="add-coupon.php" class="btn btn-warning ms-3" title="新增優惠券"><i class="fa-solid fa-plus pe-1"></i>新增優惠券</a>
+              <div class="card-body">
+                <?php
+                if (isset($_GET["search"])) : ?>
+                  <a href="coupon-list.php" class="btn btn-primary" title="回到優惠券列表"><i class="fa-solid fa-arrow-left"></i></a>
+                  搜尋<?= $_GET["search"] ?>的結果，<?php endif; ?>
+                  目前顯示<?= $couponCount ?>張優惠券（共有<?= $totalCoupon ?>張優惠券）
+                  <a href="add-coupon.php" class="btn btn-warning ms-3" title="新增優惠券"><i class="fa-solid fa-plus pe-1"></i>新增優惠券</a>
               </div>
-            </div>
-          </div>          
-          <div class="py-2 row">
-            <div class="col-3">
-            <form action="">              
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="搜尋優惠券..." name="search">
-                <button class="btn btn-warning" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-              </div>
-              
-            </form>
             </div>
           </div>
-          
+          <div class="py-2 row">
+            <div class="col-3">
+              <form action="">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="搜尋優惠券..." name="search">
+                  <button class="btn btn-warning" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
           <?php if (!isset($_GET["search"])) : ?>
             <div class="pb-2 d-flex justify-content-end">
               <div class="btn-group">
