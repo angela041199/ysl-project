@@ -8,7 +8,7 @@ session_start();
 //     header("Location: signup.php");
 //     exit();
 // }
-require_once("./includes/connect_sever.php");
+require_once("../includes/connect_sever.php");
 
 include("../style/sellerDashboard_sideNav.php");
 include("../style/ysl-nav.php");

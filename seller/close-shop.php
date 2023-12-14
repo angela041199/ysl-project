@@ -19,7 +19,7 @@ include("../style/ysl-nav.php");
 include("../style/nav-top-js.php");
 include("../style/side-nav-js.php");
 
-require_once("./includes/connect_sever.php");
+require_once("../includes/connect_sever.php");
 
 ?>
 

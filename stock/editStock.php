@@ -1,5 +1,5 @@
 <?php
-require("../do/ysl_connect.php");
+require("../includes/connect_sever.php");
 $id=$_GET["id"];
 $sql = "SELECT stock.*, product.name FROM stock JOIN product ON stock.product_id = product.id WHERE stock.product_id=$id";
 
@@ -12,7 +12,7 @@ $userCount = $result->num_rows;
 
 
 
-include("../do/css/include.php");
+include("../stock/css/include.php");
 ?>
 <!doctype html>
 <html lang="en">

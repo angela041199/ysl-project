@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once("./includes/connect_sever.php");
+require_once("../includes/connect_sever.php");
 
 ?>
 <!doctype html>

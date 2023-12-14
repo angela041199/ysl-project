@@ -1,5 +1,5 @@
 <?php
-require_once("../do/ysl_connect.php");
+require_once("../includes/connect_sever.php");
 $status=$_POST["status"];
 $id=$_POST["id"];
 

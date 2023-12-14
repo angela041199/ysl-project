@@ -1,5 +1,7 @@
 <?php
-require_once("../do/ysl_connect.php");
+session_start();
+$seller_id = $_SESSION["seller_id"];
+require_once("../includes/connect_sever.php");
 
 $sqlTotal = "SELECT stock.*, product.name FROM stock JOIN product ON stock.product_id = product.id ORDER BY product_id ASC";
 $resultTotal = $conn->query($sqlTotal);
@@ -43,7 +45,8 @@ $result=$conn->query($sql);
 $rows = $result ->fetch_all(MYSQLI_ASSOC);
 
 
-include("../do/css/include.php")
+include("../stock/css/include.php");
+include("../includes/css_link.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,10 +60,6 @@ include("../do/css/include.php")
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-       <?php include("../do/style/sellerDashboard_sideNav.php");
-            include("../do/style/ysl-nav.php") ;
-            
-       ?>
     </head>
     <style>
         .form-select{
@@ -70,13 +69,10 @@ include("../do/css/include.php")
     </style>
  
     <body class="sb-nav-fixed">
-       
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-           <?php include("../do/style/ysl-nav.php") ; ?>
-        </nav>
+           <?php include("../style/ysl-nav.php") ; ?>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
-       <?php include("../do/style/sellerDashboard_sideNav.php"); ?>
+       <?php include("../style/sellerDashboard_sideNav.php"); ?>
                
             </div>
             <div id="layoutSidenav_content">
@@ -149,7 +145,7 @@ include("../do/css/include.php")
                      </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
-                <?php include("../do/style/footer.php"); ?>
+                <?php include("../style/footer.php"); ?>
                 </footer>
             </div>
         </div>

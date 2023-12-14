@@ -1,5 +1,5 @@
 <?php
-require("../do/ysl_connect.php");
+require("../includes/connect_sever.php");
 
 // if(!isset($_POST["$quantity"])){
 //     echo "請依正常管道進入";

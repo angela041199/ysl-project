@@ -1,5 +1,5 @@
 <?php 
-require_once("../do/ysl_connect.php");
+require_once("../includes/connect_sever.php");
 $id=$_GET["id"];
 $sql = "SELECT  orders.*, product.name, ysl_member.name, product.name AS product_name FROM orders JOIN product ON orders.product_id = product.id JOIN ysl_member ON orders.member_id = ysl_member.id WHERE orders.product_id = $id";
 $result=$conn->query($sql);
