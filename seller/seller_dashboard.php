@@ -8,6 +8,8 @@ session_start();
 //     header("Location: signup.php");
 //     exit();
 // }
+require_once("./includes/connect_sever.php");
+
 include("../style/sellerDashboard_sideNav.php");
 include("../style/ysl-nav.php");
 include("../style/nav-top-js.php");

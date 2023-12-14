@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+require_once("./includes/connect_sever.php");
+
 ?>
 <!doctype html>
 <html lang="en">
