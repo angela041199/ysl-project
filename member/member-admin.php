@@ -2,7 +2,7 @@
 require_once("../includes/connect_sever.php");
 include("../style/admin-nav.php");
 include("../style/admin_dashboard.php");
-include("../style/side-nav-js.php");
+// include("../style/side-nav-js.php");
 
 
 // $id = $_GET["id"];
@@ -172,7 +172,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
 
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
     <script src="js/scripts.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
