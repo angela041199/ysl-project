@@ -110,8 +110,8 @@ $userCount = $result->num_rows;
                                             </tr>
 
                                             <div class="mt-1">
-                                                <button class="btn btn-secondary" type="submit">儲存</button>
-                                                <a href="memberProfile.php?id=<?= $row["id"] ?>" class="btn btn-secondary text-white" title="修改資料">取消</a>
+                                                <button class="btn btn-secondary" type="submit"><i class="fa-solid fa-floppy-disk me-1"></i>儲存</button>
+                                                <a href="memberProfile.php?id=<?= $row["id"] ?>" class="btn btn-secondary text-white" title="修改資料"><i class="fa-solid fa-xmark me-1"></i>取消</a>
                                             </div>
 
                                         </table>

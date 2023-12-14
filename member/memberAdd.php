@@ -55,7 +55,7 @@ include("../style/admin_dashboard.php");
                     <div class="card mb-4">
 
                         <div class="card-body">
-                            <h1 class="pt-5 text-center">新增會員資料</h1>
+                            <h1 class="pt-5 text-center "><i class="fa-solid fa-user-plus me-2"></i>新增會員資料</h1>
                             <form class="row g-3 m-2" action="doSignup.php" method="post">
                                 <div class="col-12 mt-3">
                                     <label for="name" class="form-label">姓名<i class="fa-solid fa-circle-info ms-1 text-primary" title="請填入姓名"></i></label>

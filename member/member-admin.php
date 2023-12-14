@@ -58,14 +58,14 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                         </div>
 
                     </div>
-                    <div>
+                    <!-- <div>
                         <form action="">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="尋找會員..." name="search">
                                 <button class="btn btn-secondary" type="submit" id=""><i class="bi bi-search"></i></button>
                             </div>
                         </form>
-                    </div>
+                    </div> -->
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
@@ -111,7 +111,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                             <td class="p-2 text-center">
                                                 <!-- <div class="d-flex justify-content-center align-items-center"> -->
                                                     <a href="memberProfile.php?id=<?= $row["id"] ?>">
-                                                        <button class="btn btn-secondary" >
+                                                        <button class="btn btn-warning" >
                                                             <?php
                                                             if ($row["valid"] == 1) {
                                                                 echo "正常";
@@ -120,7 +120,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                                             }
 
                                                             ?>
-                                                        </button>
+                                                        <i class="fa-solid fa-circle-info"></i></button>
                                                     </a>
                                                 <!-- </div> -->
                                             </td>
@@ -129,7 +129,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                                                     <input type="hidden" name="id" value="<?= $row["id"]; ?>">
                                                     <input type="hidden" name="name" value="<?= $row["name"]; ?>">
 
-                                                    <button class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#alertModal<?= $row["id"] ?>" type="button">冷凍</button>
+                                                    <button class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#alertModal<?= $row["id"] ?>" type="button">冷凍<i class="fa-solid fa-user-lock"></i></button>
 
                                                     <div class="modal fade" id="alertModal<?= $row["id"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
@@ -146,7 +146,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                                                                    <a href="doDelete.php?id=<?= $row["id"] ?>"><button type=submit class="btn btn-primary">確認</button></a>
+                                                                    <a href="doDelete.php?id=<?= $row["id"] ?>"><button type=submit class="btn btn-danger">確認</button></a>
                                                                 </div>
                                                             </div>
                                                         </div>
