@@ -1,6 +1,6 @@
 <?php
 
-require_once("../connect_server.php");
+require_once("../includes/connect_sever.php");
 
 // if(isset($_POST["account"]) || ($_POST["password"])){
 //     echo "請循正常管道進入";
@@ -64,9 +64,13 @@ VALUES('$name', '$account', '$password', '$phone', '$email', '$birthday', '$gend
 $result = $conn->query($sql);
 
 if ($result !== false) {
-    echo "歡迎加入YSL！";
+    echo '<script> alert("新增' . $id . ' ' . $name . ' 使用者成功"); 
+    window.location.href = "./memberAdd.php";
+    </script>';
 } else {
-    echo "加入失敗，請與我們聯繫看看哪裡有問題！ " . $sql . "<br>" . $conn->error;
+    echo '<script> alert("加入使用者成功"); 
+    window.location.href = "./memberAdd.php";
+    </script>'; "<br>" . $conn->error;
 }
 
 // if ($conn->query($sql) === TRUE) {

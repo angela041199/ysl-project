@@ -1,5 +1,5 @@
 <?php
-require_once("../ysl_project/ysldb-connect.php");
+require_once("/xampp/htdocs/github/includes/connect_sever.php");
 
 // 製作分頁
 $sqlTotal = "SELECT * FROM discount_coupon WHERE valid=1";
@@ -62,8 +62,8 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <?php
-  include("../231215-YSL-project/ysl-css.php");
-  include("../231215-YSL-project/admin-nav.php");
+  include("../coupons/ysl-css.php");
+  include("/xampp/htdocs/github/style/admin-nav.php");
 
   // include("../ysl_project/sellerDashboard_sideNav.php");
 
@@ -74,7 +74,7 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
 <body class="sb-nav-fixed">
   <div id="layoutSidenav">
     <div id="layoutSidenav_content">
-        <?php include("../231215-YSL-project/admin_dashboard.php"); ?>
+        <?php include("/xampp/htdocs/github/style/admin_dashboard.php"); ?>
         <main>
         <div class="container">
             <h2 class="p-3">優惠券一覽表</h2>
@@ -231,7 +231,7 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
             </div><!--container -->
           </main>        
           <footer class="py-4 bg-light mt-auto">
-          <?php include("../231215-YSL-project/footer.php"); ?>
+          <?php include("/xampp/htdocs/github/style/footer.php");?>
         </footer>
       </div>
       

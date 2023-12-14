@@ -1,6 +1,6 @@
 <?php
 
-require_once("../connect_server.php");
+require_once("../includes/connect_sever.php");
 
 // if(isset($_POST["account"]) || ($_POST["password"])){
 //     echo "請循正常管道進入";

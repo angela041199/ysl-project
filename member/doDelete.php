@@ -1,5 +1,5 @@
 <?php 
-require_once("../connect_server.php");
+require_once("../includes/connect_sever.php");
 
 if(!isset($_POST["id"])){
     echo "請循正常管道進入此頁面";
