@@ -3,7 +3,7 @@ session_start();
 // $seller_id = $_SESSION["seller_id"];
 require_once("../includes/connect_sever.php");
 
-$sqlTotal = "SELECT stock.*, product.name FROM stock JOIN product ON stock.product_id = product.id ORDER BY product_id ASC";
+$sqlTotal = "SELECT stock.*, product.name FROM stock JOIN product ON stock.product_id = product.id WHERE stock.valid = 1 ORDER BY product_id ASC";
 $resultTotal = $conn->query($sqlTotal);
 $totalUser = $resultTotal->num_rows;
 $perPage = 10;
@@ -11,7 +11,8 @@ $pageCount = ceil($totalUser / $perPage);
 
 if(isset($_GET["search"])){
     $search= $_GET["search"];
-    $sql="SELECT stock.* , product.name FROM stock JOIN product ON stock.product_id = product.id  WHERE name LIKE '%$search%'";
+    $sql="SELECT stock.* , product.name FROM stock JOIN product ON stock.product_id = product.id  WHERE name LIKE '%$search%' AND  stock.valid = 1 ";
+    
     
 } else if(isset($_GET["page"])  && isset($_GET["order"])){
     $page = $_GET["page"];
@@ -30,18 +31,21 @@ if(isset($_GET["search"])){
 
     $startItem = ($page - 1) * $perPage;
 
-    $sql = "SELECT stock.*, product.name FROM stock JOIN product ON stock.product_id = product.id ORDER BY $orderSql LIMIT $startItem , $perPage";
+    $sql = "SELECT stock.*, product.name FROM stock JOIN product ON stock.product_id = product.id WHERE stock.valid = 1 ORDER BY $orderSql LIMIT $startItem , $perPage";
 } 
 
 else{
     $page=1;
     $order=1;
-    $sql = "SELECT stock.*, product.name FROM stock JOIN product ON stock.product_id = product.id ORDER BY product_id ASC LIMIT 0,$perPage";
+    $sql = "SELECT stock.*, product.name FROM stock JOIN product ON stock.product_id = product.id WHERE stock.valid = 1 ORDER BY product_id ASC LIMIT 0,$perPage";
 }
 
 
 
 $result=$conn->query($sql);
+$searchTotal = $result->num_rows;
+$pageCount2 = ceil($searchTotal / $perPage);   
+
 $rows = $result ->fetch_all(MYSQLI_ASSOC);
 
 
@@ -129,7 +133,10 @@ include("../includes/css_link.php");
                                         <td><?= $row["name"] ?></td>
                                         <td><?= $row["quantity"] ?></td>
                                         <td><a class="btn btn-info text-white" href="editStock.php?id=<?= $row["id"] ?>" title="庫存資料">庫存資料<i class="bi bi-info-circle-fill"></i></a></td>
-                                        <td><a class="btn btn-danger text-white" href="user.php?id=<?= $row["id"] ?>" title="刪除">刪除<i class="bi bi-info-circle-fill"></i></a></td>
+                                    <form action="deleteStock.php?" method="post"  >
+                                    <input type="hidden" name="id" value="<?= $row["id"] ?>">
+                                        <td><button class="btn btn-danger text-white" href="" title="刪除">刪除<i class="bi bi-info-circle-fill"></i></button></td>
+                                    </form>
                                     </tr>
                                 </tbody>
                                 <?php endforeach; ?>
@@ -138,7 +145,8 @@ include("../includes/css_link.php");
                                 <nav aria-label="Page navigation example">
                                     <ul class="pagination">
                                         <!-- <li class="page-item"><a class="page-link" href="#">Previous</a></li> -->
-                                        <?php for ($i = 1; $i <= $pageCount; $i++) : ?>
+                                      
+                                        <?php for ($i = 1; $i <= $pageCount ; $i++) : ?>
                                             <li class="page-item"><a class="page-link" href="stock.php?page=<?= $i ?>&order=<?= $order ?>"><?= $i ?></a></li>
                                         <?php endfor; ?>
                                        
