@@ -9,6 +9,6 @@ $_SESSION = array();
 session_destroy();
 
 // 導向到登入頁面）
-header("Location: signin.php");
+header("Location: ../seller/signin.php");
 exit();
 ?>
