@@ -229,7 +229,9 @@ $filterString = http_build_query($filters);
                             <div class="d-flex align-items-center">
                                 <form action="product_list.php?" method="GET">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="搜尋商品" name="search">
+                                    <input type="hidden" name="type" value="<?= isset($type) ? $type : ''; ?>">
+
+                                        <input type="text" class="form-control" placeholder="搜尋商品" name="search" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
                                         <div class="col-auto">
                                             <button class="btn border-0" type="submit">
                                                 <i class="bi bi-search"></i>
@@ -237,31 +239,30 @@ $filterString = http_build_query($filters);
                                         </div>
                                     </div>
                                 </form>
-                                <form action="edit_product.php?<?=$filterString?>" method="get" class="py-3 d-flex justify-content-between">
+                                <form action="product_list.php?<?= $filterString ?>" method="get" class="py-3 d-flex justify-content-between">
                                     <div class="row g-2 align-items-center">
                                         <div class="col-auto ps-5">
                                             <label for="" class="col-form-label">價格：</label>
                                         </div>
                                         <div class="col-2">
-                                            <input type="number" class="form-control text-end price-input" name="price-min" value="<?php $priceMin = isset($_GET["price-min"]) ? $min : 0;
-                                                                                                                                    echo $priceMin; ?>">
+                                            <input type="number" class="form-control text-end price-input" name="price-min" value="<?php echo isset($_GET["price-min"]) ? htmlspecialchars($_GET["price-min"]) : 0; ?>">
                                         </div>
                                         <div class="col-auto">
                                             ~
                                         </div>
                                         <div class="col-2">
-                                            <input type="number" class="form-control text-end price-input" name="price-max" value="<?php $priceMax = isset($_GET["price-max"]) ? $max : 99999; echo $priceMax; ?>">
+                                            <input type="number" class="form-control text-end price-input" name="price-max" value="<?php echo isset($_GET["price-max"]) ? htmlspecialchars($_GET["price-max"]) : 99999; ?>">
                                         </div>
                                         <div class="col-auto">
                                             <button type="submit" class="btn btn-outline-dark">篩選</button>
                                         </div>
                                     </div>
                                 </form>
-                                <form method="get" action="product_list.php" 
-                                class="btn-group ms-auto" role="group">
+
+                                <form method="get" action="product_list.php" class="btn-group ms-auto" role="group">
                                     <div class="btn-group" role="group">
-                                    <a title="返回全部商品" class="btn btn-dark text-white" href="product_list.php"><i class="bi bi-reply-all-fill"></i> 全部</a>
-                                            
+                                        <a title="返回全部商品" class="btn btn-dark text-white" href="product_list.php"><i class="bi bi-reply-all-fill"></i> 全部</a>
+
                                         <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                             類別
                                         </button>
@@ -404,7 +405,7 @@ $filterString = http_build_query($filters);
                                 </tbody>
                             </table>
                             <nav class="d-flex justify-content-center">
-                                
+
                                 <ul class="pagination">
                                     <li class="page-item <?php echo ($page == 1) ? 'disabled' : ''; ?>">
                                         <a title="上一頁" class="page-link" href="product_list.php?page=<?= $page - 1; ?>&<?= $filterString ?>" aria-label="Previous">
