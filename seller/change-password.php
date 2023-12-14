@@ -1,5 +1,6 @@
 <?php
 session_start();
+$msg = $_SESSION["msg"];
 include("../style/sellerDashboard_sideNav.php");
 include("../style/ysl-nav.php");
 include("../style/nav-top-js.php");

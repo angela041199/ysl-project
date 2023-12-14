@@ -1,6 +1,6 @@
 <?php
 session_start();
-$seller_id = $_SESSION["seller_id"];
+// $seller_id = $_SESSION["seller_id"];
 require_once("../includes/connect_sever.php");
 
 $sqlTotal = "SELECT stock.*, product.name FROM stock JOIN product ON stock.product_id = product.id ORDER BY product_id ASC";
@@ -78,11 +78,16 @@ include("../includes/css_link.php");
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container">
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a class="no_link" href="../seller/seller_dashboard.php">首頁</a></li>
+                        <li class="breadcrumb-item active">商品管理</li>
+                    </ol>
                         <div class="d-flex justify-content-between">
+                            <?php if(isset($_GET["search"])) :?>
                             <div>
-                                
-                                <a href="stock.php"><button type="button" class="btn btn-secondary mt-4 fs-4">首頁</button></a>
+                                <a href="stock.php"><button type="button" class="btn btn-secondary mt-2 fs-4">返回全部庫存</button></a>
                             </div>
+                            <?php endif ; ?>
                             <div>
                                 <button type="button" class="btn btn-success mt-4 fs-4">新增庫存資料</button>
                             </div>

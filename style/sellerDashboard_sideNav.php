@@ -10,7 +10,7 @@
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading">Core</div>
-                    <a class="nav-link" href="seller_dashboard.php">
+                    <a class="nav-link" href="../seller/seller_dashboard.php">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         首頁
                     </a>
@@ -42,8 +42,8 @@
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                         data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="change-password.php">修改密碼</a>
-                            <a class="nav-link" href="close-shop.php">關閉店家</a>
+                            <a class="nav-link" href="../seller/change-password.php">修改密碼</a>
+                            <a class="nav-link" href="../seller/close-shop.php">關閉店家</a>
                         </nav>
                     </div>
                 </div>

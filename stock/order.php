@@ -56,9 +56,13 @@ $rows = $result ->fetch_all(MYSQLI_ASSOC);
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container">
-                        <div class="d-flex justify-content-center pt-5"><h1>訂單列表</h1></div>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a class="no_link" href="../seller/seller_dashboard.php">首頁</a></li>
+                        <li class="breadcrumb-item active">商品管理</li>
+                    </ol>
+                        <div class="d-flex justify-content-center pt-2"><h1>訂單列表</h1></div>
                         <?php $userCount = $result->num_rows; ?>
-                        <h5 style="letter-spacing: 3px;">全部資料 : <?= $userCount ?>筆</h5>
+                        <h7 style="letter-spacing: 3px;">全部資料 : <?= $userCount ?>筆</h7>
                     </div>
 
                     <nav class="navbar navbar-light ">

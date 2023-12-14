@@ -210,7 +210,7 @@ $filterString = http_build_query($filters);
                 <div class="container-fluid px-4">
                     <!-- <h1 class="mt-4">Tables</h1> -->
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a class="no_link" href="index.html">首頁</a></li>
+                        <li class="breadcrumb-item"><a class="no_link" href="../seller/seller_dashboard.php">首頁</a></li>
                         <li class="breadcrumb-item active">商品管理</li>
                     </ol>
                     <div class="card mb-4">
