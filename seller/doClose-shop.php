@@ -1,5 +1,5 @@
 <?php
-require_once("./db_connect.php");
+require_once("../includes/connect_sever.php");
 session_start();
 
 $seller_id = $_SESSION['seller_id'];

@@ -44,7 +44,7 @@ include("../style/side-nav-js.php");
                     <img src="./img/bg.jpg" alt="">
                 </div>
             </main>
-            <?php include("../ysl-page/style/footer.php")?>
+            <?php include("../style/footer.php")?>
         </div>
     </div>
     <?php

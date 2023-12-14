@@ -38,12 +38,12 @@ session_start();
                 <form class="row g-3 m-2" action="./do_signin.php" method="post">
                     <div class="col-12">
                         <label for="account" class="form-label">帳號</label>
-                        <input type="text" class="form-control" id="account" name="account" placeholder="請填寫商家名稱">
+                        <input type="text" class="form-control" id="account" name="account" placeholder="請輸入帳號">
                     </div>
 
                     <div class="col-md-12">
                         <label for="password" class="form-label">密碼</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="請填寫常用信箱">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="請輸入密碼">
                     </div>
 
                     <?php if(isset($_SESSION["msg"])): ?>

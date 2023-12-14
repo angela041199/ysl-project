@@ -90,8 +90,7 @@ include("../style/side-nav-js.php");
 
                 </div>
             </main>
-            <?php
-            include("./style/footer.php");?>
+            <?php include("../style/footer.php")?>
         </div>
     </div>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">

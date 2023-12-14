@@ -50,6 +50,23 @@ include("../style/side-nav-js.php");
 
 <body class="sb-nav-fixed">
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">!!!注意!!!</h1> -->
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button> -->
+                </div>
+                <div class="modal-body">
+                    新密碼設定成功 ! <br> 請重新登入
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">確認</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="layoutSidenav">
 
         <div id="layoutSidenav_content">
@@ -69,7 +86,7 @@ include("../style/side-nav-js.php");
                             修改密碼
                         </div>
 
-                        <form class="row g-3 m-2" method="post" action="do_change-pswd.php">
+                        <form class="row g-3 m-2" method="post" action="do_change-pswd.php" id="myForm">
                             <div class="card-body h5 py-0">
                                 <i class="bi bi-person-fill-lock pe-1"></i>密碼變更
                             </div>
@@ -101,30 +118,9 @@ include("../style/side-nav-js.php");
                             </div>
 
                             <div class="col-12">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">確認更改</button>
+                                <button type="submit" class="btn btn-primary" id="submitBtn">確認更改</button>
                             </div>
 
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1> -->
-                                            <button type="submit" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close">確認</button>
-                                        </div>
-                                        <div class="modal-body">
-                                            新密碼設定成功 !
-                                        </div>
-                                        <!-- <div class="modal-footer">
-                                            <button type="submit" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">修改成功</button>
-
-                                        </div> -->
-                                    </div>
-                                </div>
-                            </div>
 
                         </form>
 
@@ -133,12 +129,18 @@ include("../style/side-nav-js.php");
                 </div>
 
             </main>
-            <footer class="py-4 bg-light mt-auto">
-                <?php include("../ysl-page/style/footer.php")?>
-            </footer>
-
+            <?php include("../style/footer.php")?>
         </div>
     </div>
+    <?php
+        unset($_SESSION["msg"]);
+    ?>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
@@ -202,14 +204,12 @@ include("../style/side-nav-js.php");
         }
     }
     </script>
-    <script>
-    const myModal = document.getElementById('myModal')
-    const myInput = document.getElementById('myInput')
 
-    myModal.addEventListener('shown.bs.modal', () => {
-        myInput.focus()
-    })
+    <script>
+    const myModal = new bootstrap.Modal('#exampleModal')
+    myModal.show()
     </script>
+
 </body>
 
 </html>

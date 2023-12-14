@@ -1,5 +1,5 @@
 <?php
-require_once("./db_connect.php");
+require_once("../includes/connect_sever.php");
 
 session_start();
 if(!isset($_POST["account"])){
@@ -44,8 +44,15 @@ if($result->num_rows==0){
     $row=$result->fetch_assoc();
     // var_dump($row);
     $_SESSION["member"]=$row;
+
+    if($_SESSION["member"]["member_identity"]>0){
+        header("location: seller_dashboard.php");
+        $_SESSION["shop_name"]=$shop_name;
+        $_SESSION["seller_id"]=$_SESSION['member']['member_identity'];
+    }else{
     header("location: ysl_index.php");
-}
+}}
+
 
 $rowCount=$result->num_rows;
 if($rowCount<0){

@@ -1,5 +1,5 @@
 <?php
-require_once("./db_connect.php");
+require_once("../includes/connect_sever.php");
 session_start();
 
 $account=$_SESSION["member"]["account"];
@@ -37,7 +37,8 @@ $update_psw="UPDATE ysl_member SET password = '$n_psw' WHERE account ='$account'
 if ($conn->query($update_psw) === TRUE) {
     echo "更新成功";
 } else {
-    echo "更新資料錯誤: " . $conn->error;
+    header("location: change-password.php");
+    exit;
 }
 
 // $conn->query($update_psw);
