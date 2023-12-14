@@ -5,8 +5,8 @@ include("include.php");
 /* include("../style/ysl-nav.php"); */
 require_once("../includes/connect_sever.php");
 
-$seller_id = 2; //測試
-/* $seller_id = $_SESSION['seller_id']; */
+/* $seller_id = 2; */ //測試
+$seller_id = $_SESSION['seller_id'];
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
