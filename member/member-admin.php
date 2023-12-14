@@ -261,7 +261,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             </main>
             <footer class="py-4 bg-light mt-auto">
                 
-                <?php include("./style/footer.php")?>
+            <?php include("../style/footer.php");?>
             </footer>
         </div>
 

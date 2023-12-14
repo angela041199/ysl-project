@@ -9,7 +9,9 @@
 
   <?php
   include("../coupons/ysl-css.php");
-  include("/xampp/htdocs/github/style/admin-nav.php");
+  require_once("../includes/connect_sever.php");
+  include("../style/admin-nav.php");
+
   ?>
   <style>
     .input-error {
@@ -22,7 +24,8 @@
 <body class="sb-nav-fixed">
   <div id="layoutSidenav">
     <div id="layoutSidenav_content">
-    <?php include("/xampp/htdocs/github/style/admin_dashboard.php"); ?>
+    <?php include("../style/admin_dashboard.php");
+     ?>
     <main>
       <div class="container">
         <!-- Back to coupon list -->
@@ -134,7 +137,7 @@
         </form>
        </main>
        <footer class="py-4 bg-light mt-auto">
-          <?php include("/xampp/htdocs/github/style/footer.php");?>
+       <?php include("../style/footer.php");?>
         </footer>
       </div><!--layoutSidenav_content"-->
     </div><!--layoutSidenav-->

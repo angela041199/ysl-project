@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+ 
+ <head>
  <style>
 .navbg {
     /* background: #FF482F; */
@@ -14,7 +19,7 @@
      <!-- <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button> -->
      <div class="text-light d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">HELLO !
-         <?php  //echo $_SESSION["member"]['name']?></div>
+         <?php  echo $_SESSION["admin"]['name']?></div>
      <!-- Navbar Search-->
      <!-- Navbar-->
      <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -22,7 +27,7 @@
              <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                  aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                 <li><a class="dropdown-item" href="#!">Logout</a></li>
+                 <li><a class="dropdown-item" href="../member/admin-login.php">Logout</a></li>
              </ul>
          </li>
      </ul>

@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once("/xampp/htdocs/github/includes/connect_sever.php");
+require_once("../includes/connect_sever.php");
 
 $id=$_POST['id'];
 $currentStatus = $_POST['currentStatus'];

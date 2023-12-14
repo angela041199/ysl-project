@@ -3,7 +3,7 @@ session_start();
 
 
 if(isset($_SESSION["admin"])){
-    header("location:index.php");
+    header("../style/admin_index.php");
 }
 
 

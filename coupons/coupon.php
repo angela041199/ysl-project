@@ -5,7 +5,7 @@ if (!isset($_GET["coupon_id"])) {
 
 $id = $_GET["coupon_id"];
 
-require_once("/xampp/htdocs/github/includes/connect_sever.php");
+require_once("../includes/connect_sever.php");
 
 $sql = "SELECT * FROM discount_coupon WHERE coupon_id = $id AND valid =1";
 
@@ -41,14 +41,14 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
 
     <?php
     include("../coupons/ysl-css.php");
-    include("/xampp/htdocs/github/style/admin-nav.php");
+    include("../style/admin-nav.php");
     ?>
 </head>
 
 <body class="sb-nav-fixed">
     <div id="layoutSidenav">
         <div id="layoutSidenav_content">
-            <?php include("/xampp/htdocs/github/style/admin_dashboard.php"); ?>
+            <?php include("../style/admin_dashboard.php"); ?>
             <main>
                 <div class="container">
                     <div class="py-2">
@@ -183,7 +183,7 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">
-            <?php include("/xampp/htdocs/github/style/footer.php");?>
+            <?php include("../style/footer.php");?>
             </footer>
         </div>
 

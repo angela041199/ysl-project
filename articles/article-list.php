@@ -1,8 +1,8 @@
 <?php
 
-require_once("/xampp/htdocs/github/includes/connect_sever.php");
-include("/xampp/htdocs/github/style/admin-nav.php");
-include("/xampp/htdocs/github/style/admin_dashboard.php");
+require_once("../includes/connect_sever.php");
+include("../style/admin-nav.php");
+include("../style/admin_dashboard.php");
 // include("/xampp/htdocs/github/style/nav-top-js.php");
 
 
@@ -372,7 +372,7 @@ $conn->close();
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">
-                <?php include("/xampp/htdocs/github/style/footer.php");?>
+            <?php include("../style/footer.php");?>
             </footer>
         </div>
     </div>
