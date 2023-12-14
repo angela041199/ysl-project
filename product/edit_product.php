@@ -237,7 +237,6 @@ $filterString = http_build_query($filter);
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <!-- <h1 class="mt-4">Tables</h1> -->
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a class="no_link" href="index.html">首頁</a></li>
                         <li class="breadcrumb-item active">商品管理</li>
@@ -286,16 +285,21 @@ $filterString = http_build_query($filter);
                                         </div>
                                     </div>
                                 </form>
-                                <form method="get" action="edit_product.php" class="btn-group ms-auto" role="group">
+                                <form method="get" action="product_list.php" 
+                                class="btn-group ms-auto" role="group">
                                     <div class="btn-group" role="group">
+                                    <a title="返回全部商品" class="btn btn-dark text-white" href="edit_product.php"><i class="bi bi-reply-all-fill"></i> 全部</a>
+                                            
                                         <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                             類別
                                         </button>
                                         <ul class="dropdown-menu">
                                             <?php foreach ($filterCategory as $type) : ?>
-                                                <li class="dropdown-item"><a class="no_link" href="edit_product.php?<?= $filterString ?>&type=<?= $type['id'] ?>">
+                                                <li class="dropdown-item <?php echo isset($_GET['type']) && $_GET['type'] == $type['id'] ? 'active' : ''; ?>">
+                                                    <a class="no_link" href="product_list.php?<?= $filterString ?>&type=<?= $type['id'] ?>">
                                                         <?= $type["type_name"] ?>
-                                                    </a></li>
+                                                    </a>
+                                                </li>
                                             <?php endforeach; ?>
                                         </ul>
                                     </div>
@@ -305,9 +309,11 @@ $filterString = http_build_query($filter);
                                         </button>
                                         <ul class="dropdown-menu">
                                             <?php foreach ($filterRating as $rating) : ?>
-                                                <li><a class="dropdown-item" href="edit_product.php?rating=<?= $rating['id'] ?>&<?= $filterString ?>">
+                                                <li class="dropdown-item <?php echo isset($_GET['rating']) && $_GET['rating'] == $rating['id'] ? 'active' : ''; ?>">
+                                                    <a class="no_link" href="product_list.php?<?= $filterString ?>&rating=<?= $rating['id'] ?>">
                                                         <?= $rating["rating_name"] ?>
-                                                    </a></li>
+                                                    </a>
+                                                </li>
                                             <?php endforeach; ?>
                                         </ul>
                                     </div>
@@ -321,17 +327,17 @@ $filterString = http_build_query($filter);
                                                     $uniqueLanguages = array(); // 追蹤已經出現的語言
                                                     foreach ($filterLanguage as $lang) {
                                                         if ($lang["CH"] !== '' && !in_array('中文', $uniqueLanguages)) {
-                                                            echo "<li><a class='dropdown-item' href='edit_product.php?$filterString&CH=1'>中文</a></li>";
+                                                            echo "<li><a class='dropdown-item' href='product_list.php?$filterString&CH=1'>中文</a></li>";
                                                             $uniqueLanguages[] = '中文';
                                                         }
 
                                                         if ($lang["EN"] !== '' && !in_array('英文', $uniqueLanguages)) {
-                                                            echo "<li><a class='dropdown-item' href='edit_product.php?$filterString&EN=1'>英文</a></li>";
+                                                            echo "<li><a class='dropdown-item' href='product_list.php?$filterString&EN=1'>英文</a></li>";
                                                             $uniqueLanguages[] = '英文';
                                                         }
 
                                                         if ($lang["JN"] !== '' && !in_array('日文', $uniqueLanguages)) {
-                                                            echo "<li><a class='dropdown-item' href='edit_product.php?$filterString&JN=1'>日文</a></li>";
+                                                            echo "<li><a class='dropdown-item' href='product_list.php?$filterString&JN=1'>日文</a></li>";
                                                             $uniqueLanguages[] = '日文';
                                                         }
                                                     }
@@ -436,9 +442,6 @@ $filterString = http_build_query($filter);
                                 </tbody>
                             </table>
                             <nav class="d-flex justify-content-center">
-                                <div class="col-auto">
-                                    <a title="返回全部商品" class="btn btn-secondary text-white" href="edit_product.php"><i class="bi bi-reply-all-fill"></i></a>
-                                </div>
                                 <ul class="pagination">
                                     <li class="page-item <?php echo ($page == 1) ? 'disabled' : ''; ?>">
                                         <a title="上一頁" class="page-link" href="edit_product.php?page=<?= $page - 1; ?>&<?= $filterString ?>" aria-label="Previous">

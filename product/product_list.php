@@ -237,16 +237,41 @@ $filterString = http_build_query($filters);
                                         </div>
                                     </div>
                                 </form>
-                                <form method="get" action="product_list.php" class="btn-group ms-auto" role="group">
+                                <form action="edit_product.php?<?=$filterString?>" method="get" class="py-3 d-flex justify-content-between">
+                                    <div class="row g-2 align-items-center">
+                                        <div class="col-auto ps-5">
+                                            <label for="" class="col-form-label">價格：</label>
+                                        </div>
+                                        <div class="col-2">
+                                            <input type="number" class="form-control text-end price-input" name="price-min" value="<?php $priceMin = isset($_GET["price-min"]) ? $min : 0;
+                                                                                                                                    echo $priceMin; ?>">
+                                        </div>
+                                        <div class="col-auto">
+                                            ~
+                                        </div>
+                                        <div class="col-2">
+                                            <input type="number" class="form-control text-end price-input" name="price-max" value="<?php $priceMax = isset($_GET["price-max"]) ? $max : 99999; echo $priceMax; ?>">
+                                        </div>
+                                        <div class="col-auto">
+                                            <button type="submit" class="btn btn-outline-dark">篩選</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <form method="get" action="product_list.php" 
+                                class="btn-group ms-auto" role="group">
                                     <div class="btn-group" role="group">
+                                    <a title="返回全部商品" class="btn btn-dark text-white" href="product_list.php"><i class="bi bi-reply-all-fill"></i> 全部</a>
+                                            
                                         <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                             類別
                                         </button>
                                         <ul class="dropdown-menu">
                                             <?php foreach ($filterCategory as $type) : ?>
-                                                <li class="dropdown-item"><a class="no_link" href="product_list.php?<?= $filterString ?>&type=<?= $type['id'] ?>">
+                                                <li class="dropdown-item <?php echo isset($_GET['type']) && $_GET['type'] == $type['id'] ? 'active' : ''; ?>">
+                                                    <a class="no_link" href="product_list.php?<?= $filterString ?>&type=<?= $type['id'] ?>">
                                                         <?= $type["type_name"] ?>
-                                                    </a></li>
+                                                    </a>
+                                                </li>
                                             <?php endforeach; ?>
                                         </ul>
                                     </div>
@@ -256,9 +281,11 @@ $filterString = http_build_query($filters);
                                         </button>
                                         <ul class="dropdown-menu">
                                             <?php foreach ($filterRating as $rating) : ?>
-                                                <li><a class="dropdown-item" href="product_list.php?<?= $filterString ?>&rating=<?= $rating['id'] ?>">
+                                                <li class="dropdown-item <?php echo isset($_GET['rating']) && $_GET['rating'] == $rating['id'] ? 'active' : ''; ?>">
+                                                    <a class="no_link" href="product_list.php?<?= $filterString ?>&rating=<?= $rating['id'] ?>">
                                                         <?= $rating["rating_name"] ?>
-                                                    </a></li>
+                                                    </a>
+                                                </li>
                                             <?php endforeach; ?>
                                         </ul>
                                     </div>
@@ -377,9 +404,7 @@ $filterString = http_build_query($filters);
                                 </tbody>
                             </table>
                             <nav class="d-flex justify-content-center">
-                                <div class="col-auto">
-                                    <a title="返回全部商品" class="btn btn-secondary text-white" href="product_list.php"><i class="bi bi-reply-all-fill"></i></a>
-                                </div>
+                                
                                 <ul class="pagination">
                                     <li class="page-item <?php echo ($page == 1) ? 'disabled' : ''; ?>">
                                         <a title="上一頁" class="page-link" href="product_list.php?page=<?= $page - 1; ?>&<?= $filterString ?>" aria-label="Previous">
