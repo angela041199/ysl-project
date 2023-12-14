@@ -31,3 +31,8 @@
         text-decoration: none;
     }
 }
+
+.navbg {
+    /* background: #FF482F; */
+    background: url(../../../style/img/background_nintendo_switch__2_by_kenji_cosplay_studio_demn0vs-pre.jpeg);
+}

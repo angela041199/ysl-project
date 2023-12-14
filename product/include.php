@@ -4,6 +4,7 @@
 <!-- class css -->
 
 
+
 <link rel="stylesheet" href="template/css/styles.css">
 
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
@@ -14,9 +15,13 @@
 
 <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
+<link rel="stylesheet" href="../style/css/styles.css">
+
 <link rel="stylesheet" href="template/css/1207.css">
 <!-- js -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script src="../style/nav-top-js.php"></script>
 
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/js/bootstrap.bundle.min.js"></script> -->
 
