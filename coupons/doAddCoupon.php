@@ -31,7 +31,8 @@ $result=$conn->query($sql);
 $rowCount=$result->num_rows;
 //echo $rowCount;
 if($rowCount>0){
-    die("此優惠券已經存在");
+    echo "此優惠券已經存在";
+    exit;
 }
 
 $sql="INSERT INTO discount_coupon (title, coupon_code, discount_type, discount_value, usage_times, start_date, expiration_date, price_rule, applicable_scope, applicable_type_id, created_at, status, valid)
