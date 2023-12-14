@@ -6,7 +6,7 @@ if(!isset($_POST["shop_name"])){
     echo "請循正常管道進入";
     exit;
 }
-
+    
 // if(!isset($_POST["name"])){
 //     $data=[
 //         "status"=>0,

@@ -1,7 +1,8 @@
 <?php
 require_once("../includes/connect_sever.php");
 session_start();
-
+$msg = $_SESSION["msg"];
+  
 $account=$_SESSION["member"]["account"];
 // echo $account;
 $psw=md5($_SESSION["member"]['password']);

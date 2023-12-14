@@ -3,4 +3,4 @@
     <div class="container-fluid px-4">
         <div class="text-muted">Copyright &copy; Your Switch Life 2023</div>
     </div>
-</footer>
+</footer>  

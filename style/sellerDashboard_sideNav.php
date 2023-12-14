@@ -5,7 +5,7 @@
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
 <div id="layoutSidenav">
-    <div id="layoutSidenav_nav">
+    <div id="layoutSidenav_nav">  
         <nav class="sb-sidenav accordion sb-sidenav-light shadow" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">

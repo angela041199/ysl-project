@@ -7,7 +7,7 @@ if(!isset($_POST["account"])){
     $_SESSION["msg"]=$msg;
     exit;
 }
-
+  
 $account=$_POST["account"];
 $password=$_POST["password"];
 
