@@ -26,6 +26,7 @@
     <div id="layoutSidenav">
 
         <div id="layoutSidenav_content">
+            
             <main>
                 <form action="InsertArticle.php" method="post" id="article-form" enctype="multipart/form-data">
                     <div class="container-fluid px-4">

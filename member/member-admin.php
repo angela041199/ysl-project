@@ -148,7 +148,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 <div class="container-fluid px-4">
 
                     <ol class="breadcrumb mb-4  mt-3">
-                        <li class="breadcrumb-item"><a href="index.php">YSL後台</a></li>
+                        <li class="breadcrumb-item"><a href="../style/admin_index.php">首頁</a></a></li>
+                        <li class="breadcrumb-item"><a href="#">會員管理</a></a></li>
                         <li class="breadcrumb-item active">會員資料</li>
                     </ol>
                     <div class="card mb-4">
