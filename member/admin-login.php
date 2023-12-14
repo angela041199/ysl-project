@@ -31,9 +31,6 @@ if(isset($_SESSION["admin"])){
                 background: url(./images/background_nintendo_switch__2_by_kenji_cosplay_studio_demn0vs-pre.jpg)top center;
             }
 
-            footer{
-                /* height: 200px; */
-            }
         </style>
     </head>
     <body class="bg-primary">

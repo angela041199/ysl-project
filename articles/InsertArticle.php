@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+
 require_once("../includes/connect_sever.php");
 
 $title = $_POST['title'];
@@ -24,10 +24,13 @@ $createTime = date('Y-m-d H:i:s');
 
 
 
+
+
 // 檢查作者是否存在於 article_author 表
 $sqlCheckAuthor = "SELECT id FROM article_author WHERE name = '$authorName'";
 $resultCheckAuthor = $conn->query($sqlCheckAuthor);
 $authorId = null;
+
 
 if ($resultCheckAuthor->num_rows > 0) {
     // 作者存在，獲取ID
@@ -69,6 +72,7 @@ if (file_exists($uploadFile)) {
     echo "<script>alert('圖片檔名重複，上傳失敗!'); window.location.href='create-article.php';</script>";
     exit;
 }
+
 
 // 檢查文件大小（例如不超過5MB）
 if ($_FILES['image']['size'] > 5000000) {
@@ -139,7 +143,6 @@ foreach ($tags as $tag) {
         exit;
     }
 }
-
 
 
 ?>
