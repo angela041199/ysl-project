@@ -55,7 +55,7 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
                     <ol class="breadcrumb mb-4  mt-3">
                         <li class="breadcrumb-item"><a href="../style/admin_index.php">首頁</a></li>
                         <li class="breadcrumb-item"><a href="coupon-list.php">行銷管理</a></li>
-                        <li class="breadcrumb-item"><a href="coupon-list.php">優惠券列表</a></li> 
+                        <li class="breadcrumb-item"><a href="coupon-list.php">優惠券列表</a></li>
                         <li class="breadcrumb-item active"><?= $row["title"] ?>(優惠券)</li>
                     </ol>
 
@@ -66,7 +66,7 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
                         $discountType = $row["discount_type"];
                         switch ($discountType) {
                             case 'percentage':
-                                $displaydiscountType = '百分比折價';
+                                $displaydiscountType = '百分比(%)折價';
                                 break;
                             case 'amount':
                                 $displaydiscountType = '優惠金額折價';
@@ -81,13 +81,22 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
                                 $displaystartDate = $startDateText;
                                 break;
                         }
+                        $expirationDateText = $row["expiration_date"];
+                        switch ($expirationDateText) {
+                            case 'no-expire':
+                                $displayExpirationDate = '無使用期限';
+                                break;
+                            default:
+                                $displayExpirationDate = $expirationDateText;
+                                break;
+                        }
                         $applicableScope = $row["applicable_scope"];
                         switch ($applicableScope) {
                             case 'global':
                                 $displayapplicableScope = '全站使用';
                                 break;
                             case 'type':
-                                $displayapplicableScope = '依類別使用';
+                                $displayapplicableScope = '依商品類別使用';
                                 break;
                         }
                         $couponStatus = $row["status"];
@@ -118,7 +127,7 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
                                 <td><?= $displaydiscountType ?></td>
                             </tr>
                             <tr>
-                                <th>折扣百分比或折扣金額</th>
+                                <th>折扣百分比(%)或折扣金額</th>
                                 <td><?= $row["discount_value"] ?></td>
                             </tr>
                             <tr>
@@ -131,7 +140,7 @@ $rowsMemberCoupon = $resultMemberCoupon->fetch_all(MYSQLI_ASSOC);
                             </tr>
                             <tr>
                                 <th>截止日</th>
-                                <td><?= $row["expiration_date"] ?></td>
+                                <td><?= $displayExpirationDate ?></td>
                             </tr>
                             <tr>
                                 <th>使用門檻(滿多少錢可使用)</th>

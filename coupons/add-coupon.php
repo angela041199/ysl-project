@@ -1,3 +1,12 @@
+<?php 
+require_once("../includes/connect_sever.php");
+
+//類別SQL
+$sqlType = "SELECT * FROM type WHERE valid = 1";
+$resultType = $conn->query($sqlType);
+$rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -130,19 +139,10 @@
                 <div class="mb-3 col-5">
                   <label for="applicable_type_id" class="form-label">優惠券使用商品類別<span class="small text-secondary ps-2">(若選擇全站使用不需填寫)</span></label>
                   <select class="form-select" aria-label="applicable_type_id" name="applicable_type_id">
-                    <option selected>請選擇</option>
-                    <option value="1">RPG</option>
-                    <option value="2">AVG</option>
-                    <option value="3">ETC</option>
-                    <option value="4">ACT</option>
-                    <option value="5">SLG</option>
-                    <option value="6">ARPG</option>
-                    <option value="7">SRPG</option>
-                    <option value="8">RAC</option>
-                    <option value="9">SPG</option>
-                    <option value="10">STG</option>
-                    <option value="11">AAPG</option>
-                    <option value="12">FTG</option>
+                  <option selected>請選擇</option>
+                    <?php foreach ($rowsType as $type): ?>                    
+                    <option value=<?=$type['id']?>><?=$type['name']?></option>
+                    <?php endforeach; ?>
                     <option value="0" id="global_option">全站使用</option>
                   </select>
                 </div>

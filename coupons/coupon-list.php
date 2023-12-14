@@ -69,6 +69,12 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
   // include("../ysl_project/sellerDashboard_sideNav.php");
 
   ?>
+  <style>
+    .custom-table{
+      border-radius: 20px;
+      overflow: hidden;
+    }
+  </style>
 
 </head>
 
@@ -99,19 +105,18 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
             </div>
           </div>
           <div class="py-2 row">
-            <div class="col-3">
+            <div class="col-5">
               <form action="">
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="搜尋優惠券..." name="search">
+                  <input type="text" class="form-control" placeholder="搜尋優惠券名稱..." name="search">
                   <button class="btn btn-warning" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
-
               </form>
             </div>
           </div>
 
           <?php if (!isset($_GET["search"])) : ?>
-            <div class="pb-2 d-flex justify-content-end">
+            <div class="py-2 d-flex justify-content-end">
               <div class="btn-group">
                 <!-- coupon id ASC -->
                 <a class="btn btn-primary <?php if ($order == 1) echo "active" ?>" href="coupon-list.php?page=<?= $page ?>&order=1"><i class="fa-solid fa-arrow-up-wide-short pe-1"></i>編號(由小到大)</a>
@@ -132,8 +137,8 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
             ?>
           </div>
           <?php if ($couponCount > 0) : ?>
-            <table class="table table-bordered">
-              <thead>
+            <table class="custom-table table table-bordered table-striped table-hover border-white">
+              <thead class="table-warning border-white">
                 <tr>
                   <th>編號</th>
                   <th>優惠券名稱</th>
@@ -148,6 +153,7 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
                   <th>使用類別</th>
                   <th>創立日期</th>
                   <th>優惠券狀態</th>
+                  <th>詳細資訊</th>
                 </tr>
               </thead>
               <tbody>
@@ -176,7 +182,7 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
                     $expirationDateText = $row["expiration_date"];
                     switch ($expirationDateText) {
                       case 'no-expire':
-                        $displayExpirationDate = '使用者註冊帳號時間';
+                        $displayExpirationDate = '無使用期限';
                         break;
                       default:
                         $displayExpirationDate = $expirationDateText;
@@ -188,7 +194,7 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
                         $displayapplicableScope = '全站使用';
                         break;
                       case 'type':
-                        $displayapplicableScope = '依類別使用';
+                        $displayapplicableScope = '依商品類別使用';
                         break;
                     }
                     $couponStatus = $row["status"];

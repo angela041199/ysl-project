@@ -31,7 +31,8 @@ $result=$conn->query($sql);
 $rowCount=$result->num_rows;
 //echo $rowCount;
 if($rowCount>0){
-    echo "此優惠券已經存在";
+    echo "<script>alert('此優惠券已經存在!');";
+    echo "window.history.go(-1);</script>";
     exit;
 }
 
