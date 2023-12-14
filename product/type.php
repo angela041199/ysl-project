@@ -143,7 +143,7 @@ $result = $conn->query($query);
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center justify-content-between">
                                 <form action="type.php" method="GET">
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="搜尋分類" name="search">
@@ -154,6 +154,11 @@ $result = $conn->query($query);
                                         </div>
                                     </div>
                                 </form>
+                                <div class="btn-group d-flex align-items-center">
+                                    建立時間：
+                                <a class="btn btn-warning text-white" href="type.php?idDown<?= isset($_GET['search']) ? '&search=' . $_GET['search'] : ''; ?>">新<i class="bi bi-caret-down-fill"></i></a>
+                                <a class="btn btn-secondary" href="type.php?idUp<?= isset($_GET['search']) ? '&search=' . $_GET['search'] : ''; ?>">舊<i class="bi bi-caret-up-fill"></i></a>
+                                </div>
                             </div>
                             <!-- table -->
                             <div class="container">
@@ -162,14 +167,6 @@ $result = $conn->query($query);
                                         <tr>
                                             <th class="col-3">
                                                 類別名稱
-                                                <a
-                                                    href="type.php?idDown<?= isset($_GET['search']) ? '&search=' . $_GET['search'] : ''; ?>">
-                                                    <i class="bi bi-caret-down-fill"></i>
-                                                </a>
-                                                <a
-                                                    href="type.php?idUp<?= isset($_GET['search']) ? '&search=' . $_GET['search'] : ''; ?>">
-                                                    <i class="bi bi-caret-up-fill"></i>
-                                                </a>
                                             </th>
                                             <th class="col-2">編輯類別
                                             </th>
@@ -239,7 +236,7 @@ $result = $conn->query($query);
                                         </li>
                                     <?php endfor; ?>
 
-                                    <li class="page-item <?= ($page == $allTypePages) ? 'disabled' : ''; ?>">
+                                    <li class="page-item <?= ($page == (isset($_GET['search']) ? $searchPages : $allTypePages)) ? 'disabled' : ''; ?>">
                                         <a title="下一頁" class="page-link" href="type.php?page=<?= $page + 1; ?>"
                                             aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>

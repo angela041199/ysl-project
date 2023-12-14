@@ -8,13 +8,22 @@ session_start();
     /* background: #FF482F; */
     background: url(../style/img/background__blue.jpg);
 }
+.ob_fit{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+#logo{
+    display: inline-block;
+    width: 100px;
+}
  </style>
  </head>
 
 
  <nav class="sb-topnav navbar navbar-expand navbg">
      <!-- Navbar Brand-->
-     <a class="navbar-brand ps-3 text-white" href="index.html">Your Switch Life</a>
+     <a class="navbar-brand ps-3 text-white" id="logo" href="../seller/seller_dashboard.php"><img class="ob_fit" src="../style/img/ysl-logo-button-whiteborder.png" alt="LOGO"></a>  
      <!-- Sidebar Toggle-->
      <!-- <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button> -->

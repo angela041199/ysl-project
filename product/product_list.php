@@ -229,7 +229,6 @@ $filterString = http_build_query($filters);
                             <div class="d-flex align-items-center">
                                 <form action="product_list.php?" method="GET">
                                     <div class="input-group">
-                                    <input type="hidden" name="type" value="<?= isset($type) ? $type : ''; ?>">
 
                                         <input type="text" class="form-control" placeholder="搜尋商品" name="search" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
                                         <div class="col-auto">
