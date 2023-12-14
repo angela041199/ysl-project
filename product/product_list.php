@@ -172,10 +172,10 @@ $filters = array_filter($filtersArray, function ($value) {
 });
 
 // 使用 array_unique 移除陣列中的重複值
-$filter = array_unique($filters);
+/* $filter = array_unique($filters); */
 
 // 賦值
-$filterString = http_build_query($filter);
+$filterString = http_build_query($filters);
 
 ?>
 
@@ -222,7 +222,7 @@ $filterString = http_build_query($filter);
                             </div>
                             <div class="btn-group">
                                 <a type="button" class="btn btn-danger" href="add_product.php">新增商品</a>
-                                <a type="button" class="btn btn-warning rounded-end" href="edit_product.php?&<?= $filterString ?>">編輯模式</a>
+                                <a type="button" class="btn btn-warning rounded-end" href="edit_product.php?<?= $filterString ?>">編輯模式</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -256,7 +256,7 @@ $filterString = http_build_query($filter);
                                         </button>
                                         <ul class="dropdown-menu">
                                             <?php foreach ($filterRating as $rating) : ?>
-                                                <li><a class="dropdown-item" href="product_list.php?rating=<?= $rating['id'] ?>&<?= $filterString ?>">
+                                                <li><a class="dropdown-item" href="product_list.php?<?= $filterString ?>&rating=<?= $rating['id'] ?>">
                                                         <?= $rating["rating_name"] ?>
                                                     </a></li>
                                             <?php endforeach; ?>
