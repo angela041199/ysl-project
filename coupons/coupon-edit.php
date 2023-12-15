@@ -136,7 +136,7 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
                                     <tr>
                                         <th>截止日</th>
                                         <td>
-                                            <input type="date" class="form-control" name="expiration_date" id="expiration_date" value="<?= $row["expiration_date"] ?>" <?php if ($row["expiration_date"] == "no-expire") echo "hidden" ?>>
+                                            <input type="date" min="" class="form-control" name="expiration_date" id="expiration_date" value="<?= $row["expiration_date"] ?>" <?php if ($row["expiration_date"] == "no-expire") echo "hidden" ?>>
                                             <?php if ($row["expiration_date"] == "no-expire") echo "無使用期限" ?>
                                             <span id="dateError" class="input-error pt-1"></span>
                                         </td>
@@ -171,7 +171,7 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
                                                                     if ($row["applicable_scope"] == 'global') echo "selected"
                                                                     ?>>全站使用</option>
                                                 <?php foreach ($rowsType as $type) : ?>
-                                                    <option value=<?= $type['id'] ?> <?php if($row["applicable_type_id"]== $type['id']) echo "selected"?>><?= $type['name'] ?></option>
+                                                    <option value=<?= $type['id'] ?> <?php if ($row["applicable_type_id"] == $type['id']) echo "selected" ?>><?= $type['name'] ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </td>
@@ -214,8 +214,22 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+        <!-- Jquery cdn -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <!-- 驗證截止日期不會早於開始日期 -->
         <script>
+            let startDate = document.getElementById('start_date');
+            let expirationDate = document.getElementById('expiration_date');
+
+            function setMinDate(value) {
+                let str = "";
+                let minValue = startDate.value;
+                str = minValue;
+                $("#expiration_date").attr("min", str);
+            }
+            startDate.addEventListener("change", setMinDate);
+        </script>
+        <!-- <script>
             function validateDate() {
                 //獲得開始日期和截止日期的值
                 let startDate = document.getElementById('start_date').value;
@@ -234,7 +248,7 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
                     return true;
                 }
             }
-        </script>
+        </script> -->
         <!-- 驗證input -->
         <script>
             function validateNumberInput(inputElement) {
