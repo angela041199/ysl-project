@@ -12,7 +12,7 @@ if ($conn->query($sql) === TRUE ){
 }
 
 $conn->close();
-// header("location:order.php");
+header("location:stock.php");
 
 ?>
 
