@@ -61,7 +61,7 @@
 .editor-wrap,
 .author-wrap,
 .cover-img-wrap,
-.article-admin-wrap {
+.article-admin-wrap, .status-wrap {
     background: #ffffff;
     border-radius: 8px;
     padding: 10px;
@@ -124,4 +124,20 @@
     color: #a52a2a;
     font-weight: bold;
     margin-left: 5px;
+}
+
+.publish {
+    background: #198754;
+    padding: 5px 8px;
+    color: #ffffff;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.unpublish {
+    background: #ffc107;
+    padding: 5px 8px;
+    color: #ffffff;
+    display: inline-block;
+    border-radius: 5px;
 }

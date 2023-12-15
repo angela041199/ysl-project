@@ -57,7 +57,7 @@
                             <section class="main">
                                 <div class="editor-wrap shadow-sm">
                                     <div class="mb-3">
-                                        <label class="form-label category-input">文章分類 <i class="fa-solid fa-circle-info" style="color: #8a8e93;" title="請選擇要發佈文章的所屬分類類型"></i><span class="info-text">必填欄位</span></label>
+                                        <label class="form-label category-input">文章分類 <i class="fa-solid fa-circle-info" style="color: #8a8e93;" title="請選擇要發佈文章的所屬分類類型"></i><span class="info-text">必選欄位</span></label>
                                         <select class="form-select" name="category_id">
                                             <option value="0">
                                                 請選擇文章分類
