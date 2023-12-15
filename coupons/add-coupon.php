@@ -274,7 +274,7 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
       let discountValue = discountValueInput.value.trim();
       //驗證discount_value是否為數字
       if (!/^\d+$/.test(discountValue)) {
-        document.getElementById('discountValueError').innerHTML = '請輸入數字';
+        document.getElementById('discountValueError').innerHTML = '請輸入有效的數字';
         return false;
       }
       //優惠券類型為百分比時，驗證discount_value
@@ -296,7 +296,7 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
       //檢查最低消費金額是否為數字
       validateNumberInput(document.getElementById('price_rule'));
       //日期驗證
-      let isDateValid = validateDate();
+      // let isDateValid = validateDate();
       //獲取輸入值：：驗證是否符合20字元內
       let inputs = document.getElementsByClassName('validate-input');
       //正規表達式：驗證是否符合20字元內
@@ -319,7 +319,7 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
         return false;
       }
       //全部都通過：返回true
-      return isDateValid;
+      return true;
     }
   </script>
   <!-- 增加type option的判定 -->
