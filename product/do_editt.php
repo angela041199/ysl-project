@@ -21,7 +21,7 @@ if (isset($_POST['type_id'], $_POST['name'])) {
     // 檢查更新是否成功
     if ($updateResult === TRUE) {
         echo '<script>alert("類別更新成功！");</script>';
-        /* echo '<script>window.location.href = "type.php";</script>'; */
+        echo '<script>window.location.href = "type.php";</script>';
     } else {
         echo "更新資料錯誤: " . $conn->error;
     }

@@ -24,7 +24,7 @@ if (isset($_GET["search"])) {
     $query .= " AND type.name LIKE '%$search%'";
 
     // 計算搜尋結果的總數和頁數
-    $searchCountQuery = "SELECT COUNT(*) as total FROM type WHERE type.name LIKE '%$search%'";
+    $searchCountQuery = "SELECT COUNT(*) as total FROM type WHERE type.name LIKE '%$search%' AND type.valid=1";
     $searchCountResult = $conn->query($searchCountQuery);
     $searchItems = $searchCountResult->fetch_assoc()["total"];
     $searchPages = ($searchItems > 0) ? ceil($searchItems / $itemsPerPage) : 0;
@@ -41,7 +41,7 @@ $query .= " LIMIT $startIndex, $itemsPerPage";
 $result = $conn->query($query);
 $typeResult = $result->fetch_all(MYSQLI_ASSOC);
 
-$alltypecount = "SELECT COUNT(*) as total FROM type";
+$alltypecount = "SELECT COUNT(*) as total FROM type WHERE type.valid=1";
 $totalItemsResult = $conn->query($alltypecount);
 $allTypeItems = $totalItemsResult->fetch_assoc()["total"];
 $allTypePages = ($allTypeItems > 0) ? ceil($allTypeItems / $itemsPerPage) : 0;
@@ -95,31 +95,7 @@ $result = $conn->query($query);
 </head>
 
 <body class="sb-nav-fixed">
-<nav class="sb-topnav navbar navbar-expand navbg">
-        <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3 text-white" href="index.html">Your Switch Life</a>
-        <!-- Sidebar Toggle-->
-        <!-- <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button> -->
-        <div class="text-light d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">HELLO !
-            <?= $_SESSION["member"]['name'] ?>
-        </div>
-        <!-- Navbar Search-->
-        <!-- Navbar-->
-        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li>
-                        <hr class="dropdown-divider" />
-                    </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+<?php include("../style/ysl-nav.php") ?>
     <div id="layoutSidenav">
     <?php include("../style/sellerDashboard_sideNav.php"); ?> <!-- 組別include -->
         <div id="layoutSidenav_content">
@@ -128,7 +104,7 @@ $result = $conn->query($query);
                     <!-- <h1 class="mt-4">Tables</h1> -->
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a class="no_link" href="../seller/seller_dashboard.php">首頁</a></li>
-                        <li class="breadcrumb-item active">商品管理</li>
+                        <li class="breadcrumb-item active">類別管理</li>
                     </ol>
                     <div class="card mb-4">
                         <div class="card-header d-flex justify-content-between align-items-center">
@@ -139,14 +115,14 @@ $result = $conn->query($query);
                                 </h3>
                             </div>
                             <div class="btn-group">
-                                <a type="button" class="btn btn-danger" href="add_type.php">新增分類</a>
+                                <a type="button" class="btn btn-danger" href="add_type.php">新增類別</a>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between">
                                 <form action="type.php" method="GET">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="搜尋分類" name="search">
+                                        <input type="text" class="form-control" placeholder="搜尋類別" name="search" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
                                         <div class="col-auto">
                                             <button class="btn border-0" type="submit">
                                                 <i class="bi bi-search"></i>
@@ -236,7 +212,7 @@ $result = $conn->query($query);
                                         </li>
                                     <?php endfor; ?>
 
-                                    <li class="page-item <?= ($page == (isset($_GET['search']) ? $searchPages : $allTypePages)) ? 'disabled' : ''; ?>">
+                                    <li class="page-item <?= ($page == (isset($_GET['search']) ? $searchPages : $allTypePages) || $searchItems == 0) ? 'disabled' : ''; ?>">
                                         <a title="下一頁" class="page-link" href="type.php?page=<?= $page + 1; ?>"
                                             aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>

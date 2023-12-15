@@ -419,7 +419,7 @@ $filterString = http_build_query($filters);
                                             </a>
                                         </li>
                                     <?php endfor; ?>
-                                    <li class="page-item <?php echo ($page == $totalPages) ? 'disabled' : ''; ?>">
+                                    <li class="page-item <?php echo ($page == $totalPages || $totalItems == 0) ? 'disabled' : ''; ?>">
                                         <a title="下一頁" class="page-link" href="product_list.php?page=<?= $page + 1; ?>&<?= $filterString ?>" aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
 
