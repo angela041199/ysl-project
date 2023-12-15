@@ -5,6 +5,9 @@ require_once("../includes/connect_sever.php");
 $sqlType = "SELECT * FROM type WHERE valid = 1";
 $resultType = $conn->query($sqlType);
 $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
+
+//time
+//$time=date('Y-m-d H:i:s');
 ?>
 
 <!doctype html>
@@ -69,14 +72,14 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
             <div class="row">
               <div class="mb-3 col-10">
                 <label for="title" class="form-label">優惠券名稱<i class="fa-solid fa-circle-info ps-1" title="此資料必填"></i></label>
-                <input type="text" class="form-control validate-input" id="title" placeholder="請輸入優惠券名稱（限20字元內）" name="title" required>
+                <input type="text" class="form-control validate-input" id="title" placeholder="請輸入優惠券名稱（限20字元內）" name="title" maxlength="20" required>
                 <span id="titleError" class="input-error pt-2"></span>
                 <h6 class="small p-2 text-success">(日後不可修改優惠券名稱)</h6>
               </div>
               <div class="mb-3 col-10">
                 <label for="coupon_code" class="form-label">優惠券代碼<i class="fa-solid fa-circle-info ps-1" title="此資料必填"></i></label>
                 <div class="input-group">
-                  <input type="text" class="form-control validate-input" id="randomCouponInput" placeholder="請輸入優惠券代碼，可自定義20字元內的數字、英文大小寫" name="coupon_code" required>
+                  <input type="text" class="form-control validate-input" id="randomCouponInput" placeholder="請輸入優惠券代碼，可自定義20字元內的數字、英文大小寫" name="coupon_code"  maxlength="20" required>
                   <button class="btn btn-warning" onclick="generateRandomCouponCode()">隨機生成一組代碼</button>
                 </div>
                 <span id="randomCouponInputError" class="input-error pt-2"></span>
@@ -119,11 +122,11 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
               <div class="mb-3 row">
                 <div class="col-5">
                   <label for="start_date" class="form-label">優惠券開始日期<i class="fa-solid fa-circle-info ps-1" title="此資料必填"></i></label>
-                  <input type="date" class="form-control" id="start_date" name="start_date" required>
+                  <input type="date" class="form-control" id="start_date" name="start_date" min="<?=date("Y-m-d")?>" required>
                 </div>
                 <div class="col-5">
                   <label for="expiration_date" class="form-label">優惠券截止日期<i class="fa-solid fa-circle-info ps-1" title="此資料必填"></i></label>
-                  <input type="date" class="form-control" id="expiration_date" name="expiration_date" required>
+                  <input type="date" class="form-control" id="expiration_date" name="expiration_date" min="" required>
                 </div>
                 <span id="dateError" class="input-error pt-2"></span>
               </div>
@@ -187,7 +190,7 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
   </script>
-
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
   </script>
   <!-- 隨機碼產生按鈕JS -->
@@ -211,6 +214,18 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
   </script>
   <!-- 驗證截止日期不會早於開始日期 -->
   <script>
+    let startDate = document.getElementById('start_date');
+    let expirationDate = document.getElementById('expiration_date');
+
+    function setMinDate(value){
+      let str ="";
+      let minValue = startDate.value;
+      str = minValue;
+      $("#expiration_date").attr("min", str);
+    }
+    startDate.addEventListener("change", setMinDate);
+  </script>
+  <!-- <script>
     function validateDate() {
       //獲得開始日期和截止日期的值
       let startDate = document.getElementById('start_date').value;
@@ -229,7 +244,7 @@ $rowsType = $resultType->fetch_all(MYSQLI_ASSOC);
         return true;
       }
     }
-  </script>
+  </script> -->
   <!-- 驗證input -->
   <script>
     function validateNumberInput(inputElement) {
