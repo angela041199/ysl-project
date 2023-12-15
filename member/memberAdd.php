@@ -56,6 +56,9 @@ include("../style/admin_dashboard.php");
 
                         <div class="card-body">
                             <h1 class="pt-5 text-center "><i class="fa-solid fa-user-plus me-2"></i>新增會員資料</h1>
+                            
+                
+
                             <form class="row g-3 m-2" action="doSignup.php" method="post">
                                 <div class="col-12 mt-3">
                                     <label for="name" class="form-label">姓名<i class="fa-solid fa-circle-info ms-1 text-primary" title="請填入姓名"></i></label>
@@ -79,7 +82,7 @@ include("../style/admin_dashboard.php");
 
                                 <div class="col-md-12 mt-3">
                                     <label for="phone" class="form-label">手機號碼</label>
-                                    <i class="fa-solid fa-circle-info ms-1 text-primary" title="請填入帳號"></i>
+                                    
                                     <input type="tel" class="form-control" id="phone" name="phone" placeholder="請填寫手機號碼">
 
 
@@ -91,7 +94,7 @@ include("../style/admin_dashboard.php");
 
                                     <div class="col-md-12 mt-3">
 
-                                        <label for="birthday" class="form-label">生日</label><i class="fa-solid fa-circle-info ms-1 text-primary" title="請填入密碼"></i>
+                                        <label for="birthday" class="form-label">生日</label>
                                         <input type="date" class="form-control" id="birthday" name="birthday" placeholder="請填西元出生年月日">
                                     </div>
 

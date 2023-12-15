@@ -12,6 +12,7 @@ $sql = "SELECT id, name, account, phone, email, created_at, valid, member_identi
 
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
+$totalUser=$result->num_rows;
 ?>
 
 
@@ -72,7 +73,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                             會員資料表
                         </div>
                         <div class="card-body">
-                            <table id="datatablesSimple">
+                            <table id="datatablesSimple" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th class="p-1">id</th>

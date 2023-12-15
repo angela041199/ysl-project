@@ -61,8 +61,10 @@ session_start();
                 <h1 class="pt-5 text-center">加入會員</h1>
                 <form class="row g-3 m-2" action="doSignup.php" method="post">
                     <div class="col-12 mt-3">
+                    <div class="form-outline">
                         <label for="name" class="form-label">姓名</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="請填寫真實姓名">
+                    </div>
                     </div>
                     <div class="col-md-12 mt-3">
                         <label for="account" class="form-label">帳號</label>

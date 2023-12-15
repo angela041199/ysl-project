@@ -63,7 +63,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                             會員資料表
                         </div>
                         <div class="card-body">
-                            <table id="datatablesSimple">
+                            <table id="datatablesSimple" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th class="p-1">id</th>

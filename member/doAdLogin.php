@@ -1,7 +1,7 @@
 <?php
-
-require_once("../includes/connect_sever.php");
 session_start();
+require_once("../includes/connect_sever.php");
+
 
 
 if (!isset($_POST["username"]) && !isset($_POST["password"])) {

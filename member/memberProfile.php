@@ -93,12 +93,12 @@ $userCount = $result->num_rows;
                                             <th>會員身分</th>
                                             <td>
 
-                                                <span class="badge rounded-pill text-bg-light">
+                                                <span class="badge rounded-pill text-bg-light fs-6">
                                                     買家
                                                 </span>
                                                 <?php if ($row["member_identity"] > 0) : ?>
                                                     <a href="#">
-                                                        <span class="badge rounded-pill text-bg-success">
+                                                        <span class="badge rounded-pill text-bg-light fs-6">
 
                                                             賣家
 
@@ -135,7 +135,7 @@ $userCount = $result->num_rows;
                                             <td><?= $row["created_at"] ?></td>
                                         </tr>
                                         <div class="mt-1">
-                                            <a href="member-admin.php?>" class="btn btn-secondary text-white" title="回上一頁"><i class="fa-solid fa-angles-left me-1"></i>回上一頁</a>
+                                            <a href="member-admin.php?" class="btn btn-secondary text-white" title="回上一頁"><i class="fa-solid fa-angles-left me-1"></i>回上一頁</a>
 
                                             <a href="member-infoEdit.php?id=<?= $row["id"] ?>" class="btn btn-secondary text-white" title="編輯資料"><i class="fa-solid fa-pen-to-square me-1"></i>編輯</a>
                                         </div>
